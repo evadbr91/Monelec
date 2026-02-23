@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Entreprise [NOM] — Fenêtres, Électricité & Rénovation</title>
+  <meta name="description" content="Pose de fenêtres, électricité, rénovation. Devis gratuit. Intervention rapide. Travail soigné." />
+  <meta name="theme-color" content="#0b0b12" />
+  <style>
+    :root{
+      --bg0:#070712;
+      --bg1:#0b0b16;
+      --panel: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.12);
+      --stroke2: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --muted2: rgba(255,255,255,.52);
+      --a1:#8b5cf6;
+      --a2:#22d3ee;
+      --a3:#34d399;
+      --shadow: 0 18px 80px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
+      --ring: 0 0 0 6px rgba(34,211,238,.12);
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background:
+        radial-gradient(1100px 700px at 20% 10%, rgba(139,92,246,.22), transparent 60%),
+        radial-gradient(900px 650px at 85% 15%, rgba(34,211,238,.18), transparent 60%),
+        radial-gradient(900px 700px at 55% 95%, rgba(52,211,153,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 90px;}
+    .nav{
+      position:sticky; top:0; z-index:30;
+      backdrop-filter: blur(10px);
+      background: rgba(7,7,18,.55);
+      border-bottom:1px solid var(--stroke2);
+    }
+    .navin{max-width:var(--max); margin:0 auto; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px;}
+    .brand{display:flex; align-items:center; gap:10px; min-width:220px}
+    .logo{
+      width:36px; height:36px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(139,92,246,.95), rgba(34,211,238,.95));
+      box-shadow: 0 14px 50px rgba(139,92,246,.22);
+      position:relative; overflow:hidden;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.30), transparent 45%);
+      transform: rotate(25deg);
+    }
+    .brand b{font-size:14px; letter-spacing:.2px}
+    .brand span{display:block; font-size:12px; color:var(--muted2); margin-top:2px}
+    .links{display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
+    .chip{
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke2);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+      transition: .2s ease;
+      cursor:pointer;
+    }
+    .chip:hover{border-color:var(--stroke); background: rgba(255,255,255,.05)}
+    .cta{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(34,211,238,.35);
+      background: linear-gradient(135deg, rgba(34,211,238,.20), rgba(139,92,246,.16));
+      color:var(--text);
+      box-shadow: 0 18px 70px rgba(34,211,238,.10);
+      font-weight:600;
+    }
+    .cta:hover{box-shadow: 0 22px 85px rgba(34,211,238,.14)}
+    .hero{padding:44px 0 10px}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){
+      .grid{grid-template-columns:1fr}
+      .brand{min-width:unset}
+    }
+    .card{
+      background: rgba(255,255,255,.045);
+      border:1px solid var(--stroke2);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(900px 220px at 25% 0%, rgba(139,92,246,.18), transparent 60%),
+                  radial-gradient(900px 220px at 75% 0%, rgba(34,211,238,.12), transparent 60%);
+      pointer-events:none;
+    }
+    .cardin{position:relative; padding:28px}
+    h1{margin:0; font-size:44px; letter-spacing:-.6px; line-height:1.06}
+    @media (max-width: 520px){h1{font-size:36px}}
+    .sub{margin-top:14px; color:var(--muted); font-size:16px; line-height:1.6; max-width:58ch}
+    .badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
+    .badge{
+      display:flex; gap:8px; align-items:center;
+      padding:9px 12px; border-radius:999px;
+      border:1px solid var(--stroke2);
+      background: rgba(255,255,255,.03);
+      font-size:13px; color:var(--muted);
+    }
+    .dot{width:8px; height:8px; border-radius:999px; background: linear-gradient(135deg, var(--a2), var(--a1))}
+    .actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:20px}
+    .btn{
+      display:inline-flex; gap:10px; align-items:center; justify-content:center;
+      padding:12px 14px;
+      border-radius: 14px;
+      border:1px solid var(--stroke2);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      font-weight:600;
+      transition: .2s ease;
+      cursor:pointer;
+    }
+    .btn:hover{transform: translateY(-1px); border-color:var(--stroke); background: rgba(255,255,255,.05)}
+    .btn.primary{
+      border-color: rgba(52,211,153,.35);
+      background: linear-gradient(135deg, rgba(52,211,153,.18), rgba(34,211,238,.12));
+      box-shadow: 0 18px 70px rgba(52,211,153,.10);
+    }
+    .btn.primary:hover{box-shadow: 0 22px 85px rgba(52,211,153,.14)}
+    .side{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+    .mini{
+      padding:18px;
+      border-radius: var(--radius2);
+      border:1px solid var(--stroke2);
+      background: rgba(255,255,255,.03);
+    }
+    .kpis{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px}
+    .kpi{
+      padding:14px; border-radius:16px;
+      border:1px solid var(--stroke2);
+      background: rgba(255,255,255,.03);
+    }
+    .kpi b{display:block; font-size:16px}
+    .kpi span{display:block; margin-top:4px; font-size:12px; color:var(--muted2); line-height:1.4}
+    .sect{padding:22px 0 0}
+    .title{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin:24px 0 12px}
+    .title h2{margin:0; font-size:22px; letter-spacing:-.2px}
+    .title p{margin:0; color:var(--muted2); font-size:13px}
+    .cards3{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+    @media (max-width: 920px){.cards3{grid-template-columns:1fr}}
+    .service{
+      padding:18px;
+      border-radius: var(--radius);
+      border:1px solid var(--stroke2);
+      background: rgba(255,255,255,.03);
+      transition: .2s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .service:hover{transform: translateY(-2px); border-color:var(--stroke)}
+    .icon{
+      width:42px; height:42px; border-radius:14px;
+      display:grid; place-items:center;
+      background: linear-gradient(135deg, rgba(139,92,246,.22), rgba(34,211,238,.15));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 14px 60px rgba(0,0,0,.35);
+      margin-bottom:10px;
+      font-size:18px;
+    }
+    .service b{display:block; font-size:15px}
+    .service p{margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.55}
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+    }
+    .ph{
+      border-radius: var(--radius);
+      border:1px solid var(--stroke2);
+      background:
+        radial-gradient(220px 140px at 25% 25%, rgba(34,211,238,.16), transparent 60%),
+        radial-gradient(240px 160px at 75% 35%, rgba(139,92,246,.18), transparent 60%),
+        rgba(255,255,255,.03);
+      min-height: 180px;
+      position:relative;
+      overflow:hidden;
+    }
+    .ph:after{
+      content:"Photo";
+      position:absolute; left:14px; bottom:12px;
+      font-size:12px; color:var(--muted2);
+      border:1px solid var(--stroke2);
+      background: rgba(0,0,0,.25);
+      padding:6px 10px; border-radius:999px;
+      backdrop-filter: blur(8px);
+    }
+    .ph.big{grid-column: span 7}
+    .ph.mid{grid-column: span 5}
+    .ph.s{grid-column: span 4}
+    @media (max-width: 920px){
+      .ph.big,.ph.mid,.ph.s{grid-column:span 12}
+    }
+    .reviews{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+    @media (max-width: 920px){.reviews{grid-template-columns:1fr}}
+    .rev{
+      padding:18px;
+      border-radius: var(--radius);
+      border:1px solid var(--stroke2);
+      background: rgba(255,255,255,.03);
+    }
+    .rev .stars{letter-spacing:2px; font-size:14px}
+    .rev p{margin:10px 0 0; color:var(--muted); line-height:1.55; font-size:13px}
+    .rev b{display:block; margin-top:12px; font-size:13px}
+    .split{
+      display:grid; grid-template-columns: 1fr 1fr; gap:12px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){.split{grid-template-columns:1fr}}
+    .contact{
+      padding:18px; border-radius: var(--radius2);
+      border:1px solid var(--stroke2);
+      background: rgba(255,255,255,.03);
+    }
+    label{display:block; font-size:12px; color:var(--muted2); margin:10px 0 6px}
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--stroke2);
+      background: rgba(0,0,0,.18);
+      color:var(--text);
+      outline:none;
+      transition: .15s ease;
+    }
+    input:focus, textarea:focus{border-color: rgba(34,211,238,.45); box-shadow: var(--ring)}
+    textarea{min-height:110px; resize:vertical}
+    .foot{
+      margin-top:26px;
+      color:var(--muted2);
+      font-size:12px;
+      display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center;
+      padding-top:18px;
+      border-top:1px solid var(--stroke2);
+    }
+    .smalllinks{display:flex; gap:10px; flex-wrap:wrap}
+    .smalllinks a{color:var(--muted); border:1px solid var(--stroke2); padding:8px 10px; border-radius:999px; background: rgba(255,255,255,.03)}
+    .smalllinks a:hover{border-color:var(--stroke)}
+    /* subtle reveal */
+    .reveal{opacity:0; transform: translateY(10px); transition: .6s ease}
+    .reveal.on{opacity:1; transform: translateY(0)}
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="navin">
+      <a class="brand" href="#top" aria-label="Accueil">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <b>Entreprise <span id="bizNameNav">[NOM]</span></b>
+          <span>Fenêtres • Électricité • Rénovation</span>
+        </div>
+      </a>
+
+      <div class="links">
+        <a class="chip" href="#services">Services</a>
+        <a class="chip" href="#realisations">Réalisations</a>
+        <a class="chip" href="#avis">Avis</a>
+        <a class="chip" href="#contact">Contact</a>
+        <a class="cta" id="callCta" href="tel:+33600000000">📞 Appeler</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div class="grid">
+        <div class="card reveal">
+          <div class="cardin">
+            <h1>Fenêtres, électricité & rénovation — <span style="background:linear-gradient(135deg,var(--a2),var(--a1)); -webkit-background-clip:text; background-clip:text; color:transparent;">travail soigné</span>.</h1>
+            <p class="sub">
+              Pose de fenêtres/portes, mise aux normes électriques, petits travaux & rénovation. Devis clair, conseils, intervention rapide.
+            </p>
+
+            <div class="badges">
+              <div class="badge"><span class="dot"></span> Devis gratuit</div>
+              <div class="badge"><span class="dot"></span> Réactif & ponctuel</div>
+              <div class="badge"><span class="dot"></span> Garantie & finitions</div>
+              <div class="badge"><span class="dot"></span> Particuliers & pros</div>
+            </div>
+
+            <div class="actions">
+              <a class="btn primary" id="devisBtn" href="#contact">✅ Demander un devis</a>
+              <a class="btn" id="waBtn" href="https://wa.me/33600000000" target="_blank" rel="noopener">💬 WhatsApp</a>
+              <a class="btn" href="#realisations">🧰 Voir les réalisations</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="side">
+          <div class="mini reveal">
+            <b style="font-size:14px">Zone d’intervention</b>
+            <p style="margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.55">
+              <span id="zoneTxt">[Ville] + 30 km</span><br/>
+              Dépannage possible selon urgence.
+            </p>
+            <div class="kpis">
+              <div class="kpi">
+                <b>⭐ 5/5</b>
+                <span>Avis clients (Google)</span>
+              </div>
+              <div class="kpi">
+                <b>📅 7j/7</b>
+                <span>Selon disponibilités</span>
+              </div>
+              <div class="kpi">
+                <b>⚡ Sécurité</b>
+                <span>Conforme & soigné</span>
+              </div>
+              <div class="kpi">
+                <b>🪟 Fenêtres</b>
+                <span>Pose / remplacement</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mini reveal">
+            <b style="font-size:14px">Contact direct</b>
+            <p style="margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.55">
+              📞 <a id="telTxt" href="tel:+33600000000" style="text-decoration:underline;">+33 6 00 00 00 00</a><br/>
+              ✉️ <a id="mailTxt" href="mailto:contact@exemple.fr" style="text-decoration:underline;">contact@exemple.fr</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="sect">
+      <div class="title">
+        <h2>Services</h2>
+        <p>Tout corps d’état (selon projet) — priorité : fenêtres & électricité</p>
+      </div>
+
+      <div class="cards3">
+        <div class="service reveal">
+          <div class="icon">🪟</div>
+          <b>Pose & remplacement de fenêtres</b>
+          <p>PVC / alu / bois, volets, portes, réglages, étanchéité, finitions propres.</p>
+        </div>
+
+        <div class="service reveal">
+          <div class="icon">⚡</div>
+          <b>Électricité</b>
+          <p>Mise aux normes, tableaux, prises, luminaires, dépannage, sécurité.</p>
+        </div>
+
+        <div class="service reveal">
+          <div class="icon">🧱</div>
+          <b>Rénovation & petits travaux</b>
+          <p>Peinture, réparations, montage, pose, amélioration et entretien.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="realisations" class="sect">
+      <div class="title">
+        <h2>Réalisations</h2>
+        <p>Remplace les blocs “Photo” par tes vraies images</p>
+      </div>
+
+      <div class="gallery">
+        <div class="ph big reveal" data-caption="Remplacement fenêtre"></div>
+        <div class="ph mid reveal" data-caption="Tableau électrique"></div>
+        <div class="ph s reveal" data-caption="Pose porte/volet"></div>
+        <div class="ph s reveal" data-caption="Rénovation pièce"></div>
+        <div class="ph s reveal" data-caption="Détails finitions"></div>
+      </div>
+      <p style="margin:10px 0 0; color:var(--muted2); font-size:12px">
+        Astuce : tu peux mettre 6 à 12 photos max, bien avant/après.
+      </p>
+    </section>
+
+    <section id="avis" class="sect">
+      <div class="title">
+        <h2>Avis clients</h2>
+        <p>Courts, vrais, et centrés sur la confiance</p>
+      </div>
+
+      <div class="reviews">
+        <div class="rev reveal">
+          <div class="stars">★★★★★</div>
+          <p>Travail très propre, ponctuel et de bon conseil. Je recommande.</p>
+          <b>— Client</b>
+        </div>
+        <div class="rev reveal">
+          <div class="stars">★★★★★</div>
+          <p>Réactif, efficace, tout fonctionne parfaitement. Merci !</p>
+          <b>— Client</b>
+        </div>
+        <div class="rev reveal">
+          <div class="stars">★★★★★</div>
+          <p>Pose de fenêtre nickel, finitions au top. Devis clair.</p>
+          <b>— Client</b>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="sect">
+      <div class="title">
+        <h2>Demander un devis</h2>
+        <p>Réponse rapide (dans la journée si possible)</p>
+      </div>
+
+      <div class="split">
+        <div class="contact reveal">
+          <b style="font-size:14px">Formulaire</b>
+          <p style="margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.55">
+            Remplis, ça ouvre ton application mail avec le message prêt ✅
+          </p>
+
+          <form id="contactForm">
+            <label>Nom</label>
+            <input required name="name" placeholder="Ex: Mme Dupont" />
+
+            <label>Téléphone</label>
+            <input required name="phone" placeholder="Ex: 06 12 34 56 78" />
+
+            <label>Ville</label>
+            <input name="city" placeholder="Ex: Massy" />
+
+            <label>Votre demande</label>
+            <textarea required name="msg" placeholder="Ex: remplacement fenêtre salon + mise aux normes tableau"></textarea>
+
+            <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap">
+              <button class="btn primary" type="submit">✉️ Envoyer la demande</button>
+              <a class="btn" id="quickCall" href="tel:+33600000000">📞 Appeler</a>
+            </div>
+          </form>
+        </div>
+
+        <div class="contact reveal">
+          <b style="font-size:14px">Infos</b>
+          <p style="margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.55">
+            <b style="display:inline">Entreprise :</b> <span id="bizNameInfo">[NOM]</span><br/>
+            <b style="display:inline">Zone :</b> <span id="zoneTxt2">[Ville] + 30 km</span><br/>
+            <b style="display:inline">Horaires :</b> Lun–Sam (selon chantiers)<br/>
+            <b style="display:inline">Téléphone :</b> <a id="telTxt2" href="tel:+33600000000" style="text-decoration:underline;">+33 6 00 00 00 00</a><br/>
+            <b style="display:inline">Email :</b> <a id="mailTxt2" href="mailto:contact@exemple.fr" style="text-decoration:underline;">contact@exemple.fr</a>
+          </p>
+
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn" id="mapsBtn" href="#" target="_blank" rel="noopener">📍 Voir sur Maps</a>
+            <a class="btn" id="waBtn2" href="https://wa.me/33600000000" target="_blank" rel="noopener">💬 WhatsApp</a>
+          </div>
+
+          <p style="margin-top:14px; color:var(--muted2); font-size:12px; line-height:1.55">
+            Tu veux un “vrai” formulaire qui envoie vers une boîte mail automatiquement ? Je te dirai la solution gratuite avec Formspree/Netlify ensuite.
+          </p>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div>© <span id="year"></span> <span id="bizNameFoot">[NOM]</span>. Tous droits réservés.</div>
+        <div class="smalllinks">
+          <a href="#services">Services</a>
+          <a href="#realisations">Réalisations</a>
+          <a href="#contact">Devis</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // ✅ PERSONNALISATION RAPIDE ICI
+    const CONFIG = {
+      businessName: "Entreprise Vilatte", // <- mets le nom de ton père
+      phoneDisplay: "+33 6 12 34 56 78",
+      phoneE164: "+33612345678", // format international sans espaces
+      email: "contact@exemple.fr",
+      cityZone: "Massy + 30 km",
+      mapsQuery: "Massy",
+      whatsappE164: "33612345678" // sans +
+    };
+
+    // Inject config
+    const $ = (s) => document.querySelector(s);
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    ["bizNameNav","bizNameInfo","bizNameFoot"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = CONFIG.businessName;
+    });
+
+    ["zoneTxt","zoneTxt2"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = CONFIG.cityZone;
+    });
+
+    const telHrefs = [
+      ["callCta", CONFIG.phoneE164],
+      ["telTxt", CONFIG.phoneE164],
+      ["telTxt2", CONFIG.phoneE164],
+      ["quickCall", CONFIG.phoneE164],
+    ];
+    telHrefs.forEach(([id, v]) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.href = "tel:" + v;
+      if (id.startsWith("telTxt")) el.textContent = CONFIG.phoneDisplay;
+      if (id === "callCta") el.textContent = "📞 " + CONFIG.phoneDisplay;
+    });
+
+    ["mailTxt","mailTxt2"].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.href = "mailto:" + CONFIG.email;
+      el.textContent = CONFIG.email;
+    });
+
+    const wa = "https://wa.me/" + CONFIG.whatsappE164;
+    ["waBtn","waBtn2"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.href = wa;
+    });
+
+    const maps = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(CONFIG.mapsQuery);
+    const mapsBtn = document.getElementById("mapsBtn");
+    if (mapsBtn) mapsBtn.href = maps;
+
+    // Fake gallery captions (optional)
+    document.querySelectorAll(".ph").forEach((el) => {
+      const cap = el.getAttribute("data-caption");
+      if (!cap) return;
+      const tag = document.createElement("div");
+      tag.textContent = cap;
+      tag.style.position = "absolute";
+      tag.style.left = "14px";
+      tag.style.top = "12px";
+      tag.style.fontSize = "12px";
+      tag.style.color = "rgba(255,255,255,.72)";
+      tag.style.border = "1px solid rgba(255,255,255,.12)";
+      tag.style.background = "rgba(0,0,0,.20)";
+      tag.style.padding = "6px 10px";
+      tag.style.borderRadius = "999px";
+      tag.style.backdropFilter = "blur(8px)";
+      el.appendChild(tag);
+    });
+
+    // Contact form -> mailto
+    document.getElementById("contactForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const name = (fd.get("name") || "").toString().trim();
+      const phone = (fd.get("phone") || "").toString().trim();
+      const city = (fd.get("city") || "").toString().trim();
+      const msg = (fd.get("msg") || "").toString().trim();
+
+      const subject = encodeURIComponent("Demande de devis — " + (city || "Client"));
+      const body = encodeURIComponent(
+`Bonjour,
+
+Je souhaite un devis.
+
+Nom : ${name}
+Téléphone : ${phone}
+Ville : ${city || "-"}
+Demande : ${msg}
+
+Merci,
+${name}`
+      );
+      window.location.href = `mailto:${CONFIG.email}?subject=${subject}&body=${body}`;
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => { if (en.isIntersecting) en.target.classList.add("on"); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
