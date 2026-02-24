@@ -489,6 +489,151 @@
     @media (max-width: 520px){
       .grid4{ grid-template-columns: 1fr; }
     }
+    /* --- Reviews Marquee (placeholder) --- */
+.reviews-band{
+  margin: 18px 0 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: linear-gradient(180deg, #fff, var(--soft));
+  box-shadow: 0 12px 30px rgba(10,15,20,.06);
+}
+
+.reviews-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+
+.reviews-head b{
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .35px;
+}
+
+.reviews-head span{
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 12.5px;
+}
+
+.marquee{
+  position:relative;
+  overflow:hidden;
+}
+
+.marquee::before,
+.marquee::after{
+  content:"";
+  position:absolute; top:0; bottom:0;
+  width: 80px;
+  pointer-events:none;
+  z-index: 2;
+}
+.marquee::before{
+  left:0;
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0) 100%);
+}
+.marquee::after{
+  right:0;
+  background: linear-gradient(270deg, #ffffff 0%, rgba(255,255,255,0) 100%);
+}
+
+.marquee-track{
+  display:flex;
+  gap: 12px;
+  padding: 12px 14px;
+  width: max-content;
+  animation: reviewsScroll 26s linear infinite;
+  will-change: transform;
+}
+
+.reviews-band:hover .marquee-track{
+  animation-play-state: paused; /* pause on hover */
+}
+
+@keyframes reviewsScroll{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+
+.review-pill{
+  flex: 0 0 auto;
+  min-width: 320px;
+  max-width: 420px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 16px;
+  padding: 12px 12px;
+  display:flex;
+  gap: 10px;
+  align-items:flex-start;
+}
+
+.review-avatar{
+  width: 40px; height: 40px;
+  border-radius: 999px;
+  background: var(--black);
+  color: #fff;
+  display:grid;
+  place-items:center;
+  font-weight: 1000;
+  letter-spacing: .3px;
+  flex: 0 0 auto;
+}
+
+.review-body b{
+  display:block;
+  font-size: 13px;
+  letter-spacing:.2px;
+}
+
+.review-body p{
+  margin: 6px 0 8px;
+  color: var(--muted);
+  font-weight: 650;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.stars{
+  display:flex;
+  gap: 2px;
+  align-items:center;
+}
+.star{
+  width: 14px; height: 14px;
+  display:inline-block;
+  background: currentColor;
+  color: #111827;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>') center / contain no-repeat;
+          mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>') center / contain no-repeat;
+  opacity: .92;
+}
+.star.dim{ opacity: .25; }
+
+.review-meta{
+  display:flex;
+  gap: 8px;
+  align-items:center;
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.badge-note{
+  border: 1px dashed var(--line2);
+  background: var(--soft);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-weight: 900;
+  font-size: 12px;
+  color: #111827;
+}
   </style>
 </head>
 
@@ -638,7 +783,114 @@
         </aside>
       </div>
     </section>
+<section class="reviews-band" aria-label="Bandeau avis">
+  <div class="reviews-head">
+    <b>Avis clients</b>
+    <span><span class="badge-note">Exemples (en attendant les vrais avis)</span></span>
+  </div>
 
+  <div class="marquee">
+    <div class="marquee-track" id="reviewsTrack">
+      <!-- SET 1 -->
+      <div class="review-pill">
+        <div class="review-avatar">ML</div>
+        <div class="review-body">
+          <b>Marie L.</b>
+          <div class="stars" aria-label="5 étoiles">
+            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+          </div>
+          <p>Pose de porte d’entrée nickel, finitions propres et chantier laissé impeccable.</p>
+          <div class="review-meta">Île-de-France • Porte</div>
+        </div>
+      </div>
+
+      <div class="review-pill">
+        <div class="review-avatar">KA</div>
+        <div class="review-body">
+          <b>Karim A.</b>
+          <div class="stars" aria-label="5 étoiles">
+            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+          </div>
+          <p>Remplacement fenêtres + réglages : isolation top, délais respectés.</p>
+          <div class="review-meta">Île-de-France • Fenêtres</div>
+        </div>
+      </div>
+
+      <div class="review-pill">
+        <div class="review-avatar">SR</div>
+        <div class="review-body">
+          <b>Sandra R.</b>
+          <div class="stars" aria-label="4 étoiles">
+            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star dim"></span>
+          </div>
+          <p>Motorisation garage bien expliquée, travail sérieux et propre.</p>
+          <div class="review-meta">Île-de-France • Garage</div>
+        </div>
+      </div>
+
+      <div class="review-pill">
+        <div class="review-avatar">TP</div>
+        <div class="review-body">
+          <b>Thomas P.</b>
+          <div class="stars" aria-label="5 étoiles">
+            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+          </div>
+          <p>Intervention électricité rapide, explications claires, mise aux normes OK.</p>
+          <div class="review-meta">Île-de-France • Électricité</div>
+        </div>
+      </div>
+
+      <!-- SET 2 (clone) -->
+      <div class="review-pill">
+        <div class="review-avatar">ML</div>
+        <div class="review-body">
+          <b>Marie L.</b>
+          <div class="stars" aria-label="5 étoiles">
+            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+          </div>
+          <p>Pose de porte d’entrée nickel, finitions propres et chantier laissé impeccable.</p>
+          <div class="review-meta">Île-de-France • Porte</div>
+        </div>
+      </div>
+
+      <div class="review-pill">
+        <div class="review-avatar">KA</div>
+        <div class="review-body">
+          <b>Karim A.</b>
+          <div class="stars" aria-label="5 étoiles">
+            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+          </div>
+          <p>Remplacement fenêtres + réglages : isolation top, délais respectés.</p>
+          <div class="review-meta">Île-de-France • Fenêtres</div>
+        </div>
+      </div>
+
+      <div class="review-pill">
+        <div class="review-avatar">SR</div>
+        <div class="review-body">
+          <b>Sandra R.</b>
+          <div class="stars" aria-label="4 étoiles">
+            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star dim"></span>
+          </div>
+          <p>Motorisation garage bien expliquée, travail sérieux et propre.</p>
+          <div class="review-meta">Île-de-France • Garage</div>
+        </div>
+      </div>
+
+      <div class="review-pill">
+        <div class="review-avatar">TP</div>
+        <div class="review-body">
+          <b>Thomas P.</b>
+          <div class="stars" aria-label="5 étoiles">
+            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+          </div>
+          <p>Intervention électricité rapide, explications claires, mise aux normes OK.</p>
+          <div class="review-meta">Île-de-France • Électricité</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
     <section class="section" id="services">
       <div class="sectionTitle">
         <h2>Services</h2>
