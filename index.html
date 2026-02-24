@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MONELEC — Portes, Fenêtres, Garage & Électricité | Île-de-France</title>
-  <meta name="description" content="Pose et remplacement de portes, fenêtres, portes de garage + électricité. Île-de-France. Devis gratuit, travail soigné." />
+  <title>MONELEC — Portails, Fenêtres, Garage & Électricité | Île-de-France</title>
+  <meta name="description" content="Pose et remplacement de portails, fenêtres, portes de garage + électricité. Île-de-France. Devis gratuit, travail soigné." />
   <meta name="theme-color" content="#0b0f14" />
 
   <style>
@@ -18,11 +18,12 @@
       --soft2:#f0f2f7;
       --black:#0b0f14;
       --shadow: 0 18px 50px rgba(10,15,20,.10);
+      --shadow2: 0 12px 30px rgba(10,15,20,.08);
       --r: 20px;
       --r2: 14px;
       --cta:#0b0f14;
       --ctaTxt:#ffffff;
-      --warn:#fbbf24;
+      --accent:#fbbf24;
     }
 
     *{ box-sizing:border-box; }
@@ -39,7 +40,7 @@
     .topbar{
       background: var(--black);
       color: rgba(255,255,255,.92);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 13px;
       letter-spacing:.2px;
       border-bottom: 1px solid rgba(255,255,255,.08);
@@ -62,8 +63,8 @@
       border: 1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
     }
-    .chip b{ font-weight: 900; }
-    .chip span{ opacity:.9; }
+    .chip b{ font-weight: 1000; }
+    .chip span{ opacity:.92; }
 
     header{
       position:sticky;
@@ -105,20 +106,17 @@
       position:absolute; inset:-40%;
       background: linear-gradient(120deg, transparent, rgba(255,255,255,.28), transparent);
       transform: rotate(18deg);
-      opacity:.35;
-      animation: logoShine 5.5s ease-in-out infinite;
+      opacity:.0;
+      animation: logoShine 6.2s ease-in-out infinite;
     }
     @keyframes logoShine{
-      0%{ transform: translateX(-30%) rotate(18deg); opacity:.0; }
-      20%{ opacity:.35; }
-      50%{ transform: translateX(30%) rotate(18deg); opacity:.18; }
+      0%{ transform: translateX(-30%) rotate(18deg); opacity:0; }
+      15%{ opacity:.35; }
+      45%{ transform: translateX(25%) rotate(18deg); opacity:.18; }
       100%{ transform: translateX(70%) rotate(18deg); opacity:0; }
     }
 
-    .brand .name{
-      display:flex; flex-direction:column;
-      line-height:1.05;
-    }
+    .brand .name{ display:flex; flex-direction:column; line-height:1.05; }
     .brand .name strong{
       letter-spacing:.8px;
       text-transform:uppercase;
@@ -127,7 +125,7 @@
     }
     .brand .name small{
       color: var(--muted);
-      font-weight: 800;
+      font-weight: 850;
       font-size: 12px;
       margin-top:4px;
     }
@@ -136,19 +134,14 @@
       display:flex;
       gap: 18px;
       align-items:center;
-      font-weight: 900;
+      font-weight: 950;
       font-size: 13px;
       letter-spacing:.25px;
       text-transform: uppercase;
       color: #1f2937;
     }
-    nav.menu a{
-      padding: 10px 10px;
-      border-radius: 12px;
-    }
-    nav.menu a:hover{
-      background: var(--soft);
-    }
+    nav.menu a{ padding: 10px 10px; border-radius: 12px; }
+    nav.menu a:hover{ background: var(--soft); }
 
     .btn{
       display:inline-flex;
@@ -164,6 +157,7 @@
       cursor:pointer;
       transition: transform .18s ease, background .18s ease, filter .18s ease, box-shadow .18s ease;
       will-change: transform;
+      user-select:none;
     }
     .btn:hover{ background: var(--soft); transform: translateY(-1px); box-shadow: 0 10px 24px rgba(10,15,20,.08); }
     .btn:active{ transform: translateY(0px) scale(.99); }
@@ -173,31 +167,31 @@
       border-color: var(--cta);
     }
     .btn.primary:hover{ filter: brightness(.95); }
-    .btn.ghost{
-      border-color: var(--line2);
-      background: #fff;
-    }
+    .btn.ghost{ border-color: var(--line2); background:#fff; }
 
-    .hero{
-      padding: 34px 0 14px;
-    }
+    .hero{ padding: 34px 0 14px; }
     .heroText{
       border: 1px solid var(--line);
       background: #fff;
       border-radius: var(--r);
       box-shadow: var(--shadow);
       padding: 22px;
+      position:relative;
+      overflow:hidden;
     }
-    .kickers{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom: 12px;
+    .heroText:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(800px 280px at 20% 0%, rgba(251,191,36,.18), transparent 55%),
+                  radial-gradient(700px 260px at 80% 10%, rgba(11,15,20,.08), transparent 55%);
+      pointer-events:none;
+      opacity:.9;
     }
+    .heroText > *{ position:relative; }
+
+    .kickers{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom: 12px; }
     .k{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
+      display:inline-flex; align-items:center; gap:8px;
       padding: 8px 10px;
       border-radius: 999px;
       border: 1px solid var(--line);
@@ -207,11 +201,7 @@
       font-size: 12px;
       letter-spacing:.2px;
     }
-    .dot{
-      width:10px; height:10px;
-      border-radius:999px;
-      background: var(--black);
-    }
+    .dot{ width:10px; height:10px; border-radius:999px; background: var(--black); }
     h1{
       margin: 10px 0 10px;
       font-size: clamp(28px, 3.2vw, 44px);
@@ -224,14 +214,9 @@
       font-size: 15.5px;
       line-height:1.7;
       max-width: 72ch;
-      font-weight: 650;
+      font-weight: 680;
     }
-    .actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top: 16px;
-    }
+    .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 16px; }
 
     .proofs{
       display:grid;
@@ -281,18 +266,28 @@
       border-bottom: 1px solid rgba(255,255,255,.10);
       color:#fff;
     }
-    .carTop b{
-      letter-spacing:.35px;
-      text-transform: uppercase;
-      font-size: 13px;
-    }
+    .carTop b{ letter-spacing:.35px; text-transform: uppercase; font-size: 13px; }
     .carTop span{
       display:block;
       margin-top:4px;
       opacity:.82;
-      font-weight: 750;
+      font-weight: 780;
       font-size: 12px;
       line-height:1.35;
+    }
+    .carTopRight{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .miniTag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.08);
+      color:#fff;
+      font-weight: 950;
+      font-size: 12px;
+      white-space:nowrap;
     }
 
     .viewport{
@@ -325,13 +320,22 @@
       transition: transform 1.2s cubic-bezier(.2,.8,.2,1), filter .8s ease, opacity .8s ease;
       will-change: transform;
     }
-    .slide.active img{
-      transform: scale(1.10);
-      filter: contrast(1.05) saturate(1.05);
+    .slide.active img{ transform: scale(1.10); filter: contrast(1.06) saturate(1.06); }
+    .overlay{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(11,15,20,.18), rgba(11,15,20,.72)); }
+
+    .shine{
+      position:absolute;
+      inset: -30%;
+      background: radial-gradient(closest-side, rgba(255,255,255,.12), transparent 60%);
+      transform: translateX(-25%) translateY(-10%);
+      opacity:.0;
+      pointer-events:none;
     }
-    .overlay{
-      position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(11,15,20,.18), rgba(11,15,20,.72));
+    .slide.active .shine{ opacity:.7; animation: floatShine 6s ease-in-out infinite; }
+    @keyframes floatShine{
+      0%{ transform: translateX(-22%) translateY(-12%) scale(1); }
+      50%{ transform: translateX(18%) translateY(10%) scale(1.08); }
+      100%{ transform: translateX(-22%) translateY(-12%) scale(1); }
     }
 
     .cap{
@@ -354,13 +358,9 @@
       transition: opacity .55s ease, transform .55s cubic-bezier(.2,.85,.2,1);
       will-change: opacity, transform;
     }
-    .slide.active .cap{
-      opacity: 1;
-      transform: translateX(-50%) translateY(0px);
-    }
+    .slide.active .cap{ opacity: 1; transform: translateX(-50%) translateY(0px); }
     .cap b{ display:block; margin-bottom:3px; font-size: 14px; }
-    .cap span{ display:block; opacity:.82; font-weight: 700; font-size: 12.5px; line-height:1.35; }
-
+    .cap span{ display:block; opacity:.82; font-weight: 740; font-size: 12.5px; line-height:1.35; }
     .badge{
       border: 1px solid rgba(255,255,255,.18);
       background: rgba(255,255,255,.08);
@@ -386,6 +386,7 @@
       color:#fff;
       transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
       will-change: transform;
+      z-index: 5;
     }
     .arrow:hover{
       background: rgba(11,15,20,.72);
@@ -402,7 +403,7 @@
       display:flex;
       justify-content:center;
       gap: 8px;
-      pointer-events:auto;
+      z-index: 5;
     }
     .dotBtn{
       width: 8px; height: 8px;
@@ -419,31 +420,13 @@
       opacity: 1;
     }
 
-    .shine{
-      position:absolute;
-      inset: -30%;
-      background: radial-gradient(closest-side, rgba(255,255,255,.12), transparent 60%);
-      transform: translateX(-25%) translateY(-10%);
-      opacity:.0;
-      pointer-events:none;
-    }
-    .slide.active .shine{
-      opacity:.7;
-      animation: floatShine 6s ease-in-out infinite;
-    }
-    @keyframes floatShine{
-      0%{ transform: translateX(-22%) translateY(-12%) scale(1); }
-      50%{ transform: translateX(18%) translateY(10%) scale(1.08); }
-      100%{ transform: translateX(-22%) translateY(-12%) scale(1); }
-    }
-
     .reviews-band{
       margin: 18px 0 10px;
       border: 1px solid var(--line);
       border-radius: var(--r);
       overflow: hidden;
       background: linear-gradient(180deg, #fff, var(--soft));
-      box-shadow: 0 12px 30px rgba(10,15,20,.06);
+      box-shadow: var(--shadow2);
     }
     .reviews-head{
       display:flex;
@@ -454,16 +437,8 @@
       border-bottom: 1px solid var(--line);
       background: #fff;
     }
-    .reviews-head b{
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: .35px;
-    }
-    .reviews-head span{
-      color: var(--muted);
-      font-weight: 800;
-      font-size: 12.5px;
-    }
+    .reviews-head b{ font-size: 13px; text-transform: uppercase; letter-spacing: .35px; }
+    .reviews-head span{ color: var(--muted); font-weight: 850; font-size: 12.5px; }
     .badge-note{
       border: 1px dashed var(--line2);
       background: var(--soft);
@@ -473,11 +448,7 @@
       font-size: 12px;
       color: #111827;
     }
-
-    .marquee{
-      position:relative;
-      overflow:hidden;
-    }
+    .marquee{ position:relative; overflow:hidden; }
     .marquee::before,
     .marquee::after{
       content:"";
@@ -486,14 +457,8 @@
       pointer-events:none;
       z-index: 2;
     }
-    .marquee::before{
-      left:0;
-      background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0) 100%);
-    }
-    .marquee::after{
-      right:0;
-      background: linear-gradient(270deg, #ffffff 0%, rgba(255,255,255,0) 100%);
-    }
+    .marquee::before{ left:0; background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0) 100%); }
+    .marquee::after{ right:0; background: linear-gradient(270deg, #ffffff 0%, rgba(255,255,255,0) 100%); }
     .marquee-track{
       display:flex;
       gap: 12px;
@@ -502,14 +467,11 @@
       animation: reviewsScroll 26s linear infinite;
       will-change: transform;
     }
-    .reviews-band:hover .marquee-track{
-      animation-play-state: paused;
-    }
+    .reviews-band:hover .marquee-track{ animation-play-state: paused; }
     @keyframes reviewsScroll{
       from{ transform: translateX(0); }
       to{ transform: translateX(-50%); }
     }
-
     .review-pill{
       flex: 0 0 auto;
       min-width: 320px;
@@ -524,7 +486,6 @@
       transition: transform .18s ease, box-shadow .18s ease;
     }
     .review-pill:hover{ transform: translateY(-2px); box-shadow: 0 14px 28px rgba(10,15,20,.08); }
-
     .review-avatar{
       width: 40px; height: 40px;
       border-radius: 999px;
@@ -536,12 +497,7 @@
       letter-spacing: .3px;
       flex: 0 0 auto;
     }
-
-    .review-body b{
-      display:block;
-      font-size: 13px;
-      letter-spacing:.2px;
-    }
+    .review-body b{ display:block; font-size: 13px; letter-spacing:.2px; }
     .review-body p{
       margin: 6px 0 8px;
       color: var(--muted);
@@ -549,13 +505,7 @@
       font-size: 13px;
       line-height: 1.45;
     }
-
-    .stars{
-      display:flex;
-      gap: 2px;
-      align-items:center;
-      margin-top: 6px;
-    }
+    .stars{ display:flex; gap: 2px; align-items:center; margin-top: 6px; }
     .star{
       width: 14px; height: 14px;
       display:inline-block;
@@ -566,19 +516,9 @@
       opacity: .92;
     }
     .star.dim{ opacity: .25; }
+    .review-meta{ display:flex; gap: 8px; align-items:center; color: var(--muted); font-weight: 850; font-size: 12px; }
 
-    .review-meta{
-      display:flex;
-      gap: 8px;
-      align-items:center;
-      color: var(--muted);
-      font-weight: 800;
-      font-size: 12px;
-    }
-
-    .section{
-      padding: 18px 0;
-    }
+    .section{ padding: 18px 0; }
     .sectionTitle{
       display:flex;
       justify-content:space-between;
@@ -592,24 +532,15 @@
       text-transform: uppercase;
       letter-spacing:.35px;
     }
-    .sectionTitle p{
-      margin:0;
-      color: var(--muted);
-      font-weight: 750;
-      font-size: 13px;
-    }
+    .sectionTitle p{ margin:0; color: var(--muted); font-weight: 780; font-size: 13px; }
 
-    .grid4{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
+    .grid4{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
     .card{
       border: 1px solid var(--line);
       background: #fff;
       border-radius: var(--r);
       padding: 16px;
-      box-shadow: 0 12px 30px rgba(10,15,20,.06);
+      box-shadow: var(--shadow2);
     }
     .icon{
       width: 44px; height: 44px;
@@ -624,19 +555,10 @@
     .card b{ display:block; margin-bottom:6px; }
     .card span{ display:block; color: var(--muted); font-size: 13px; line-height:1.55; font-weight:650; }
 
-    .two{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 12px;
-      align-items:stretch;
-    }
+    .two{ display:grid; grid-template-columns: 1.05fr .95fr; gap: 12px; align-items:stretch; }
 
     form{ display:grid; gap: 10px; }
-    label{
-      font-weight: 900;
-      font-size: 13px;
-      letter-spacing:.2px;
-    }
+    label{ font-weight: 950; font-size: 13px; letter-spacing:.2px; }
     input, textarea{
       width:100%;
       padding: 12px 12px;
@@ -651,12 +573,7 @@
       box-shadow: 0 0 0 4px rgba(11,15,20,.08);
     }
     textarea{ min-height: 110px; resize: vertical; }
-    .hint{
-      color: var(--muted);
-      font-size: 12.5px;
-      line-height:1.45;
-      font-weight: 650;
-    }
+    .hint{ color: var(--muted); font-size: 12.5px; line-height:1.45; font-weight: 650; }
 
     footer{
       border-top: 1px solid var(--line);
@@ -672,7 +589,157 @@
       align-items:flex-start;
       color: #1f2937;
     }
-    .foot small{ color: var(--muted); font-weight: 750; display:block; margin-top:6px; }
+    .foot small{ color: var(--muted); font-weight: 780; display:block; margin-top:6px; }
+
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .gItem{
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow:hidden;
+      background: #fff;
+      box-shadow: var(--shadow2);
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease;
+      position:relative;
+    }
+    .gItem:after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent 55%, rgba(11,15,20,.35));
+      opacity:.0;
+      transition: opacity .18s ease;
+      pointer-events:none;
+    }
+    .gItem:hover:after{ opacity:1; }
+    .gItem:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(10,15,20,.12);
+    }
+    .gItem img{
+      width:100%;
+      height: 210px;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.02);
+      transition: transform .6s cubic-bezier(.2,.8,.2,1);
+    }
+    .gItem:hover img{ transform: scale(1.08); }
+    .gCap{
+      padding: 10px 12px;
+      font-weight: 950;
+      font-size: 13px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      color:#111827;
+      font-weight: 950;
+      font-size: 12px;
+      white-space:nowrap;
+    }
+
+    .lightbox{
+      position:fixed;
+      inset:0;
+      background: rgba(11,15,20,.78);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      z-index: 999;
+    }
+    .lightbox.open{ display:flex; }
+    .lbCard{
+      width: min(1100px, 96vw);
+      max-height: 88vh;
+      border-radius: 18px;
+      overflow:hidden;
+      background: #0b0f14;
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 22px 70px rgba(0,0,0,.35);
+      position:relative;
+      transform: translateY(6px);
+      opacity: 0;
+      animation: lbIn .18s ease forwards;
+    }
+    @keyframes lbIn{
+      to{ transform: translateY(0); opacity:1; }
+    }
+    .lbImg{
+      width:100%;
+      height: 88vh;
+      max-height: 88vh;
+      object-fit: contain;
+      display:block;
+      background:#0b0f14;
+    }
+    .lbClose{
+      position:absolute;
+      top: 10px; right: 10px;
+      width: 40px; height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.35);
+      color:#fff;
+      cursor:pointer;
+      font-weight: 1000;
+      font-size: 16px;
+    }
+    .lbClose:hover{ background: rgba(0,0,0,.55); }
+
+    .fab{
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      z-index: 80;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .fab a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,15,20,.12);
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 16px 40px rgba(10,15,20,.14);
+      font-weight: 1000;
+      font-size: 13px;
+      transition: transform .18s ease, filter .18s ease;
+      white-space:nowrap;
+    }
+    .fab a:hover{ transform: translateY(-2px); filter: brightness(.98); }
+    .fab .call{ border-color: rgba(11,15,20,.16); }
+    .fab .mail{ border-color: rgba(11,15,20,.10); }
+    .fab .quote{ background: var(--cta); color:#fff; border-color: var(--cta); }
+
+    .reveal{
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .reveal.on{
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     @media (max-width: 980px){
       nav.menu{ display:none; }
@@ -681,103 +748,24 @@
       .two{ grid-template-columns: 1fr; }
       .viewport{ height: 420px; }
       .cap{ width: calc(100% - 28px); }
+      .gallery{ grid-template-columns: repeat(2, 1fr); }
+      .gItem img{ height: 190px; }
+      .fab a{ padding: 12px 12px; }
     }
     @media (max-width: 520px){
       .grid4{ grid-template-columns: 1fr; }
       .viewport{ height: 360px; }
+      .gallery{ grid-template-columns: 1fr; }
+      .gItem img{ height: 210px; }
     }
-.gallery{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 12px;
-}
-.gItem{
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  overflow:hidden;
-  background: #fff;
-  box-shadow: 0 10px 24px rgba(10,15,20,.06);
-  cursor: pointer;
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-.gItem:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 16px 34px rgba(10,15,20,.10);
-}
-.gItem img{
-  width:100%;
-  height: 210px;
-  object-fit: cover;
-  display:block;
-  transform: scale(1.02);
-  transition: transform .6s cubic-bezier(.2,.8,.2,1);
-}
-.gItem:hover img{
-  transform: scale(1.08);
-}
-.gCap{
-  padding: 10px 12px;
-  font-weight: 900;
-  font-size: 13px;
-}
-@media (max-width: 980px){
-  .gallery{ grid-template-columns: repeat(2, 1fr); }
-  .gItem img{ height: 190px; }
-}
-@media (max-width: 520px){
-  .gallery{ grid-template-columns: 1fr; }
-  .gItem img{ height: 210px; }
-}
 
-/* Lightbox */
-.lightbox{
-  position:fixed;
-  inset:0;
-  background: rgba(11,15,20,.75);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding: 18px;
-  z-index: 999;
-}
-.lightbox.open{ display:flex; }
-.lbCard{
-  width: min(1100px, 96vw);
-  max-height: 88vh;
-  border-radius: 18px;
-  overflow:hidden;
-  background: #0b0f14;
-  border: 1px solid rgba(255,255,255,.14);
-  box-shadow: 0 22px 70px rgba(0,0,0,.35);
-  position:relative;
-}
-.lbImg{
-  width:100%;
-  height: 88vh;
-  max-height: 88vh;
-  object-fit: contain;
-  display:block;
-  background:#0b0f14;
-}
-.lbClose{
-  position:absolute;
-  top: 10px; right: 10px;
-  width: 40px; height: 40px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.18);
-  background: rgba(0,0,0,.35);
-  color:#fff;
-  cursor:pointer;
-  font-weight: 1000;
-}
-.lbClose:hover{ background: rgba(0,0,0,.55); }
     @media (prefers-reduced-motion: reduce){
-      .track, .slide img, .cap, .btn, .proof, .review-pill, .logo:after, .slide.active .shine{
+      .track, .slide img, .cap, .btn, .proof, .review-pill, .logo:after, .slide.active .shine, .lbCard{
         transition: none !important;
         animation: none !important;
       }
       .marquee-track{ animation: none !important; transform: none !important; }
+      .reveal{ opacity: 1 !important; transform: none !important; }
     }
   </style>
 </head>
@@ -802,7 +790,7 @@
         <div class="logo" aria-hidden="true"></div>
         <div class="name">
           <strong>MONELEC</strong>
-          <small>Portes • Fenêtres • Garage • Électricité</small>
+          <small>Portails • Fenêtres • Garage • Électricité</small>
         </div>
       </div>
 
@@ -822,15 +810,16 @@
   </header>
 
   <main class="wrap">
-    <section class="hero">
+    <section class="hero reveal">
       <div class="heroText">
         <div class="kickers">
           <div class="k"><span class="dot"></span> Travail soigné</div>
           <div class="k"><span class="dot"></span> Devis gratuit</div>
           <div class="k"><span class="dot"></span> Île-de-France</div>
+          <div class="k"><span class="dot"></span> 06 95 40 68 64</div>
         </div>
 
-        <h1>Pose & remplacement de portes, fenêtres, portes de garage — + électricité.</h1>
+        <h1>Pose & remplacement de portails, fenêtres, portes de garage — + électricité.</h1>
         <p class="sub">
           Installation, rénovation et dépannage. Finitions propres, réglages, étanchéité et conseil sur les matériaux.
           Déplacement hors Île-de-France possible sur demande.
@@ -839,17 +828,18 @@
         <div class="actions">
           <a class="btn primary" href="#devis">🧾 Demander un devis</a>
           <a class="btn" href="tel:+33695406864">📞 Appeler</a>
-          <a class="btn" href="#realisations">📸 Réalisations</a>
+          <a class="btn" href="mailto:monelec3@gmail.com">✉️ Email</a>
+          <a class="btn" href="#realisations">📸 Photos</a>
         </div>
 
         <div class="proofs">
           <div class="proof">
-            <b>Isolation & finitions</b>
-            <span>Pose précise, étanchéité, réglages et rendu net.</span>
+            <b>Finitions & réglages</b>
+            <span>Pose précise, alignement, étanchéité, rendu propre.</span>
           </div>
           <div class="proof">
-            <b>Sur-mesure</b>
-            <span>Conseil matériaux + solutions adaptées à votre chantier.</span>
+            <b>Conseil & solutions</b>
+            <span>On vous oriente selon votre besoin et votre budget.</span>
           </div>
           <div class="proof">
             <b>Intervention IDF</b>
@@ -858,132 +848,108 @@
         </div>
       </div>
 
-      <section class="carouselFull" aria-label="Carrousel photos">
+      <section class="carouselFull reveal" aria-label="Carrousel photos">
         <div class="carTop">
           <div>
             <b>Nos réalisations</b>
-            <span>Portails • Fenêtres • Portes de garage • Électricité</span>
+            <span>Portails • Fenêtres • Électricité</span>
           </div>
-          <a class="btn primary" href="#devis">Devis gratuit</a>
+          <div class="carTopRight">
+            <div class="miniTag">📞 06 95 40 68 64</div>
+            <a class="btn primary" href="#devis">Devis gratuit</a>
+          </div>
         </div>
 
         <div class="viewport">
           <div class="track" id="track">
-  <div class="slide active">
-    <img alt="Portail" src="portail-1.jpg" />
-    <div class="overlay"></div>
-    <div class="shine"></div>
-    <div class="cap">
-      <div>
-        <b>Portail</b>
-        <span>Pose • motorisation • réglages • finitions</span>
-      </div>
-      <div class="badge">06 95 40 68 64</div>
-    </div>
-  </div>
-
-  <div class="slide">
-    <img alt="Portail" src="portail-2.jpg" />
-    <div class="overlay"></div>
-    <div class="shine"></div>
-    <div class="cap">
-      <div>
-        <b>Portail</b>
-        <span>Installation • dépannage • travail soigné</span>
-      </div>
-      <div class="badge">Devis gratuit</div>
-    </div>
-  </div>
-
-  <div class="slide">
-    <img alt="Portail" src="portail-3.jpg" />
-    <div class="overlay"></div>
-    <div class="shine"></div>
-    <div class="cap">
-      <div>
-        <b>Portail</b>
-        <span>Finitions • réglages • sécurité</span>
-      </div>
-      <div class="badge">Île-de-France</div>
-    </div>
-  </div>
-
-  <div class="slide">
-    <img alt="Fenêtre" src="fenetre-1.jpg" />
-    <div class="overlay"></div>
-    <div class="shine"></div>
-    <div class="cap">
-      <div>
-        <b>Fenêtres</b>
-        <span>Isolation • étanchéité • rénovation</span>
-      </div>
-      <div class="badge">06 95 40 68 64</div>
-    </div>
-  </div>
-
-  <div class="slide">
-    <img alt="Fenêtre" src="fenetre-2.jpg" />
-    <div class="overlay"></div>
-    <div class="shine"></div>
-    <div class="cap">
-      <div>
-        <b>Fenêtres</b>
-        <span>Remplacement • réglages • finitions</span>
-      </div>
-      <div class="badge">Devis gratuit</div>
-    </div>
-  </div>
-
-  <div class="slide">
-    <img alt="Électricité" src="elec-1.jpg" />
-    <div class="overlay"></div>
-    <div class="shine"></div>
-    <div class="cap">
-      <div>
-        <b>Électricité</b>
-        <span>Tableau • prises • éclairage • normes</span>
-      </div>
-      <div class="badge">monelec3@gmail.com</div>
-    </div>
-  </div>
-
-  <div class="slide">
-    <img alt="Électricité" src="elec-2.jpg" />
-    <div class="overlay"></div>
-    <div class="shine"></div>
-    <div class="cap">
-      <div>
-        <b>Électricité</b>
-        <span>Dépannage • mise aux normes • sécurité</span>
-      </div>
-      <div class="badge">Île-de-France</div>
-    </div>
-  </div>
-</div>
-
-            <div class="slide">
-              <img alt="Porte de garage" src="https://source.unsplash.com/V_DY7xsuIu4/1800x1200" />
+            <div class="slide active">
+              <img alt="Portail 1" src="portail-1.jpg" />
               <div class="overlay"></div>
               <div class="shine"></div>
               <div class="cap">
                 <div>
-                  <b>Porte de garage</b>
-                  <span>Installation • dépannage • motorisation</span>
+                  <b>Portail</b>
+                  <span>Pose • motorisation • finitions</span>
+                </div>
+                <div class="badge">06 95 40 68 64</div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <img alt="Portail 2" src="portail-2.jpg" />
+              <div class="overlay"></div>
+              <div class="shine"></div>
+              <div class="cap">
+                <div>
+                  <b>Portail</b>
+                  <span>Installation • réglages • sécurité</span>
                 </div>
                 <div class="badge">Devis gratuit</div>
               </div>
             </div>
 
             <div class="slide">
-              <img alt="Chantier électricité" src="https://source.unsplash.com/PkHf7BUWbtk/1800x1200" />
+              <img alt="Portail 3" src="portail-3.jpg" />
+              <div class="overlay"></div>
+              <div class="shine"></div>
+              <div class="cap">
+                <div>
+                  <b>Portail</b>
+                  <span>Alignement • finition • propre</span>
+                </div>
+                <div class="badge">Île-de-France</div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <img alt="Fenêtres 1" src="fenetre-1.jpg" />
+              <div class="overlay"></div>
+              <div class="shine"></div>
+              <div class="cap">
+                <div>
+                  <b>Fenêtres</b>
+                  <span>Isolation • étanchéité • rénovation</span>
+                </div>
+                <div class="badge">06 95 40 68 64</div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <img alt="Fenêtres 2" src="fenetre-2.jpg" />
+              <div class="overlay"></div>
+              <div class="shine"></div>
+              <div class="cap">
+                <div>
+                  <b>Fenêtres</b>
+                  <span>Remplacement • réglages • finitions</span>
+                </div>
+                <div class="badge">Devis gratuit</div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <img alt="Électricité 1" src="elec-1.jpg" />
               <div class="overlay"></div>
               <div class="shine"></div>
               <div class="cap">
                 <div>
                   <b>Électricité</b>
-                  <span>Tableau • prises • éclairage • normes</span>
+                  <span>Tableau • prises • éclairage</span>
                 </div>
                 <div class="badge">monelec3@gmail.com</div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <img alt="Électricité 2" src="elec-2.jpg" />
+              <div class="overlay"></div>
+              <div class="shine"></div>
+              <div class="cap">
+                <div>
+                  <b>Électricité</b>
+                  <span>Dépannage • mise aux normes</span>
+                </div>
+                <div class="badge">Île-de-France</div>
               </div>
             </div>
           </div>
@@ -994,7 +960,7 @@
         </div>
       </section>
 
-      <section class="reviews-band" aria-label="Bandeau avis">
+      <section class="reviews-band reveal" aria-label="Bandeau avis">
         <div class="reviews-head">
           <b>Avis clients</b>
           <span><span class="badge-note">Exemples (en attendant les vrais avis)</span></span>
@@ -1009,8 +975,8 @@
                 <div class="stars" aria-label="5 étoiles">
                   <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
                 </div>
-                <p>Pose de porte d’entrée nickel, finitions propres et chantier impeccable.</p>
-                <div class="review-meta">Île-de-France • Porte</div>
+                <p>Pose portail nickel, finitions propres et chantier impeccable.</p>
+                <div class="review-meta">Île-de-France • Portail</div>
               </div>
             </div>
 
@@ -1021,7 +987,7 @@
                 <div class="stars" aria-label="5 étoiles">
                   <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
                 </div>
-                <p>Remplacement fenêtres + réglages : isolation top, délais respectés.</p>
+                <p>Remplacement fenêtres : isolation top, délais respectés.</p>
                 <div class="review-meta">Île-de-France • Fenêtres</div>
               </div>
             </div>
@@ -1033,8 +999,8 @@
                 <div class="stars" aria-label="4 étoiles">
                   <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star dim"></span>
                 </div>
-                <p>Motorisation garage bien expliquée, travail sérieux et propre.</p>
-                <div class="review-meta">Île-de-France • Garage</div>
+                <p>Électricité bien expliquée, travail sérieux et propre.</p>
+                <div class="review-meta">Île-de-France • Électricité</div>
               </div>
             </div>
 
@@ -1045,8 +1011,8 @@
                 <div class="stars" aria-label="5 étoiles">
                   <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
                 </div>
-                <p>Intervention électricité rapide, explications claires, mise aux normes OK.</p>
-                <div class="review-meta">Île-de-France • Électricité</div>
+                <p>Dépannage rapide, explications claires, mise aux normes OK.</p>
+                <div class="review-meta">Île-de-France • Dépannage</div>
               </div>
             </div>
 
@@ -1057,8 +1023,8 @@
                 <div class="stars" aria-label="5 étoiles">
                   <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
                 </div>
-                <p>Pose de porte d’entrée nickel, finitions propres et chantier impeccable.</p>
-                <div class="review-meta">Île-de-France • Porte</div>
+                <p>Pose portail nickel, finitions propres et chantier impeccable.</p>
+                <div class="review-meta">Île-de-France • Portail</div>
               </div>
             </div>
 
@@ -1069,7 +1035,7 @@
                 <div class="stars" aria-label="5 étoiles">
                   <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
                 </div>
-                <p>Remplacement fenêtres + réglages : isolation top, délais respectés.</p>
+                <p>Remplacement fenêtres : isolation top, délais respectés.</p>
                 <div class="review-meta">Île-de-France • Fenêtres</div>
               </div>
             </div>
@@ -1081,8 +1047,8 @@
                 <div class="stars" aria-label="4 étoiles">
                   <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star dim"></span>
                 </div>
-                <p>Motorisation garage bien expliquée, travail sérieux et propre.</p>
-                <div class="review-meta">Île-de-France • Garage</div>
+                <p>Électricité bien expliquée, travail sérieux et propre.</p>
+                <div class="review-meta">Île-de-France • Électricité</div>
               </div>
             </div>
 
@@ -1093,8 +1059,8 @@
                 <div class="stars" aria-label="5 étoiles">
                   <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
                 </div>
-                <p>Intervention électricité rapide, explications claires, mise aux normes OK.</p>
-                <div class="review-meta">Île-de-France • Électricité</div>
+                <p>Dépannage rapide, explications claires, mise aux normes OK.</p>
+                <div class="review-meta">Île-de-France • Dépannage</div>
               </div>
             </div>
           </div>
@@ -1102,7 +1068,7 @@
       </section>
     </section>
 
-    <section class="section" id="services">
+    <section class="section reveal" id="services">
       <div class="sectionTitle">
         <h2>Services</h2>
         <p>Clair, pro, efficace.</p>
@@ -1110,9 +1076,9 @@
 
       <div class="grid4">
         <div class="card">
-          <div class="icon">🚪</div>
-          <b>Portes</b>
-          <span>Pose, remplacement, serrures, réglages, finitions.</span>
+          <div class="icon">🧱</div>
+          <b>Portails</b>
+          <span>Pose, remplacement, motorisation, réglages, finitions.</span>
         </div>
         <div class="card">
           <div class="icon">🪟</div>
@@ -1132,39 +1098,61 @@
       </div>
     </section>
 
-    <div class="card">
-  <b>Photos de chantiers</b>
-  <span>Portails • Fenêtres • Électricité</span>
-
-  <div class="gallery" id="gallery">
-    <div class="gItem" data-full="portail-1.jpg"><img src="portail-1.jpg" alt="Portail 1"><div class="gCap">Portail</div></div>
-    <div class="gItem" data-full="portail-2.jpg"><img src="portail-2.jpg" alt="Portail 2"><div class="gCap">Portail</div></div>
-    <div class="gItem" data-full="portail-3.jpg"><img src="portail-3.jpg" alt="Portail 3"><div class="gCap">Portail</div></div>
-    <div class="gItem" data-full="fenetre-1.jpg"><img src="fenetre-1.jpg" alt="Fenêtre 1"><div class="gCap">Fenêtres</div></div>
-    <div class="gItem" data-full="fenetre-2.jpg"><img src="fenetre-2.jpg" alt="Fenêtre 2"><div class="gCap">Fenêtres</div></div>
-    <div class="gItem" data-full="elec-1.jpg"><img src="elec-1.jpg" alt="Électricité 1"><div class="gCap">Électricité</div></div>
-    <div class="gItem" data-full="elec-2.jpg"><img src="elec-2.jpg" alt="Électricité 2"><div class="gCap">Électricité</div></div>
-  </div>
-
-  <div class="hint" style="margin-top:10px;">Clique sur une photo pour l’afficher en grand.</div>
-</div>
+    <section class="section reveal" id="realisations">
+      <div class="sectionTitle">
+        <h2>Réalisations</h2>
+        <p>Vos photos de chantiers, affichées en grand.</p>
+      </div>
 
       <div class="two">
         <div class="card">
-          <b>Avant / Après</b>
-          <span>Ajoute 6 à 12 photos : portails, fenêtres, garage, tableau électrique. (Je te guide pour les mettre.)</span>
-          <div style="height:12px"></div>
-          <span class="hint">Les photos de finitions réelles font super pro (même au téléphone).</span>
+          <b>Photos de chantiers</b>
+          <span>Portails • Fenêtres • Électricité</span>
+
+          <div class="gallery" id="gallery">
+            <div class="gItem" data-full="portail-1.jpg">
+              <img src="portail-1.jpg" alt="Portail 1">
+              <div class="gCap"><span>Portail</span><span class="pill">Voir</span></div>
+            </div>
+            <div class="gItem" data-full="portail-2.jpg">
+              <img src="portail-2.jpg" alt="Portail 2">
+              <div class="gCap"><span>Portail</span><span class="pill">Voir</span></div>
+            </div>
+            <div class="gItem" data-full="portail-3.jpg">
+              <img src="portail-3.jpg" alt="Portail 3">
+              <div class="gCap"><span>Portail</span><span class="pill">Voir</span></div>
+            </div>
+            <div class="gItem" data-full="fenetre-1.jpg">
+              <img src="fenetre-1.jpg" alt="Fenêtre 1">
+              <div class="gCap"><span>Fenêtres</span><span class="pill">Voir</span></div>
+            </div>
+            <div class="gItem" data-full="fenetre-2.jpg">
+              <img src="fenetre-2.jpg" alt="Fenêtre 2">
+              <div class="gCap"><span>Fenêtres</span><span class="pill">Voir</span></div>
+            </div>
+            <div class="gItem" data-full="elec-1.jpg">
+              <img src="elec-1.jpg" alt="Électricité 1">
+              <div class="gCap"><span>Électricité</span><span class="pill">Voir</span></div>
+            </div>
+            <div class="gItem" data-full="elec-2.jpg">
+              <img src="elec-2.jpg" alt="Électricité 2">
+              <div class="gCap"><span>Électricité</span><span class="pill">Voir</span></div>
+            </div>
+          </div>
+
+          <div class="hint" style="margin-top:10px;">Clique sur une photo pour l’afficher en grand.</div>
         </div>
 
         <div class="card">
           <b>Engagements</b>
-          <span>• Travail soigné, finitions propres<br>• Réponse rapide, devis clair<br>• Intervention Île-de-France<br>• Déplacement sur demande</span>
+          <span>• Travail soigné, finitions propres<br>• Réponse rapide, devis clair<br>• Intervention Île-de-France<br>• Déplacement sur demande<br><br><b>Contact :</b><br>📞 06 95 40 68 64<br>✉️ monelec3@gmail.com</span>
+          <div style="height:12px"></div>
+          <a class="btn primary" href="#devis">Demander un devis</a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="zone">
+    <section class="section reveal" id="zone">
       <div class="sectionTitle">
         <h2>Zone d’intervention</h2>
         <p>Île-de-France + sur demande.</p>
@@ -1176,7 +1164,7 @@
       </div>
     </section>
 
-    <section class="section" id="devis">
+    <section class="section reveal" id="devis">
       <div class="sectionTitle">
         <h2>Devis gratuit</h2>
         <p>Réponse rapide.</p>
@@ -1192,7 +1180,10 @@
               <b>Horaires :</b> Lun–Sam • 8h–19h
             </span>
             <div style="height:12px"></div>
-            <a class="btn primary" href="tel:+33695406864">📞 Appeler maintenant</a>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn primary" href="tel:+33695406864">📞 Appeler maintenant</a>
+              <a class="btn" href="mailto:monelec3@gmail.com">✉️ Envoyer un email</a>
+            </div>
           </div>
 
           <div class="card" style="margin:0; box-shadow:none;">
@@ -1226,7 +1217,7 @@
       <div class="wrap foot">
         <div>
           <strong style="letter-spacing:.6px; text-transform:uppercase;">MONELEC</strong>
-          <small>Portes • Fenêtres • Garage • Électricité — Île-de-France</small>
+          <small>Portails • Fenêtres • Garage • Électricité — Île-de-France</small>
           <small>📞 06 95 40 68 64 • ✉️ monelec3@gmail.com</small>
         </div>
         <div style="text-align:right;">
@@ -1237,18 +1228,40 @@
     </footer>
   </main>
 
+  <div class="lightbox" id="lightbox" aria-label="Aperçu photo">
+    <div class="lbCard">
+      <button class="lbClose" id="lbClose" aria-label="Fermer">✕</button>
+      <img class="lbImg" id="lbImg" alt="Aperçu" src="" />
+    </div>
+  </div>
+
+  <div class="fab" aria-label="Raccourcis">
+    <a class="quote" href="#devis">🧾 Devis</a>
+    <a class="call" href="tel:+33695406864">📞 06 95 40 68 64</a>
+    <a class="mail" href="mailto:monelec3@gmail.com">✉️ Email</a>
+  </div>
+
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
     const track = document.getElementById("track");
-    const slides = Array.from(track.children);
+    const slides = track ? Array.from(track.children) : [];
     const dots = document.getElementById("dots");
     const prev = document.getElementById("prev");
     const next = document.getElementById("next");
+
     let i = 0;
     let timer = null;
+    let paused = false;
+
+    function setActive(){
+      slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
+      const all = dots ? dots.querySelectorAll(".dotBtn") : [];
+      all.forEach((d, idx) => d.classList.toggle("active", idx === i));
+    }
 
     function buildDots(){
+      if(!dots) return;
       dots.innerHTML = "";
       slides.forEach((_, idx) => {
         const b = document.createElement("button");
@@ -1258,60 +1271,53 @@
         dots.appendChild(b);
       });
     }
-// Galerie -> Lightbox
-const lightbox = document.getElementById("lightbox");
-const lbImg = document.getElementById("lbImg");
-const lbClose = document.getElementById("lbClose");
-
-document.querySelectorAll(".gItem").forEach(item => {
-  item.addEventListener("click", () => {
-    const src = item.getAttribute("data-full");
-    lbImg.src = src;
-    lightbox.classList.add("open");
-  });
-});
-
-function closeLb(){
-  lightbox.classList.remove("open");
-  lbImg.src = "";
-}
-
-lbClose.addEventListener("click", closeLb);
-lightbox.addEventListener("click", (e) => {
-  if(e.target === lightbox) closeLb();
-});
-document.addEventListener("keydown", (e) => {
-  if(e.key === "Escape") closeLb();
-});
-    function setActive(){
-      slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
-      const all = dots.querySelectorAll(".dotBtn");
-      all.forEach((d, idx) => d.classList.toggle("active", idx === i));
-    }
 
     function go(idx, user){
+      if(!slides.length) return;
       i = (idx + slides.length) % slides.length;
       track.style.transform = "translateX(" + (-i * 100) + "%)";
       setActive();
       if(user) restart();
     }
 
-    function restart(){
+    function start(){
+      if(!slides.length) return;
       if(timer) clearInterval(timer);
-      timer = setInterval(() => go(i + 1, false), 5200);
+      timer = setInterval(() => {
+        if(!paused) go(i + 1, false);
+      }, 5200);
     }
 
-    prev.addEventListener("click", () => go(i - 1, true));
-    next.addEventListener("click", () => go(i + 1, true));
+    function restart(){
+      paused = false;
+      start();
+    }
 
-    track.addEventListener("pointerdown", () => { if(timer) clearInterval(timer); }, { passive:true });
-    track.addEventListener("pointerup", () => restart(), { passive:true });
-    track.addEventListener("mouseenter", () => { if(timer) clearInterval(timer); });
-    track.addEventListener("mouseleave", () => restart());
+    function pause(){
+      paused = true;
+    }
 
-    buildDots();
-    setActive();
-    restart();
+    if(slides.length){
+      buildDots();
+      setActive();
+      start();
+
+      if(prev) prev.addEventListener("click", () => go(i - 1, true));
+      if(next) next.addEventListener("click", () => go(i + 1, true));
+
+      const viewport = document.querySelector(".viewport");
+      if(viewport){
+        viewport.addEventListener("mouseenter", pause);
+        viewport.addEventListener("mouseleave", restart);
+        viewport.addEventListener("touchstart", pause, { passive:true });
+        viewport.addEventListener("touchend", restart, { passive:true });
+      }
+
+      document.addEventListener("visibilitychange", () => {
+        if(document.hidden) pause();
+        else restart();
+      });
+    }
 
     const mq = window.matchMedia("(max-width: 520px)");
     if (mq.matches) {
@@ -1320,35 +1326,75 @@ document.addEventListener("keydown", (e) => {
     }
 
     const form = document.getElementById("quoteForm");
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const city = document.getElementById("city").value.trim();
-      const type = document.getElementById("type").value.trim();
-      const msg  = document.getElementById("msg").value.trim();
+    if(form){
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = (document.getElementById("name")?.value || "").trim();
+        const city = (document.getElementById("city")?.value || "").trim();
+        const type = (document.getElementById("type")?.value || "").trim();
+        const msg  = (document.getElementById("msg")?.value || "").trim();
 
-      const to = "monelec3@gmail.com";
-      const subject = encodeURIComponent("Demande de devis — " + type + " — " + city);
-      const body = encodeURIComponent(
-        "Bonjour,\n\n" +
-        "Je souhaite un devis.\n\n" +
-        "Nom : " + name + "\n" +
-        "Ville / Département : " + city + "\n" +
-        "Type de travaux : " + type + "\n\n" +
-        "Détails :\n" + (msg || "(non précisé)") + "\n\n" +
-        "Téléphone : 06 95 40 68 64\n" +
-        "Email : monelec3@gmail.com\n\n" +
-        "Merci,\n" + name
-      );
+        const to = "monelec3@gmail.com";
+        const subject = encodeURIComponent("Demande de devis — " + type + " — " + city);
+        const body = encodeURIComponent(
+          "Bonjour,\n\n" +
+          "Je souhaite un devis.\n\n" +
+          "Nom : " + name + "\n" +
+          "Ville / Département : " + city + "\n" +
+          "Type de travaux : " + type + "\n\n" +
+          "Détails :\n" + (msg || "(non précisé)") + "\n\n" +
+          "Contact MONELEC : 06 95 40 68 64 — monelec3@gmail.com\n\n" +
+          "Merci,\n" + name
+        );
 
-      window.location.href = "mailto:" + to + "?subject=" + subject + "&body=" + body;
+        window.location.href = "mailto:" + to + "?subject=" + subject + "&body=" + body;
+      });
+    }
+
+    const lightbox = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lbImg");
+    const lbClose = document.getElementById("lbClose");
+
+    function openLb(src){
+      if(!lightbox || !lbImg) return;
+      lbImg.src = src;
+      lightbox.classList.add("open");
+      pause();
+    }
+    function closeLb(){
+      if(!lightbox || !lbImg) return;
+      lightbox.classList.remove("open");
+      lbImg.src = "";
+      restart();
+    }
+
+    document.querySelectorAll(".gItem").forEach(item => {
+      item.addEventListener("click", () => {
+        const src = item.getAttribute("data-full");
+        if(src) openLb(src);
+      });
     });
+
+    if(lbClose) lbClose.addEventListener("click", closeLb);
+    if(lightbox){
+      lightbox.addEventListener("click", (e) => {
+        if(e.target === lightbox) closeLb();
+      });
+    }
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape") closeLb();
+    });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(ent => {
+        if(ent.isIntersecting){
+          ent.target.classList.add("on");
+          io.unobserve(ent.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
   </script>
-  <div class="lightbox" id="lightbox" aria-label="Aperçu photo">
-  <div class="lbCard">
-    <button class="lbClose" id="lbClose" aria-label="Fermer">✕</button>
-    <img class="lbImg" id="lbImg" alt="Aperçu" src="" />
-  </div>
-</div>
 </body>
 </html>
