@@ -686,7 +686,92 @@
       .grid4{ grid-template-columns: 1fr; }
       .viewport{ height: 360px; }
     }
+.gallery{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+.gItem{
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow:hidden;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(10,15,20,.06);
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.gItem:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(10,15,20,.10);
+}
+.gItem img{
+  width:100%;
+  height: 210px;
+  object-fit: cover;
+  display:block;
+  transform: scale(1.02);
+  transition: transform .6s cubic-bezier(.2,.8,.2,1);
+}
+.gItem:hover img{
+  transform: scale(1.08);
+}
+.gCap{
+  padding: 10px 12px;
+  font-weight: 900;
+  font-size: 13px;
+}
+@media (max-width: 980px){
+  .gallery{ grid-template-columns: repeat(2, 1fr); }
+  .gItem img{ height: 190px; }
+}
+@media (max-width: 520px){
+  .gallery{ grid-template-columns: 1fr; }
+  .gItem img{ height: 210px; }
+}
 
+/* Lightbox */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background: rgba(11,15,20,.75);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding: 18px;
+  z-index: 999;
+}
+.lightbox.open{ display:flex; }
+.lbCard{
+  width: min(1100px, 96vw);
+  max-height: 88vh;
+  border-radius: 18px;
+  overflow:hidden;
+  background: #0b0f14;
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 22px 70px rgba(0,0,0,.35);
+  position:relative;
+}
+.lbImg{
+  width:100%;
+  height: 88vh;
+  max-height: 88vh;
+  object-fit: contain;
+  display:block;
+  background:#0b0f14;
+}
+.lbClose{
+  position:absolute;
+  top: 10px; right: 10px;
+  width: 40px; height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.35);
+  color:#fff;
+  cursor:pointer;
+  font-weight: 1000;
+}
+.lbClose:hover{ background: rgba(0,0,0,.55); }
     @media (prefers-reduced-motion: reduce){
       .track, .slide img, .cap, .btn, .proof, .review-pill, .logo:after, .slide.active .shine{
         transition: none !important;
@@ -784,31 +869,97 @@
 
         <div class="viewport">
           <div class="track" id="track">
-            <div class="slide active">
-              <img alt="Portail" src="https://source.unsplash.com/SYMl7pZWOrU/1800x1200" />
-              <div class="overlay"></div>
-              <div class="shine"></div>
-              <div class="cap">
-                <div>
-                  <b>Portail</b>
-                  <span>Pose • motorisation • réglages • finitions</span>
-                </div>
-                <div class="badge">06 95 40 68 64</div>
-              </div>
-            </div>
+  <div class="slide active">
+    <img alt="Portail" src="portail-1.jpg" />
+    <div class="overlay"></div>
+    <div class="shine"></div>
+    <div class="cap">
+      <div>
+        <b>Portail</b>
+        <span>Pose • motorisation • réglages • finitions</span>
+      </div>
+      <div class="badge">06 95 40 68 64</div>
+    </div>
+  </div>
 
-            <div class="slide">
-              <img alt="Fenêtres" src="https://source.unsplash.com/XWy2PQF5B10/1800x1200" />
-              <div class="overlay"></div>
-              <div class="shine"></div>
-              <div class="cap">
-                <div>
-                  <b>Fenêtres</b>
-                  <span>Isolation • étanchéité • réglages</span>
-                </div>
-                <div class="badge">Île-de-France</div>
-              </div>
-            </div>
+  <div class="slide">
+    <img alt="Portail" src="portail-2.jpg" />
+    <div class="overlay"></div>
+    <div class="shine"></div>
+    <div class="cap">
+      <div>
+        <b>Portail</b>
+        <span>Installation • dépannage • travail soigné</span>
+      </div>
+      <div class="badge">Devis gratuit</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <img alt="Portail" src="portail-3.jpg" />
+    <div class="overlay"></div>
+    <div class="shine"></div>
+    <div class="cap">
+      <div>
+        <b>Portail</b>
+        <span>Finitions • réglages • sécurité</span>
+      </div>
+      <div class="badge">Île-de-France</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <img alt="Fenêtre" src="fenetre-1.jpg" />
+    <div class="overlay"></div>
+    <div class="shine"></div>
+    <div class="cap">
+      <div>
+        <b>Fenêtres</b>
+        <span>Isolation • étanchéité • rénovation</span>
+      </div>
+      <div class="badge">06 95 40 68 64</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <img alt="Fenêtre" src="fenetre-2.jpg" />
+    <div class="overlay"></div>
+    <div class="shine"></div>
+    <div class="cap">
+      <div>
+        <b>Fenêtres</b>
+        <span>Remplacement • réglages • finitions</span>
+      </div>
+      <div class="badge">Devis gratuit</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <img alt="Électricité" src="elec-1.jpg" />
+    <div class="overlay"></div>
+    <div class="shine"></div>
+    <div class="cap">
+      <div>
+        <b>Électricité</b>
+        <span>Tableau • prises • éclairage • normes</span>
+      </div>
+      <div class="badge">monelec3@gmail.com</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <img alt="Électricité" src="elec-2.jpg" />
+    <div class="overlay"></div>
+    <div class="shine"></div>
+    <div class="cap">
+      <div>
+        <b>Électricité</b>
+        <span>Dépannage • mise aux normes • sécurité</span>
+      </div>
+      <div class="badge">Île-de-France</div>
+    </div>
+  </div>
+</div>
 
             <div class="slide">
               <img alt="Porte de garage" src="https://source.unsplash.com/V_DY7xsuIu4/1800x1200" />
@@ -981,11 +1132,22 @@
       </div>
     </section>
 
-    <section class="section" id="realisations">
-      <div class="sectionTitle">
-        <h2>Réalisations</h2>
-        <p>On mettra vos photos de chantier.</p>
-      </div>
+    <div class="card">
+  <b>Photos de chantiers</b>
+  <span>Portails • Fenêtres • Électricité</span>
+
+  <div class="gallery" id="gallery">
+    <div class="gItem" data-full="portail-1.jpg"><img src="portail-1.jpg" alt="Portail 1"><div class="gCap">Portail</div></div>
+    <div class="gItem" data-full="portail-2.jpg"><img src="portail-2.jpg" alt="Portail 2"><div class="gCap">Portail</div></div>
+    <div class="gItem" data-full="portail-3.jpg"><img src="portail-3.jpg" alt="Portail 3"><div class="gCap">Portail</div></div>
+    <div class="gItem" data-full="fenetre-1.jpg"><img src="fenetre-1.jpg" alt="Fenêtre 1"><div class="gCap">Fenêtres</div></div>
+    <div class="gItem" data-full="fenetre-2.jpg"><img src="fenetre-2.jpg" alt="Fenêtre 2"><div class="gCap">Fenêtres</div></div>
+    <div class="gItem" data-full="elec-1.jpg"><img src="elec-1.jpg" alt="Électricité 1"><div class="gCap">Électricité</div></div>
+    <div class="gItem" data-full="elec-2.jpg"><img src="elec-2.jpg" alt="Électricité 2"><div class="gCap">Électricité</div></div>
+  </div>
+
+  <div class="hint" style="margin-top:10px;">Clique sur une photo pour l’afficher en grand.</div>
+</div>
 
       <div class="two">
         <div class="card">
@@ -1096,7 +1258,31 @@
         dots.appendChild(b);
       });
     }
+// Galerie -> Lightbox
+const lightbox = document.getElementById("lightbox");
+const lbImg = document.getElementById("lbImg");
+const lbClose = document.getElementById("lbClose");
 
+document.querySelectorAll(".gItem").forEach(item => {
+  item.addEventListener("click", () => {
+    const src = item.getAttribute("data-full");
+    lbImg.src = src;
+    lightbox.classList.add("open");
+  });
+});
+
+function closeLb(){
+  lightbox.classList.remove("open");
+  lbImg.src = "";
+}
+
+lbClose.addEventListener("click", closeLb);
+lightbox.addEventListener("click", (e) => {
+  if(e.target === lightbox) closeLb();
+});
+document.addEventListener("keydown", (e) => {
+  if(e.key === "Escape") closeLb();
+});
     function setActive(){
       slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
       const all = dots.querySelectorAll(".dotBtn");
@@ -1158,5 +1344,11 @@
       window.location.href = "mailto:" + to + "?subject=" + subject + "&body=" + body;
     });
   </script>
+  <div class="lightbox" id="lightbox" aria-label="Aperçu photo">
+  <div class="lbCard">
+    <button class="lbClose" id="lbClose" aria-label="Fermer">✕</button>
+    <img class="lbImg" id="lbImg" alt="Aperçu" src="" />
+  </div>
+</div>
 </body>
 </html>
