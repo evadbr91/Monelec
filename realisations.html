@@ -1,1 +1,154 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MONELEC — Réalisations | Île-de-France</title>
+  <meta name="description" content="Découvrez nos réalisations : portails, fenêtres, électricité. Photos chantiers en grand." />
+  <meta name="theme-color" content="#0b0f14" />
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
 
+<body>
+  <div class="topbar">
+    <div class="wrap row">
+      <div class="left">
+        <a class="chip" href="tel:+33695406864"><b>📞</b><span>06 95 40 68 64</span></a>
+        <a class="chip" href="mailto:monelec3@gmail.com"><b>✉️</b><span>monelec3@gmail.com</span></a>
+      </div>
+      <div class="right">
+        <div class="chip"><b>🕘</b><span>Lun–Sam • 8h–19h</span></div>
+        <div class="chip"><b>📍</b><span>Île-de-France</span></div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="name">
+          <strong>MONELEC</strong>
+          <small>Portails • Fenêtres • Garage • Électricité</small>
+        </div>
+      </div>
+
+      <nav class="menu" aria-label="Navigation">
+        <a href="index.html">Accueil</a>
+        <a href="services.html">Services</a>
+        <a href="realisations.html" aria-current="page">Réalisations</a>
+        <a href="zone.html">Zone</a>
+        <a href="devis.html">Devis</a>
+      </nav>
+
+      <div style="display:flex; gap:10px; align-items:center;">
+        <a class="btn ghost" href="devis.html#contact">Nous contacter</a>
+        <a class="btn primary" href="devis.html">Devis gratuit</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero reveal">
+      <div class="heroText">
+        <div class="kickers">
+          <div class="k"><span class="dot"></span> Photos en grand</div>
+          <div class="k"><span class="dot"></span> Filtres par type</div>
+          <div class="k"><span class="dot"></span> Chantier propre</div>
+        </div>
+        <h1>Réalisations</h1>
+        <p class="sub">Clique sur une photo pour l’afficher en grand. Utilise les filtres pour trier.</p>
+
+        <div class="actions">
+          <a class="btn primary" href="devis.html">🧾 Demander un devis</a>
+          <a class="btn" href="tel:+33695406864">📞 Appeler</a>
+          <a class="btn" href="services.html">Voir les services</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="sectionTitle">
+        <h2>Galerie</h2>
+        <p>Portails • Fenêtres • Électricité</p>
+      </div>
+
+      <div class="filters" id="filters">
+        <button class="fbtn active" type="button" data-filter="all">✨ Tout</button>
+        <button class="fbtn" type="button" data-filter="portail">🧱 Portails</button>
+        <button class="fbtn" type="button" data-filter="fenetre">🪟 Fenêtres</button>
+        <button class="fbtn" type="button" data-filter="elec">⚡ Électricité</button>
+      </div>
+
+      <div class="card" style="margin-top:12px;">
+        <b>Photos de chantiers</b>
+        <span>Ajoute tes images à la racine : portail-1.jpg, fenetre-1.jpg, elec-1.jpg…</span>
+
+        <div class="gallery" id="gallery">
+          <div class="gItem" data-full="portail-1.jpg" data-cat="portail">
+            <img src="portail-1.jpg" alt="Portail 1">
+            <div class="gCap"><span>Portail</span><span class="pill">Voir</span></div>
+          </div>
+          <div class="gItem" data-full="portail-2.jpg" data-cat="portail">
+            <img src="portail-2.jpg" alt="Portail 2">
+            <div class="gCap"><span>Portail</span><span class="pill">Voir</span></div>
+          </div>
+          <div class="gItem" data-full="portail-3.jpg" data-cat="portail">
+            <img src="portail-3.jpg" alt="Portail 3">
+            <div class="gCap"><span>Portail</span><span class="pill">Voir</span></div>
+          </div>
+
+          <div class="gItem" data-full="fenetre-1.jpg" data-cat="fenetre">
+            <img src="fenetre-1.jpg" alt="Fenêtre 1">
+            <div class="gCap"><span>Fenêtres</span><span class="pill">Voir</span></div>
+          </div>
+          <div class="gItem" data-full="fenetre-2.jpg" data-cat="fenetre">
+            <img src="fenetre-2.jpg" alt="Fenêtre 2">
+            <div class="gCap"><span>Fenêtres</span><span class="pill">Voir</span></div>
+          </div>
+
+          <div class="gItem" data-full="elec-1.jpg" data-cat="elec">
+            <img src="elec-1.jpg" alt="Électricité 1">
+            <div class="gCap"><span>Électricité</span><span class="pill">Voir</span></div>
+          </div>
+          <div class="gItem" data-full="elec-2.jpg" data-cat="elec">
+            <img src="elec-2.jpg" alt="Électricité 2">
+            <div class="gCap"><span>Électricité</span><span class="pill">Voir</span></div>
+          </div>
+        </div>
+
+        <div class="hint" style="margin-top:10px;">Astuce : tu peux dupliquer des blocs “gItem” pour ajouter plus de photos.</div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap foot">
+        <div>
+          <strong style="letter-spacing:.6px; text-transform:uppercase;">MONELEC</strong>
+          <small>Portails • Fenêtres • Garage • Électricité — Île-de-France</small>
+          <small>📞 06 95 40 68 64 • ✉️ monelec3@gmail.com</small>
+        </div>
+        <div style="text-align:right;">
+          <div>© <span id="y"></span> — Tous droits réservés</div>
+          <small>Devis gratuit • Travail soigné</small>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <div class="lightbox" id="lightbox" aria-label="Aperçu photo">
+    <div class="lbCard">
+      <button class="lbClose" id="lbClose" aria-label="Fermer">✕</button>
+      <img class="lbImg" id="lbImg" alt="Aperçu" src="" />
+    </div>
+  </div>
+
+  <div class="fab" aria-label="Raccourcis">
+    <a class="quote" href="devis.html">🧾 Devis</a>
+    <a class="call" href="tel:+33695406864">📞 06 95 40 68 64</a>
+    <a class="mail" href="mailto:monelec3@gmail.com">✉️ Email</a>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
