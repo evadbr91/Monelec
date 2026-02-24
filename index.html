@@ -2,24 +2,42 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MONELEC — Fenêtres, Portes, Électricité & Rénovation</title>
-  <meta name="description" content="Pose de fenêtres, portes, portes de garage, électricité et rénovation tout corps d’état. Devis gratuit. Intervention rapide." />
-  <meta name="theme-color" content="#0b1220" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MONELEC — Portes, Fenêtres, Garage, Électricité | Île-de-France</title>
+  <meta name="description" content="Pose et remplacement de portes, fenêtres, portes de garage + électricité et rénovation. Île-de-France. Devis gratuit, travail soigné." />
+  <meta name="theme-color" content="#0b0f19" />
 
   <style>
     :root{
-      --bg:#070a12;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.09);
-      --line: rgba(255,255,255,.12);
-      --txt:#e9edf5;
-      --muted: rgba(233,237,245,.72);
-      --brand:#5eead4;
-      --brand2:#60a5fa;
+      --bg:#070a10;
+      --bg2:#0b1020;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --line: rgba(255,255,255,.14);
+      --txt:#f3f6ff;
+      --muted: rgba(243,246,255,.72);
       --shadow: 0 18px 60px rgba(0,0,0,.45);
-      --radius: 22px;
+      --r: 22px;
+      --r2: 16px;
+      --accent:#2dd4bf;
+      --accent2:#60a5fa;
+      --cta:#ffffff;
+      --ctaTxt:#0b0f19;
+      --warn:#fbbf24;
     }
+
+    body.theme-navy{
+      --bg:#07101d;
+      --bg2:#0b1d3a;
+      --panel: rgba(255,255,255,.07);
+      --panel2: rgba(255,255,255,.10);
+      --line: rgba(255,255,255,.18);
+      --accent:#60a5fa;
+      --accent2:#2dd4bf;
+      --cta:#ffffff;
+      --ctaTxt:#07101d;
+    }
+
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
     body{
@@ -28,391 +46,850 @@
       color:var(--txt);
       background:
         radial-gradient(1200px 800px at 10% 0%, rgba(96,165,250,.18), transparent 55%),
-        radial-gradient(1100px 700px at 90% 10%, rgba(94,234,212,.14), transparent 55%),
-        radial-gradient(900px 650px at 50% 110%, rgba(255,255,255,.06), transparent 60%),
-        var(--bg);
+        radial-gradient(1000px 700px at 90% 10%, rgba(45,212,191,.16), transparent 55%),
+        radial-gradient(900px 650px at 50% 115%, rgba(255,255,255,.06), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       overflow-x:hidden;
     }
-    a{ color:inherit; text-decoration:none; }
-    .wrap{ width:min(1100px, 92vw); margin:0 auto; }
 
-    /* Header */
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:min(1120px, 92vw); margin:0 auto; }
+
     header{
-      position:sticky;
-      top:0;
-      z-index:50;
+      position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
-      background: linear-gradient(to bottom, rgba(7,10,18,.82), rgba(7,10,18,.55));
+      background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.18));
       border-bottom: 1px solid var(--line);
     }
     .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      padding:14px 0;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:14px 0;
     }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:800;
-      letter-spacing:.4px;
-    }
-    .logo{
-      width:38px; height:38px;
-      border-radius:14px;
+    .brand{ display:flex; gap:12px; align-items:center; min-width: 220px; }
+    .mark{
+      width:44px; height:44px; border-radius: 16px;
       background:
-        linear-gradient(135deg, rgba(94,234,212,.95), rgba(96,165,250,.92));
-      box-shadow: 0 12px 30px rgba(94,234,212,.12);
+        linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.04)),
+        radial-gradient(circle at 30% 30%, rgba(45,212,191,.65), transparent 52%),
+        radial-gradient(circle at 70% 70%, rgba(96,165,250,.55), transparent 55%);
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
       position:relative;
       overflow:hidden;
     }
-    .logo:before{
+    .mark:after{
       content:"";
-      position:absolute; inset:-20%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.7), transparent 40%);
+      position:absolute; inset:-30%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.18), transparent);
       transform: rotate(18deg);
-      opacity:.45;
+      opacity:.35;
     }
+    .brand h1{
+      margin:0;
+      font-size: 16px;
+      letter-spacing:.6px;
+      text-transform: uppercase;
+      line-height:1.05;
+    }
+    .brand p{
+      margin:4px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
     .menu{
-      display:flex;
-      gap:18px;
-      align-items:center;
-      color:var(--muted);
-      font-weight:600;
-      font-size:14px;
+      display:flex; gap:8px; align-items:center;
+      padding: 6px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: 999px;
     }
-    .menu a{ padding:8px 10px; border-radius:12px; }
-    .menu a:hover{ background: rgba(255,255,255,.06); color:var(--txt); }
+    .menu a{
+      padding: 9px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing:.2px;
+    }
+    .menu a:hover{ background: rgba(255,255,255,.07); color: var(--txt); }
 
     .cta{
       display:flex; gap:10px; align-items:center;
     }
     .btn{
-      padding:10px 14px;
-      border-radius:14px;
       border:1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      color:var(--txt);
-      font-weight:700;
-      font-size:14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.2);
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); }
-    .btn.primary{
-      border-color: rgba(94,234,212,.25);
-      background: linear-gradient(135deg, rgba(94,234,212,.22), rgba(96,165,250,.16));
-    }
-
-    /* Hero */
-    .hero{ padding:58px 0 24px; }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:22px;
-      align-items:stretch;
-    }
-    .panel{
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.035));
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding:24px;
-      position:relative;
-      overflow:hidden;
-    }
-    .panel:after{
-      content:"";
-      position:absolute; inset:-60%;
-      background: radial-gradient(circle at 20% 20%, rgba(94,234,212,.12), transparent 40%),
-                  radial-gradient(circle at 80% 30%, rgba(96,165,250,.12), transparent 45%);
-      pointer-events:none;
-    }
-    .kicker{
+      background: rgba(255,255,255,.05);
+      color: var(--txt);
+      padding: 11px 14px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing:.2px;
       display:inline-flex;
       align-items:center;
       gap:10px;
-      padding:8px 12px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      cursor:pointer;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(45,212,191,.18), rgba(96,165,250,.14));
+      border-color: rgba(255,255,255,.22);
+    }
+    .btn.white{
+      background: var(--cta);
+      color: var(--ctaTxt);
+      border-color: rgba(255,255,255,.35);
+    }
+
+    .hero{
+      padding: 34px 0 18px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .panel{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .heroText{ padding: 22px; }
+    .tagRow{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      margin-bottom: 12px;
+    }
+    .tag{
       border:1px solid var(--line);
       background: rgba(255,255,255,.05);
-      border-radius:999px;
-      color:var(--muted);
-      font-weight:700;
-      font-size:13px;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing:.2px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
     }
     .dot{
-      width:10px; height:10px; border-radius:999px;
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
-      box-shadow: 0 0 18px rgba(94,234,212,.35);
+      width:10px; height:10px; border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 18px rgba(45,212,191,.35);
     }
-    h1{
-      margin:16px 0 10px;
+    .heroText h2{
+      margin: 10px 0 10px;
       font-size: clamp(28px, 3.2vw, 44px);
-      line-height:1.05;
-      letter-spacing:-.6px;
+      line-height: 1.02;
+      letter-spacing:-.7px;
     }
-    .sub{
-      margin:0 0 18px;
-      color:var(--muted);
-      font-size:16px;
-      line-height:1.6;
-      max-width: 52ch;
-    }
-    .hero-actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:18px;
-    }
-    .badges{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:16px;
-      color:var(--muted);
-      font-weight:600;
-      font-size:13px;
-    }
-    .badge{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      border-radius:999px;
-      padding:8px 10px;
-    }
-
-    /* Services card */
-    .services h2{
-      margin:0 0 10px;
-      font-size:18px;
-      letter-spacing:-.2px;
-    }
-    .list{
+    .heroText p{
       margin:0;
-      padding:0;
-      list-style:none;
-      display:grid;
-      gap:10px;
+      color: var(--muted);
+      line-height:1.65;
+      font-weight: 650;
+      max-width: 62ch;
+      font-size: 15.5px;
     }
-    .item{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      padding:12px;
+    .heroActions{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 16px;
+    }
+    .miniRow{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 14px;
+    }
+    .mini{
       border:1px solid var(--line);
       background: rgba(255,255,255,.04);
-      border-radius:16px;
+      border-radius: 14px;
+      padding: 10px 12px;
+      color: var(--muted);
+      font-weight: 850;
+      font-size: 12.5px;
+      display:flex;
+      align-items:center;
+      gap:10px;
     }
-    .ico{
-      width:34px; height:34px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
-      background: linear-gradient(135deg, rgba(94,234,212,.16), rgba(96,165,250,.12));
-      display:grid;
-      place-items:center;
-      font-weight:900;
-      color: var(--txt);
-      flex: 0 0 auto;
+    .pill{
+      width:10px; height:10px; border-radius: 999px;
+      background: var(--warn);
+      box-shadow: 0 0 18px rgba(251,191,36,.25);
     }
-    .item b{ display:block; margin-bottom:3px; }
-    .item span{ color:var(--muted); font-size:13px; line-height:1.45; }
 
-    /* Sections */
-    section{ padding:22px 0; }
-    .grid3{
+    .cards{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
-      gap:14px;
+      gap: 12px;
+      padding: 14px;
+      border-top: 1px solid var(--line);
+      background: rgba(0,0,0,.12);
     }
     .card{
       border:1px solid var(--line);
-      background: rgba(255,255,255,.045);
-      border-radius: var(--radius);
-      padding:18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--r2);
+      padding: 14px;
     }
-    .card h3{ margin:0 0 6px; font-size:16px; }
-    .card p{ margin:0; color:var(--muted); line-height:1.6; font-size:14px; }
+    .card b{ display:block; margin-bottom: 6px; font-size: 14px; letter-spacing:.2px; }
+    .card span{ color: var(--muted); font-size: 13px; line-height:1.55; display:block; }
 
-    .two{
+    .section{ padding: 18px 0; }
+    .sectionTitle{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
+      margin: 6px 0 10px;
+    }
+    .sectionTitle h3{
+      margin:0;
+      font-size: 18px;
+      letter-spacing:-.2px;
+    }
+    .sectionTitle p{
+      margin:0;
+      color: var(--muted);
+      font-weight: 750;
+      font-size: 13px;
+    }
+
+    .serviceGrid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .service{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      border-radius: var(--r);
+      padding: 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.18);
+    }
+    .service .icon{
+      width:42px; height:42px; border-radius: 16px;
+      border:1px solid rgba(255,255,255,.18);
+      background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+      display:grid; place-items:center;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .service b{ display:block; margin-bottom: 6px; }
+    .service span{ color: var(--muted); font-size: 13px; line-height:1.55; display:block; }
+
+    .split{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:14px;
+      gap: 12px;
+      align-items: stretch;
     }
+    .bigCard{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      border-radius: var(--r);
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.18);
+    }
+    .bigCard h4{ margin:0 0 8px; font-size: 16px; letter-spacing:-.1px; }
+    .bigCard p{ margin:0; color: var(--muted); line-height:1.65; font-weight: 650; font-size: 13.5px; }
 
-    /* Footer */
     footer{
-      padding:34px 0 44px;
-      color:var(--muted);
-      border-top:1px solid var(--line);
-      margin-top:18px;
+      margin-top: 14px;
+      border-top: 1px solid var(--line);
+      padding: 26px 0 40px;
+      color: var(--muted);
     }
     .foot{
       display:flex;
       justify-content:space-between;
-      gap:18px;
-      flex-wrap:wrap;
       align-items:flex-start;
+      gap: 18px;
+      flex-wrap:wrap;
     }
 
-    /* Responsive */
-    @media (max-width: 920px){
-      .hero-grid{ grid-template-columns: 1fr; }
-      .grid3{ grid-template-columns: 1fr; }
-      .two{ grid-template-columns: 1fr; }
+    .car{
+      position:relative;
+      height: 100%;
+      min-height: 420px;
+      display:flex;
+      flex-direction:column;
+    }
+    .carTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 16px 16px 10px;
+    }
+    .carTop b{
+      font-size: 14px;
+      letter-spacing:.3px;
+      text-transform: uppercase;
+    }
+    .carTop span{
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 12px;
+    }
+    .viewport{
+      position:relative;
+      flex:1;
+      border-top: 1px solid var(--line);
+      overflow:hidden;
+      border-bottom-left-radius: var(--r);
+      border-bottom-right-radius: var(--r);
+    }
+    .track{
+      display:flex;
+      height:100%;
+      transition: transform .55s cubic-bezier(.2,.8,.2,1);
+    }
+    .slide{
+      min-width:100%;
+      height:100%;
+      position:relative;
+      background:#0a0f1a;
+    }
+    .slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter: contrast(1.04) saturate(1.05);
+    }
+    .overlay{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.58), rgba(0,0,0,.12) 55%, rgba(0,0,0,.45));
+    }
+    .cap{
+      position:absolute;
+      left: 16px; right: 16px; bottom: 16px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(10,14,22,.55);
+      backdrop-filter: blur(10px);
+      border-radius: 18px;
+      padding: 12px 12px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
+    }
+    .cap b{ display:block; font-size: 14px; margin-bottom: 3px; }
+    .cap span{ display:block; color: rgba(243,246,255,.78); font-weight: 700; font-size: 12.5px; line-height:1.35; }
+    .cap .badge{
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.07);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-weight: 900;
+      font-size: 12px;
+      white-space:nowrap;
+      color: var(--txt);
+    }
+
+    .navBtns{
+      position:absolute;
+      inset: 0;
+      pointer-events:none;
+    }
+    .arrow{
+      pointer-events:auto;
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width:44px; height:44px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      user-select:none;
+    }
+    .arrow:hover{ background: rgba(0,0,0,.5); }
+    .arrow.left{ left: 12px; }
+    .arrow.right{ right: 12px; }
+
+    .dots{
+      position:absolute;
+      left: 0; right: 0; bottom: 8px;
+      display:flex;
+      justify-content:center;
+      gap: 8px;
+      pointer-events:none;
+    }
+    .dotBtn{
+      pointer-events:auto;
+      width: 8px; height: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.35);
+      background: rgba(255,255,255,.18);
+      cursor:pointer;
+      opacity:.7;
+    }
+    .dotBtn.active{
+      width: 22px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-color: rgba(255,255,255,.35);
+      opacity: 1;
+    }
+
+    .gridPhotos{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .ph{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: 18px;
+      overflow:hidden;
+      position:relative;
+      cursor:pointer;
+      min-height: 160px;
+    }
+    .ph img{
+      width:100%;
+      height: 210px;
+      object-fit:cover;
+      display:block;
+    }
+    .ph span{
+      position:absolute;
+      left: 10px; top: 10px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-weight: 900;
+      font-size: 12px;
+      color: var(--txt);
+    }
+
+    .lightbox{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.78);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      z-index: 999;
+    }
+    .lightbox.open{ display:flex; }
+    .lightbox .box{
+      width:min(1100px, 96vw);
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(10,14,22,.72);
+      backdrop-filter: blur(10px);
+      border-radius: 22px;
+      overflow:hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,.55);
+      position:relative;
+    }
+    .lightbox img{
+      width:100%;
+      height: min(78vh, 720px);
+      object-fit:contain;
+      display:block;
+      background: rgba(0,0,0,.25);
+    }
+    .close{
+      position:absolute;
+      top: 10px; right: 10px;
+      width: 44px; height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.45);
+      color: var(--txt);
+      display:grid; place-items:center;
+      cursor:pointer;
+      font-weight: 900;
+      user-select:none;
+    }
+
+    @media (max-width: 980px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      .car{ min-height: 380px; }
+      .serviceGrid{ grid-template-columns: repeat(2, 1fr); }
+      .cards{ grid-template-columns: 1fr; }
       .menu{ display:none; }
+      .gridPhotos{ grid-template-columns: 1fr; }
+      .ph img{ height: 230px; }
+      .split{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
-<body>
+<body class="">
   <header>
     <div class="wrap nav">
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
+        <div class="mark" aria-hidden="true"></div>
         <div>
-          <div style="font-size:15px; line-height:1;">MONELEC</div>
-          <div style="font-size:12px; color:var(--muted); font-weight:700;">Fenêtres • Portes • Électricité • Rénovation</div>
+          <h1>MONELEC</h1>
+          <p>Portes • Fenêtres • Garage • Électricité • Rénovation</p>
         </div>
       </div>
 
       <nav class="menu" aria-label="Navigation">
         <a href="#services">Services</a>
-        <a href="#zones">Zone</a>
         <a href="#realisations">Réalisations</a>
+        <a href="#zone">Zone</a>
         <a href="#contact">Contact</a>
       </nav>
 
       <div class="cta">
-        <a class="btn" href="#contact">Devis gratuit</a>
-        <a class="btn primary" href="tel:+33600000000">Appeler</a>
+        <button class="btn" id="themeBtn" type="button">🎨 Style</button>
+        <a class="btn primary" href="#contact">Devis gratuit</a>
+        <a class="btn white" href="tel:+33600000000">📞 Appeler</a>
       </div>
     </div>
   </header>
 
   <main class="wrap">
-    <section class="hero" id="top">
-      <div class="hero-grid">
+    <section class="hero">
+      <div class="heroGrid">
         <div class="panel">
-          <div class="kicker"><span class="dot"></span> Intervention rapide • Travail soigné • Devis gratuit</div>
-          <h1>Fenêtres, portes, portes de garage & électricité — et rénovation tout corps d’état.</h1>
-          <p class="sub">
-            Installation, dépannage et rénovation : menuiserie, électricité, petits travaux et remise en état.
-            Un seul contact, un chantier suivi du début à la fin.
-          </p>
+          <div class="heroText">
+            <div class="tagRow">
+              <div class="tag"><span class="dot"></span> Artisan • Travail soigné</div>
+              <div class="tag"><span class="dot"></span> Devis gratuit</div>
+              <div class="tag"><span class="dot"></span> Île-de-France</div>
+            </div>
 
-          <div class="hero-actions">
-            <a class="btn primary" href="#contact">Demander un devis</a>
-            <a class="btn" href="tel:+33600000000">📞 +33 6 00 00 00 00</a>
+            <h2>Portes, fenêtres, portes de garage & électricité — intervention en Île-de-France.</h2>
+            <p>
+              Pose, remplacement et dépannage. Finitions propres, conseil sur le choix des matériaux,
+              et déplacements possibles hors IDF sur demande.
+            </p>
+
+            <div class="heroActions">
+              <a class="btn white" href="tel:+33600000000">📞 +33 6 00 00 00 00</a>
+              <a class="btn primary" href="https://wa.me/33600000000" target="_blank" rel="noopener">💬 WhatsApp</a>
+              <a class="btn" href="#realisations">Voir les réalisations</a>
+            </div>
+
+            <div class="miniRow">
+              <div class="mini"><span class="pill"></span> Devis clair & rapide</div>
+              <div class="mini"><span class="pill"></span> Chantier propre</div>
+              <div class="mini"><span class="pill"></span> Un seul interlocuteur</div>
+            </div>
           </div>
 
-          <div class="badges">
-            <div class="badge">✅ Garantie & finitions propres</div>
-            <div class="badge">✅ Conseils & choix des matériaux</div>
-            <div class="badge">✅ Dépannage possible</div>
+          <div class="cards">
+            <div class="card">
+              <b>Portes & sécurité</b>
+              <span>Portes d’entrée, blindées, serrures, réglages, finitions.</span>
+            </div>
+            <div class="card">
+              <b>Fenêtres & isolation</b>
+              <span>PVC/alu/bois, étanchéité, vitrage, rénovation & remplacement.</span>
+            </div>
+            <div class="card">
+              <b>Garage & motorisation</b>
+              <span>Sectionnelles, enroulables, motorisation et dépannage.</span>
+            </div>
           </div>
         </div>
 
-        <aside class="panel services" id="services">
-          <h2>Services principaux</h2>
-          <ul class="list">
-            <li class="item">
-              <div class="ico">🪟</div>
-              <div>
-                <b>Fenêtres & baies vitrées</b>
-                <span>Pose, remplacement, réglages, étanchéité, finitions.</span>
+        <aside class="panel car" aria-label="Carrousel de réalisations">
+          <div class="carTop">
+            <div>
+              <b>Réalisations</b>
+              <div><span>Portes • Fenêtres • Garage • Électricité</span></div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center;">
+              <a class="btn" href="#contact">Demander un devis</a>
+            </div>
+          </div>
+
+          <div class="viewport" id="carousel">
+            <div class="track" id="track">
+              <div class="slide">
+                <img alt="Porte d’entrée moderne" src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1600&q=70" />
+                <div class="overlay"></div>
+                <div class="cap">
+                  <div>
+                    <b>Porte d’entrée</b>
+                    <span>Pose et remplacement • alignement • finitions propres</span>
+                  </div>
+                  <div class="badge">Devis gratuit</div>
+                </div>
               </div>
-            </li>
-            <li class="item">
-              <div class="ico">🚪</div>
-              <div>
-                <b>Portes & portes de garage</b>
-                <span>Installation, motorisation, dépannage, sécurisation.</span>
+
+              <div class="slide">
+                <img alt="Fenêtres et baie vitrée" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=70" />
+                <div class="overlay"></div>
+                <div class="cap">
+                  <div>
+                    <b>Fenêtres & baies</b>
+                    <span>Isolation • étanchéité • vitrage • rénovation</span>
+                  </div>
+                  <div class="badge">IDF</div>
+                </div>
               </div>
-            </li>
-            <li class="item">
-              <div class="ico">⚡</div>
-              <div>
-                <b>Électricité</b>
-                <span>Mise aux normes, prises, éclairage, tableau, diagnostics.</span>
+
+              <div class="slide">
+                <img alt="Porte de garage" src="https://images.unsplash.com/photo-1590086782957-93c06ef21604?auto=format&fit=crop&w=1600&q=70" />
+                <div class="overlay"></div>
+                <div class="cap">
+                  <div>
+                    <b>Porte de garage</b>
+                    <span>Motorisation • réglages • dépannage</span>
+                  </div>
+                  <div class="badge">Sur demande</div>
+                </div>
               </div>
-            </li>
-            <li class="item">
-              <div class="ico">🛠️</div>
-              <div>
-                <b>Rénovation (tout corps d’état)</b>
-                <span>Petits travaux, réparation, peinture, finitions, remise en état.</span>
+
+              <div class="slide">
+                <img alt="Électricité et éclairage" src="https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&w=1600&q=70" />
+                <div class="overlay"></div>
+                <div class="cap">
+                  <div>
+                    <b>Électricité</b>
+                    <span>Prises • éclairage • tableau • mise aux normes</span>
+                  </div>
+                  <div class="badge">Soigné</div>
+                </div>
               </div>
-            </li>
-          </ul>
+            </div>
+
+            <div class="navBtns">
+              <div class="arrow left" id="prev" aria-label="Précédent">‹</div>
+              <div class="arrow right" id="next" aria-label="Suivant">›</div>
+            </div>
+            <div class="dots" id="dots" aria-label="Pagination"></div>
+          </div>
         </aside>
       </div>
     </section>
 
-    <section>
-      <div class="grid3">
-        <div class="card">
-          <h3>Devis clair & rapide</h3>
-          <p>On vous répond vite avec une estimation transparente et des options adaptées à votre budget.</p>
+    <section class="section" id="services">
+      <div class="sectionTitle">
+        <h3>Services</h3>
+        <p>Du concret, du propre, du solide.</p>
+      </div>
+
+      <div class="serviceGrid">
+        <div class="service">
+          <div class="icon">🚪</div>
+          <b>Portes</b>
+          <span>Pose, remplacement, réglages, serrures, finitions.</span>
         </div>
-        <div class="card">
-          <h3>Travail propre</h3>
-          <p>Protection des zones, finitions soignées, chantier rendu propre. Priorité à la qualité.</p>
+        <div class="service">
+          <div class="icon">🪟</div>
+          <b>Fenêtres</b>
+          <span>Rénovation, étanchéité, vitrage, isolation.</span>
         </div>
-        <div class="card">
-          <h3>Un seul interlocuteur</h3>
-          <p>Du premier contact à la fin du chantier : suivi simple, efficace, sans stress.</p>
+        <div class="service">
+          <div class="icon">🧰</div>
+          <b>Garage</b>
+          <span>Installation, motorisation, dépannage, sécurisation.</span>
+        </div>
+        <div class="service">
+          <div class="icon">⚡</div>
+          <b>Électricité</b>
+          <span>Prises, éclairage, tableau, mise aux normes, diagnostic.</span>
         </div>
       </div>
     </section>
 
-    <section class="two" id="zones">
-      <div class="card">
+    <section class="section" id="realisations">
+      <div class="sectionTitle">
+        <h3>Avant / Après & photos chantier</h3>
+        <p>Clique pour agrandir.</p>
+      </div>
+
+      <div class="gridPhotos">
+        <div class="ph" data-full="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=2200&q=80">
+          <span>Porte</span>
+          <img alt="Photo porte" src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1400&q=70" />
+        </div>
+        <div class="ph" data-full="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=2200&q=80">
+          <span>Fenêtres</span>
+          <img alt="Photo fenêtres" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=70" />
+        </div>
+        <div class="ph" data-full="https://images.unsplash.com/photo-1590086782957-93c06ef21604?auto=format&fit=crop&w=2200&q=80">
+          <span>Garage</span>
+          <img alt="Photo porte de garage" src="https://images.unsplash.com/photo-1590086782957-93c06ef21604?auto=format&fit=crop&w=1400&q=70" />
+        </div>
+      </div>
+
+      <div class="split" style="margin-top:12px;">
+        <div class="bigCard">
+          <h4>Comment on travaille</h4>
+          <p>
+            Protection des zones, pose précise, réglages, étanchéité, finitions, nettoyage.
+            L’objectif : un rendu net et durable.
+          </p>
+        </div>
+        <div class="bigCard">
+          <h4>Tout corps d’état (sur demande)</h4>
+          <p>
+            Petits travaux, remise en état, finitions. Déplacements possibles hors Île-de-France selon le chantier.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="zone">
+      <div class="sectionTitle">
         <h3>Zone d’intervention</h3>
-        <p>
-          Indique ici ta ville / département (ex : Essonne 91, Paris, Île-de-France).
-          <br><br>
-          <b>Astuce :</b> plus c’est précis, plus ça inspire confiance.
-        </p>
+        <p>Île-de-France + hors IDF sur demande.</p>
       </div>
-      <div class="card" id="realisations">
-        <h3>Réalisations</h3>
+
+      <div class="bigCard">
+        <h4>Île-de-France</h4>
         <p>
-          Ajoute 6 à 10 photos de chantiers (avant/après) : fenêtres, portes, garage, tableaux électriques, rénovation.
-          <br><br>
-          Je te montrerai juste après comment les ajouter facilement.
+          Intervention en Île-de-France. Déplacement possible ailleurs selon la demande et le chantier.
         </p>
       </div>
     </section>
 
-    <section class="card" id="contact">
-      <h3>Contact</h3>
-      <p style="margin-top:6px;">
-        <b>Téléphone :</b> <a href="tel:+33600000000">+33 6 00 00 00 00</a><br>
-        <b>Email :</b> <a href="mailto:contact@monelec.fr">contact@monelec.fr</a><br>
-        <b>Disponibilités :</b> Lun–Sam • 8h–19h
-      </p>
-      <p style="margin-top:12px; color:var(--muted); font-size:13px;">
-        ⚠️ Remplace les infos par les vraies (téléphone / email / zone). Si tu veux, je te fais une version “WhatsApp” aussi.
-      </p>
+    <section class="section" id="contact">
+      <div class="sectionTitle">
+        <h3>Contact</h3>
+        <p>Réponse rapide • Devis gratuit</p>
+      </div>
+
+      <div class="panel" style="padding:18px;">
+        <div class="split">
+          <div class="bigCard" style="margin:0;">
+            <h4>Coordonnées</h4>
+            <p style="margin-top:10px;">
+              <b>Téléphone :</b> <a href="tel:+33600000000">+33 6 00 00 00 00</a><br>
+              <b>WhatsApp :</b> <a href="https://wa.me/33600000000" target="_blank" rel="noopener">envoyer un message</a><br>
+              <b>Email :</b> <a href="mailto:contact@monelec.fr">contact@monelec.fr</a><br>
+              <b>Horaires :</b> Lun–Sam • 8h–19h
+            </p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+              <a class="btn white" href="tel:+33600000000">📞 Appeler</a>
+              <a class="btn primary" href="https://wa.me/33600000000" target="_blank" rel="noopener">💬 WhatsApp</a>
+              <a class="btn" href="mailto:contact@monelec.fr">✉️ Email</a>
+            </div>
+          </div>
+
+          <div class="bigCard" style="margin:0;">
+            <h4>Demande de devis</h4>
+            <p>
+              Envoie un message avec :
+              <br>• Type de travaux (porte/fenêtre/garage/élec)
+              <br>• Ville / département
+              <br>• Photos si possible
+              <br>• Délai souhaité
+            </p>
+            <div style="margin-top:12px;">
+              <a class="btn primary" href="https://wa.me/33600000000" target="_blank" rel="noopener">Demander un devis sur WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <footer>
       <div class="wrap foot">
         <div>
-          <div style="font-weight:800; color:var(--txt);">MONELEC</div>
-          <div>Fenêtres • Portes • Portes de garage • Électricité • Rénovation</div>
+          <div style="font-weight:900; color:var(--txt); letter-spacing:.3px;">MONELEC</div>
+          <div>Portes • Fenêtres • Garage • Électricité • Rénovation</div>
         </div>
         <div style="text-align:right;">
           <div>© <span id="y"></span> — Tous droits réservés</div>
-          <div style="margin-top:6px; font-size:13px;">Site créé avec GitHub Pages</div>
+          <div style="margin-top:6px; font-size:13px;">Île-de-France</div>
         </div>
       </div>
     </footer>
   </main>
 
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="box" role="dialog" aria-modal="true" aria-label="Aperçu image">
+      <div class="close" id="closeLb" aria-label="Fermer">✕</div>
+      <img id="lbImg" alt="Aperçu" src="" />
+    </div>
+  </div>
+
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    const body = document.body;
+    const themeBtn = document.getElementById("themeBtn");
+    themeBtn.addEventListener("click", () => {
+      body.classList.toggle("theme-navy");
+      localStorage.setItem("monelec_theme", body.classList.contains("theme-navy") ? "navy" : "dark");
+    });
+    const saved = localStorage.getItem("monelec_theme");
+    if(saved === "navy") body.classList.add("theme-navy");
+
+    const track = document.getElementById("track");
+    const slides = Array.from(track.children);
+    const dots = document.getElementById("dots");
+    const prev = document.getElementById("prev");
+    const next = document.getElementById("next");
+    let i = 0;
+    let timer = null;
+
+    function buildDots(){
+      dots.innerHTML = "";
+      slides.forEach((_, idx) => {
+        const b = document.createElement("button");
+        b.className = "dotBtn" + (idx === 0 ? " active" : "");
+        b.type = "button";
+        b.setAttribute("aria-label", "Aller à la diapositive " + (idx + 1));
+        b.addEventListener("click", () => go(idx, true));
+        dots.appendChild(b);
+      });
+    }
+
+    function setActiveDot(){
+      const all = dots.querySelectorAll(".dotBtn");
+      all.forEach((d, idx) => d.classList.toggle("active", idx === i));
+    }
+
+    function go(idx, user){
+      i = (idx + slides.length) % slides.length;
+      track.style.transform = "translateX(" + (-i * 100) + "%)";
+      setActiveDot();
+      if(user) restart();
+    }
+
+    function restart(){
+      if(timer) clearInterval(timer);
+      timer = setInterval(() => go(i + 1, false), 4500);
+    }
+
+    prev.addEventListener("click", () => go(i - 1, true));
+    next.addEventListener("click", () => go(i + 1, true));
+
+    buildDots();
+    restart();
+
+    const lb = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lbImg");
+    const closeLb = document.getElementById("closeLb");
+
+    function openLb(src){
+      lbImg.src = src;
+      lb.classList.add("open");
+      lb.setAttribute("aria-hidden","false");
+    }
+    function close(){
+      lb.classList.remove("open");
+      lb.setAttribute("aria-hidden","true");
+      lbImg.src = "";
+    }
+
+    document.querySelectorAll(".ph").forEach(el => {
+      el.addEventListener("click", () => openLb(el.getAttribute("data-full")));
+    });
+    closeLb.addEventListener("click", close);
+    lb.addEventListener("click", (e) => { if(e.target === lb) close(); });
+    document.addEventListener("keydown", (e) => { if(e.key === "Escape") close(); });
   </script>
 </body>
 </html>
