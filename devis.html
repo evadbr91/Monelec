@@ -1,1 +1,142 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MONELEC — Devis gratuit | Île-de-France</title>
+  <meta name="description" content="Demande de devis gratuit : portails, fenêtres, garage, électricité. Réponse rapide." />
+  <meta name="theme-color" content="#0b0f14" />
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
 
+<body>
+  <div class="topbar">
+    <div class="wrap row">
+      <div class="left">
+        <a class="chip" href="tel:+33695406864"><b>📞</b><span>06 95 40 68 64</span></a>
+        <a class="chip" href="mailto:monelec3@gmail.com"><b>✉️</b><span>monelec3@gmail.com</span></a>
+      </div>
+      <div class="right">
+        <div class="chip"><b>🕘</b><span>Lun–Sam • 8h–19h</span></div>
+        <div class="chip"><b>📍</b><span>Île-de-France</span></div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="name">
+          <strong>MONELEC</strong>
+          <small>Portails • Fenêtres • Garage • Électricité</small>
+        </div>
+      </div>
+
+      <nav class="menu" aria-label="Navigation">
+        <a href="index.html">Accueil</a>
+        <a href="services.html">Services</a>
+        <a href="realisations.html">Réalisations</a>
+        <a href="zone.html">Zone</a>
+        <a href="devis.html" aria-current="page">Devis</a>
+      </nav>
+
+      <div style="display:flex; gap:10px; align-items:center;">
+        <a class="btn ghost" href="#contact">Nous contacter</a>
+        <a class="btn primary" href="#devis">Devis gratuit</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero reveal">
+      <div class="heroText">
+        <div class="kickers">
+          <div class="k"><span class="dot"></span> Réponse rapide</div>
+          <div class="k"><span class="dot"></span> Devis clair</div>
+          <div class="k"><span class="dot"></span> Travail soigné</div>
+        </div>
+        <h1>Demande de devis</h1>
+        <p class="sub">Remplis le formulaire : le bouton ouvre ton application mail avec le message pré-rempli.</p>
+
+        <div class="actions">
+          <a class="btn primary" href="#devis">🧾 Remplir le formulaire</a>
+          <a class="btn" href="tel:+33695406864">📞 Appeler</a>
+          <a class="btn" href="mailto:monelec3@gmail.com">✉️ Email</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="devis">
+      <div class="sectionTitle">
+        <h2>Devis gratuit</h2>
+        <p>Contact + formulaire</p>
+      </div>
+
+      <div class="card" style="padding:18px;">
+        <div class="two">
+          <div class="card" id="contact" style="margin:0; box-shadow:none;">
+            <b>Contact</b>
+            <span>
+              <b>Téléphone :</b> <a href="tel:+33695406864">06 95 40 68 64</a><br>
+              <b>Email :</b> <a href="mailto:monelec3@gmail.com">monelec3@gmail.com</a><br>
+              <b>Horaires :</b> Lun–Sam • 8h–19h
+            </span>
+            <div style="height:12px"></div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn primary" href="tel:+33695406864">📞 Appeler maintenant</a>
+              <a class="btn" href="mailto:monelec3@gmail.com">✉️ Envoyer un email</a>
+            </div>
+          </div>
+
+          <div class="card" style="margin:0; box-shadow:none;">
+            <b>Votre demande</b>
+            <form id="quoteForm">
+              <div>
+                <label for="name">Nom</label>
+                <input id="name" name="name" autocomplete="name" placeholder="Votre nom" required />
+              </div>
+              <div>
+                <label for="city">Ville / Département</label>
+                <input id="city" name="city" placeholder="Ex : Massy (91)" required />
+              </div>
+              <div>
+                <label for="type">Type de travaux</label>
+                <input id="type" name="type" placeholder="Portail / Fenêtre / Garage / Électricité" required />
+              </div>
+              <div>
+                <label for="msg">Détails</label>
+                <textarea id="msg" name="msg" placeholder="Décrivez votre besoin + délai souhaité."></textarea>
+              </div>
+              <button class="btn primary" type="submit">Envoyer la demande</button>
+              <div class="hint">Le bouton ouvre votre application mail avec le message pré-rempli.</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap foot">
+        <div>
+          <strong style="letter-spacing:.6px; text-transform:uppercase;">MONELEC</strong>
+          <small>Portails • Fenêtres • Garage • Électricité — Île-de-France</small>
+          <small>📞 06 95 40 68 64 • ✉️ monelec3@gmail.com</small>
+        </div>
+        <div style="text-align:right;">
+          <div>© <span id="y"></span> — Tous droits réservés</div>
+          <small>Devis gratuit • Travail soigné</small>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <div class="fab" aria-label="Raccourcis">
+    <a class="quote" href="#devis">🧾 Devis</a>
+    <a class="call" href="tel:+33695406864">📞 06 95 40 68 64</a>
+    <a class="mail" href="mailto:monelec3@gmail.com">✉️ Email</a>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
