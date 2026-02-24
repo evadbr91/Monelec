@@ -20,14 +20,11 @@
       --shadow: 0 18px 50px rgba(10,15,20,.10);
       --r: 20px;
       --r2: 14px;
-      --accent:#0b0f14;
-      --accent2:#1f2937;
       --cta:#0b0f14;
       --ctaTxt:#ffffff;
+      --warn:#fbbf24;
     }
-.site-logo{
-  height: 52px;
-}
+
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
     body{
@@ -164,24 +161,15 @@
       background: #fff;
     }
 
-    /* Hero */
+    /* HERO (horizontal layout) */
     .hero{
-      padding: 28px 0 10px;
-    }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 16px;
-      align-items:stretch;
-    }
-    .panel{
-      border: 1px solid var(--line);
-      border-radius: var(--r);
-      overflow:hidden;
-      background: #fff;
-      box-shadow: var(--shadow);
+      padding: 34px 0 14px;
     }
     .heroText{
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
       padding: 22px;
     }
     .kickers{
@@ -219,7 +207,7 @@
       color: var(--muted);
       font-size: 15.5px;
       line-height:1.7;
-      max-width: 68ch;
+      max-width: 72ch;
       font-weight: 650;
     }
     .actions{
@@ -233,13 +221,11 @@
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
-      padding: 14px;
-      border-top: 1px solid var(--line);
-      background: var(--soft);
+      margin-top: 14px;
     }
     .proof{
       border: 1px solid var(--line);
-      background: #fff;
+      background: var(--soft);
       border-radius: 16px;
       padding: 14px;
     }
@@ -258,31 +244,34 @@
       font-weight: 650;
     }
 
-    /* Right visual / slider */
-    .visual{
-      position:relative;
+    /* FULL WIDTH CAROUSEL (horizontal) */
+    .carouselFull{
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      overflow: hidden;
       background: #0b0f14;
-      color:#fff;
-      min-height: 520px;
+      box-shadow: var(--shadow);
     }
-    .visualTop{
+    .carTop{
       display:flex;
       justify-content:space-between;
       align-items:flex-start;
-      gap: 12px;
-      padding: 16px 16px 10px;
+      gap:12px;
+      padding: 14px 14px 12px;
       background: rgba(11,15,20,.88);
       border-bottom: 1px solid rgba(255,255,255,.10);
+      color:#fff;
     }
-    .visualTop b{
+    .carTop b{
       letter-spacing:.35px;
       text-transform: uppercase;
       font-size: 13px;
     }
-    .visualTop span{
+    .carTop span{
       display:block;
       margin-top:4px;
-      opacity:.8;
+      opacity:.82;
       font-weight: 750;
       font-size: 12px;
       line-height:1.35;
@@ -290,7 +279,7 @@
 
     .viewport{
       position:relative;
-      height: calc(100% - 68px);
+      height: 520px;
       overflow:hidden;
     }
     .track{
@@ -309,16 +298,19 @@
       height:100%;
       object-fit: cover;
       display:block;
-      opacity:.92;
+      opacity:.95;
       filter: contrast(1.03) saturate(1.02);
     }
     .overlay{
       position:absolute; inset:0;
-      background: linear-gradient(90deg, rgba(11,15,20,.80), rgba(11,15,20,.25) 55%, rgba(11,15,20,.70));
+      background: linear-gradient(180deg, rgba(11,15,20,.22), rgba(11,15,20,.70));
     }
     .cap{
       position:absolute;
-      left: 16px; right: 16px; bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(980px, calc(100% - 28px));
+      bottom: 16px;
       border: 1px solid rgba(255,255,255,.14);
       background: rgba(11,15,20,.62);
       backdrop-filter: blur(10px);
@@ -328,6 +320,7 @@
       justify-content:space-between;
       gap: 10px;
       align-items:flex-start;
+      color:#fff;
     }
     .cap b{ display:block; margin-bottom:3px; font-size: 14px; }
     .cap span{ display:block; opacity:.82; font-weight: 700; font-size: 12.5px; line-height:1.35; }
@@ -352,10 +345,12 @@
       place-items:center;
       cursor:pointer;
       user-select:none;
+      color:#fff;
     }
     .arrow:hover{ background: rgba(11,15,20,.72); }
     .arrow.left{ left: 12px; }
     .arrow.right{ right: 12px; }
+
     .dots{
       position:absolute;
       left:0; right:0; bottom: 10px;
@@ -375,6 +370,153 @@
       width: 22px;
       background: rgba(255,255,255,.92);
       opacity: 1;
+    }
+
+    /* --- Reviews Marquee (placeholder) --- */
+    .reviews-band{
+      margin: 18px 0 10px;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      overflow: hidden;
+      background: linear-gradient(180deg, #fff, var(--soft));
+      box-shadow: 0 12px 30px rgba(10,15,20,.06);
+    }
+
+    .reviews-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .reviews-head b{
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .35px;
+    }
+
+    .reviews-head span{
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 12.5px;
+    }
+
+    .badge-note{
+      border: 1px dashed var(--line2);
+      background: var(--soft);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-weight: 900;
+      font-size: 12px;
+      color: #111827;
+    }
+
+    .marquee{
+      position:relative;
+      overflow:hidden;
+    }
+
+    .marquee::before,
+    .marquee::after{
+      content:"";
+      position:absolute; top:0; bottom:0;
+      width: 80px;
+      pointer-events:none;
+      z-index: 2;
+    }
+    .marquee::before{
+      left:0;
+      background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0) 100%);
+    }
+    .marquee::after{
+      right:0;
+      background: linear-gradient(270deg, #ffffff 0%, rgba(255,255,255,0) 100%);
+    }
+
+    .marquee-track{
+      display:flex;
+      gap: 12px;
+      padding: 12px 14px;
+      width: max-content;
+      animation: reviewsScroll 26s linear infinite;
+      will-change: transform;
+    }
+
+    .reviews-band:hover .marquee-track{
+      animation-play-state: paused;
+    }
+
+    @keyframes reviewsScroll{
+      from{ transform: translateX(0); }
+      to{ transform: translateX(-50%); }
+    }
+
+    .review-pill{
+      flex: 0 0 auto;
+      min-width: 320px;
+      max-width: 420px;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 16px;
+      padding: 12px 12px;
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+    }
+
+    .review-avatar{
+      width: 40px; height: 40px;
+      border-radius: 999px;
+      background: var(--black);
+      color: #fff;
+      display:grid;
+      place-items:center;
+      font-weight: 1000;
+      letter-spacing: .3px;
+      flex: 0 0 auto;
+    }
+
+    .review-body b{
+      display:block;
+      font-size: 13px;
+      letter-spacing:.2px;
+    }
+
+    .review-body p{
+      margin: 6px 0 8px;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .stars{
+      display:flex;
+      gap: 2px;
+      align-items:center;
+      margin-top: 6px;
+    }
+    .star{
+      width: 14px; height: 14px;
+      display:inline-block;
+      background: currentColor;
+      color: #111827;
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>') center / contain no-repeat;
+              mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>') center / contain no-repeat;
+      opacity: .92;
+    }
+    .star.dim{ opacity: .25; }
+
+    .review-meta{
+      display:flex;
+      gap: 8px;
+      align-items:center;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 12px;
     }
 
     /* Sections */
@@ -433,11 +575,7 @@
       align-items:stretch;
     }
 
-    /* Quote form */
-    form{
-      display:grid;
-      gap: 10px;
-    }
+    form{ display:grid; gap: 10px; }
     label{
       font-weight: 900;
       font-size: 13px;
@@ -482,160 +620,16 @@
 
     @media (max-width: 980px){
       nav.menu{ display:none; }
-      .heroGrid{ grid-template-columns: 1fr; }
-      .visual{ min-height: 420px; }
       .proofs{ grid-template-columns: 1fr; }
       .grid4{ grid-template-columns: repeat(2, 1fr); }
       .two{ grid-template-columns: 1fr; }
+      .viewport{ height: 420px; }
+      .cap{ width: calc(100% - 28px); }
     }
     @media (max-width: 520px){
       .grid4{ grid-template-columns: 1fr; }
+      .viewport{ height: 360px; }
     }
-    /* --- Reviews Marquee (placeholder) --- */
-.reviews-band{
-  margin: 18px 0 10px;
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  overflow: hidden;
-  background: linear-gradient(180deg, #fff, var(--soft));
-  box-shadow: 0 12px 30px rgba(10,15,20,.06);
-}
-
-.reviews-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap: 12px;
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--line);
-  background: #fff;
-}
-
-.reviews-head b{
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: .35px;
-}
-
-.reviews-head span{
-  color: var(--muted);
-  font-weight: 800;
-  font-size: 12.5px;
-}
-
-.marquee{
-  position:relative;
-  overflow:hidden;
-}
-
-.marquee::before,
-.marquee::after{
-  content:"";
-  position:absolute; top:0; bottom:0;
-  width: 80px;
-  pointer-events:none;
-  z-index: 2;
-}
-.marquee::before{
-  left:0;
-  background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0) 100%);
-}
-.marquee::after{
-  right:0;
-  background: linear-gradient(270deg, #ffffff 0%, rgba(255,255,255,0) 100%);
-}
-
-.marquee-track{
-  display:flex;
-  gap: 12px;
-  padding: 12px 14px;
-  width: max-content;
-  animation: reviewsScroll 26s linear infinite;
-  will-change: transform;
-}
-
-.reviews-band:hover .marquee-track{
-  animation-play-state: paused; /* pause on hover */
-}
-
-@keyframes reviewsScroll{
-  from{ transform: translateX(0); }
-  to{ transform: translateX(-50%); }
-}
-
-.review-pill{
-  flex: 0 0 auto;
-  min-width: 320px;
-  max-width: 420px;
-  border: 1px solid var(--line);
-  background: #fff;
-  border-radius: 16px;
-  padding: 12px 12px;
-  display:flex;
-  gap: 10px;
-  align-items:flex-start;
-}
-
-.review-avatar{
-  width: 40px; height: 40px;
-  border-radius: 999px;
-  background: var(--black);
-  color: #fff;
-  display:grid;
-  place-items:center;
-  font-weight: 1000;
-  letter-spacing: .3px;
-  flex: 0 0 auto;
-}
-
-.review-body b{
-  display:block;
-  font-size: 13px;
-  letter-spacing:.2px;
-}
-
-.review-body p{
-  margin: 6px 0 8px;
-  color: var(--muted);
-  font-weight: 650;
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-.stars{
-  display:flex;
-  gap: 2px;
-  align-items:center;
-}
-.star{
-  width: 14px; height: 14px;
-  display:inline-block;
-  background: currentColor;
-  color: #111827;
-  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>') center / contain no-repeat;
-          mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>') center / contain no-repeat;
-  opacity: .92;
-}
-.star.dim{ opacity: .25; }
-
-.review-meta{
-  display:flex;
-  gap: 8px;
-  align-items:center;
-  color: var(--muted);
-  font-weight: 800;
-  font-size: 12px;
-}
-
-.badge-note{
-  border: 1px dashed var(--line2);
-  background: var(--soft);
-  border-radius: 999px;
-  padding: 6px 10px;
-  font-weight: 900;
-  font-size: 12px;
-  color: #111827;
-}
   </style>
 </head>
 
@@ -643,8 +637,8 @@
   <div class="topbar">
     <div class="wrap row">
       <div class="left">
-        <a class="chip" href="tel:+33695406864"><b>📞</b><span>+33 6 95.40.68.64</span></a>
-        <a class="chip" href="mailto:monelec3@gmail.com"><b>✉️</b><span>monelec3@gmail.com</span></a>
+        <a class="chip" href="tel:+33600000000"><b>📞</b><span>+33 6 00 00 00 00</span></a>
+        <a class="chip" href="mailto:contact@monelec.fr"><b>✉️</b><span>contact@monelec.fr</span></a>
       </div>
       <div class="right">
         <div class="chip"><b>🕘</b><span>Lun–Sam • 8h–19h</span></div>
@@ -656,7 +650,7 @@
   <header>
     <div class="wrap nav">
       <div class="brand">
-        <img src="logo-monelec.png" alt="Logo Monelec" class="site-logo">
+        <div class="logo" aria-hidden="true"></div>
         <div class="name">
           <strong>MONELEC</strong>
           <small>Portes • Fenêtres • Garage • Électricité</small>
@@ -679,220 +673,221 @@
   </header>
 
   <main class="wrap">
+    <!-- HERO TEXT -->
     <section class="hero">
-      <div class="heroGrid">
-        <div class="panel">
-          <div class="heroText">
-            <div class="kickers">
-              <div class="k"><span class="dot"></span> Travail soigné</div>
-              <div class="k"><span class="dot"></span> Devis gratuit</div>
-              <div class="k"><span class="dot"></span> Île-de-France</div>
+      <div class="heroText">
+        <div class="kickers">
+          <div class="k"><span class="dot"></span> Travail soigné</div>
+          <div class="k"><span class="dot"></span> Devis gratuit</div>
+          <div class="k"><span class="dot"></span> Île-de-France</div>
+        </div>
+
+        <h1>Pose & remplacement de portes, fenêtres, portes de garage — + électricité.</h1>
+        <p class="sub">
+          Installation, rénovation et dépannage. Finitions propres, réglages, étanchéité et conseil sur les matériaux.
+          Déplacement hors Île-de-France possible sur demande.
+        </p>
+
+        <div class="actions">
+          <a class="btn primary" href="#devis">🧾 Demander un devis</a>
+          <a class="btn" href="tel:+33600000000">📞 Appeler</a>
+          <a class="btn" href="#realisations">📸 Réalisations</a>
+        </div>
+
+        <div class="proofs">
+          <div class="proof">
+            <b>Isolation & finitions</b>
+            <span>Pose précise, étanchéité, réglages et rendu net.</span>
+          </div>
+          <div class="proof">
+            <b>Sur-mesure</b>
+            <span>Conseil matériaux + solutions adaptées à votre chantier.</span>
+          </div>
+          <div class="proof">
+            <b>Intervention IDF</b>
+            <span>Île-de-France + déplacement sur demande.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FULL WIDTH HORIZONTAL CAROUSEL -->
+      <section class="carouselFull" aria-label="Carrousel photos">
+        <div class="carTop">
+          <div>
+            <b>Nos réalisations</b>
+            <span>Portes • Fenêtres • Garage • Électricité</span>
+          </div>
+          <a class="btn primary" href="#devis">Devis gratuit</a>
+        </div>
+
+        <div class="viewport">
+          <div class="track" id="track">
+            <div class="slide">
+              <img alt="Porte d’entrée" src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1800&q=70" />
+              <div class="overlay"></div>
+              <div class="cap">
+                <div>
+                  <b>Porte d’entrée</b>
+                  <span>Pose • remplacement • réglages • finitions</span>
+                </div>
+                <div class="badge">Devis gratuit</div>
+              </div>
             </div>
 
-            <h1>Pose & remplacement de portes, fenêtres, portes de garage — + électricité.</h1>
-            <p class="sub">
-              Installation, rénovation et dépannage. Finitions propres, réglages, étanchéité et conseil sur les matériaux.
-              Déplacement hors Île-de-France possible sur demande.
-            </p>
+            <div class="slide">
+              <img alt="Fenêtres et baies vitrées" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1800&q=70" />
+              <div class="overlay"></div>
+              <div class="cap">
+                <div>
+                  <b>Fenêtres & baies</b>
+                  <span>Isolation • étanchéité • vitrage</span>
+                </div>
+                <div class="badge">Île-de-France</div>
+              </div>
+            </div>
 
-            <div class="actions">
-              <a class="btn primary" href="#devis">🧾 Demander un devis</a>
-              <a class="btn" href="tel:+336.95.40.68.64">📞 Appeler</a>
-              <a class="btn" href="#realisations">📸 Voir les réalisations</a>
+            <div class="slide">
+              <img alt="Porte de garage" src="https://images.unsplash.com/photo-1590086782957-93c06ef21604?auto=format&fit=crop&w=1800&q=70" />
+              <div class="overlay"></div>
+              <div class="cap">
+                <div>
+                  <b>Porte de garage</b>
+                  <span>Motorisation • dépannage • réglages</span>
+                </div>
+                <div class="badge">Sur demande</div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <img alt="Électricité" src="https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&w=1800&q=70" />
+              <div class="overlay"></div>
+              <div class="cap">
+                <div>
+                  <b>Électricité</b>
+                  <span>Prises • éclairage • tableau • normes</span>
+                </div>
+                <div class="badge">Soigné</div>
+              </div>
             </div>
           </div>
 
-          <div class="proofs">
-            <div class="proof">
-              <b>Isolation & finitions</b>
-              <span>Pose précise, étanchéité, réglages et rendu net.</span>
+          <div class="arrow left" id="prev" aria-label="Précédent">‹</div>
+          <div class="arrow right" id="next" aria-label="Suivant">›</div>
+          <div class="dots" id="dots" aria-label="Pagination"></div>
+        </div>
+      </section>
+
+      <!-- REVIEWS BAND -->
+      <section class="reviews-band" aria-label="Bandeau avis">
+        <div class="reviews-head">
+          <b>Avis clients</b>
+          <span><span class="badge-note">Exemples (en attendant les vrais avis)</span></span>
+        </div>
+
+        <div class="marquee">
+          <div class="marquee-track" id="reviewsTrack">
+            <!-- SET 1 -->
+            <div class="review-pill">
+              <div class="review-avatar">ML</div>
+              <div class="review-body">
+                <b>Marie L.</b>
+                <div class="stars" aria-label="5 étoiles">
+                  <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                </div>
+                <p>Pose de porte d’entrée nickel, finitions propres et chantier impeccable.</p>
+                <div class="review-meta">Île-de-France • Porte</div>
+              </div>
             </div>
-            <div class="proof">
-              <b>Sur-mesure</b>
-              <span>Conseil matériaux + solutions adaptées à votre chantier.</span>
+
+            <div class="review-pill">
+              <div class="review-avatar">KA</div>
+              <div class="review-body">
+                <b>Karim A.</b>
+                <div class="stars" aria-label="5 étoiles">
+                  <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                </div>
+                <p>Remplacement fenêtres + réglages : isolation top, délais respectés.</p>
+                <div class="review-meta">Île-de-France • Fenêtres</div>
+              </div>
             </div>
-            <div class="proof">
-              <b>Intervention IDF</b>
-              <span>Île-de-France + déplacement sur demande.</span>
+
+            <div class="review-pill">
+              <div class="review-avatar">SR</div>
+              <div class="review-body">
+                <b>Sandra R.</b>
+                <div class="stars" aria-label="4 étoiles">
+                  <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star dim"></span>
+                </div>
+                <p>Motorisation garage bien expliquée, travail sérieux et propre.</p>
+                <div class="review-meta">Île-de-France • Garage</div>
+              </div>
+            </div>
+
+            <div class="review-pill">
+              <div class="review-avatar">TP</div>
+              <div class="review-body">
+                <b>Thomas P.</b>
+                <div class="stars" aria-label="5 étoiles">
+                  <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                </div>
+                <p>Intervention électricité rapide, explications claires, mise aux normes OK.</p>
+                <div class="review-meta">Île-de-France • Électricité</div>
+              </div>
+            </div>
+
+            <!-- SET 2 (clone) -->
+            <div class="review-pill">
+              <div class="review-avatar">ML</div>
+              <div class="review-body">
+                <b>Marie L.</b>
+                <div class="stars" aria-label="5 étoiles">
+                  <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                </div>
+                <p>Pose de porte d’entrée nickel, finitions propres et chantier impeccable.</p>
+                <div class="review-meta">Île-de-France • Porte</div>
+              </div>
+            </div>
+
+            <div class="review-pill">
+              <div class="review-avatar">KA</div>
+              <div class="review-body">
+                <b>Karim A.</b>
+                <div class="stars" aria-label="5 étoiles">
+                  <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                </div>
+                <p>Remplacement fenêtres + réglages : isolation top, délais respectés.</p>
+                <div class="review-meta">Île-de-France • Fenêtres</div>
+              </div>
+            </div>
+
+            <div class="review-pill">
+              <div class="review-avatar">SR</div>
+              <div class="review-body">
+                <b>Sandra R.</b>
+                <div class="stars" aria-label="4 étoiles">
+                  <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star dim"></span>
+                </div>
+                <p>Motorisation garage bien expliquée, travail sérieux et propre.</p>
+                <div class="review-meta">Île-de-France • Garage</div>
+              </div>
+            </div>
+
+            <div class="review-pill">
+              <div class="review-avatar">TP</div>
+              <div class="review-body">
+                <b>Thomas P.</b>
+                <div class="stars" aria-label="5 étoiles">
+                  <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                </div>
+                <p>Intervention électricité rapide, explications claires, mise aux normes OK.</p>
+                <div class="review-meta">Île-de-France • Électricité</div>
+              </div>
             </div>
           </div>
         </div>
-
-        <aside class="panel visual" aria-label="Carrousel photos portes et fenêtres">
-          <div class="visualTop">
-            <div>
-              <b>Nos réalisations</b>
-              <span>Portes • Fenêtres • Garage • Électricité</span>
-            </div>
-            <a class="btn primary" href="#devis">Devis gratuit</a>
-          </div>
-
-          <div class="viewport">
-            <div class="track" id="track">
-              <div class="slide">
-                <img alt="Porte d’entrée" src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1600&q=70" />
-                <div class="overlay"></div>
-                <div class="cap">
-                  <div>
-                    <b>Porte d’entrée</b>
-                    <span>Pose • remplacement • réglages • finitions</span>
-                  </div>
-                  <div class="badge">Devis gratuit</div>
-                </div>
-              </div>
-
-              <div class="slide">
-                <img alt="Fenêtres et baies vitrées" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=70" />
-                <div class="overlay"></div>
-                <div class="cap">
-                  <div>
-                    <b>Fenêtres & baies</b>
-                    <span>Isolation • étanchéité • vitrage</span>
-                  </div>
-                  <div class="badge">IDF</div>
-                </div>
-              </div>
-
-              <div class="slide">
-                <img alt="Porte de garage" src="https://images.unsplash.com/photo-1590086782957-93c06ef21604?auto=format&fit=crop&w=1600&q=70" />
-                <div class="overlay"></div>
-                <div class="cap">
-                  <div>
-                    <b>Porte de garage</b>
-                    <span>Motorisation • dépannage • réglages</span>
-                  </div>
-                  <div class="badge">Sur demande</div>
-                </div>
-              </div>
-
-              <div class="slide">
-                <img alt="Électricité" src="https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&w=1600&q=70" />
-                <div class="overlay"></div>
-                <div class="cap">
-                  <div>
-                    <b>Électricité</b>
-                    <span>Prises • éclairage • tableau • normes</span>
-                  </div>
-                  <div class="badge">Soigné</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="arrow left" id="prev" aria-label="Précédent">‹</div>
-            <div class="arrow right" id="next" aria-label="Suivant">›</div>
-            <div class="dots" id="dots" aria-label="Pagination"></div>
-          </div>
-        </aside>
-      </div>
+      </section>
     </section>
-<section class="reviews-band" aria-label="Bandeau avis">
-  <div class="reviews-head">
-    <b>Avis clients</b>
-    <span><span class="badge-note">Exemples (en attendant les vrais avis)</span></span>
-  </div>
 
-  <div class="marquee">
-    <div class="marquee-track" id="reviewsTrack">
-      <!-- SET 1 -->
-      <div class="review-pill">
-        <div class="review-avatar">ML</div>
-        <div class="review-body">
-          <b>Marie L.</b>
-          <div class="stars" aria-label="5 étoiles">
-            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-          </div>
-          <p>Pose de porte d’entrée nickel, finitions propres et chantier laissé impeccable.</p>
-          <div class="review-meta">Île-de-France • Porte</div>
-        </div>
-      </div>
-
-      <div class="review-pill">
-        <div class="review-avatar">KA</div>
-        <div class="review-body">
-          <b>Karim A.</b>
-          <div class="stars" aria-label="5 étoiles">
-            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-          </div>
-          <p>Remplacement fenêtres + réglages : isolation top, délais respectés.</p>
-          <div class="review-meta">Île-de-France • Fenêtres</div>
-        </div>
-      </div>
-
-      <div class="review-pill">
-        <div class="review-avatar">SR</div>
-        <div class="review-body">
-          <b>Sandra R.</b>
-          <div class="stars" aria-label="4 étoiles">
-            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star dim"></span>
-          </div>
-          <p>Motorisation garage bien expliquée, travail sérieux et propre.</p>
-          <div class="review-meta">Île-de-France • Garage</div>
-        </div>
-      </div>
-
-      <div class="review-pill">
-        <div class="review-avatar">TP</div>
-        <div class="review-body">
-          <b>Thomas P.</b>
-          <div class="stars" aria-label="5 étoiles">
-            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-          </div>
-          <p>Intervention électricité rapide, explications claires, mise aux normes OK.</p>
-          <div class="review-meta">Île-de-France • Électricité</div>
-        </div>
-      </div>
-
-      <!-- SET 2 (clone) -->
-      <div class="review-pill">
-        <div class="review-avatar">ML</div>
-        <div class="review-body">
-          <b>Marie L.</b>
-          <div class="stars" aria-label="5 étoiles">
-            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-          </div>
-          <p>Pose de porte d’entrée nickel, finitions propres et chantier laissé impeccable.</p>
-          <div class="review-meta">Île-de-France • Porte</div>
-        </div>
-      </div>
-
-      <div class="review-pill">
-        <div class="review-avatar">KA</div>
-        <div class="review-body">
-          <b>Karim A.</b>
-          <div class="stars" aria-label="5 étoiles">
-            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-          </div>
-          <p>Remplacement fenêtres + réglages : isolation top, délais respectés.</p>
-          <div class="review-meta">Île-de-France • Fenêtres</div>
-        </div>
-      </div>
-
-      <div class="review-pill">
-        <div class="review-avatar">SR</div>
-        <div class="review-body">
-          <b>Sandra R.</b>
-          <div class="stars" aria-label="4 étoiles">
-            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star dim"></span>
-          </div>
-          <p>Motorisation garage bien expliquée, travail sérieux et propre.</p>
-          <div class="review-meta">Île-de-France • Garage</div>
-        </div>
-      </div>
-
-      <div class="review-pill">
-        <div class="review-avatar">TP</div>
-        <div class="review-body">
-          <b>Thomas P.</b>
-          <div class="stars" aria-label="5 étoiles">
-            <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
-          </div>
-          <p>Intervention électricité rapide, explications claires, mise aux normes OK.</p>
-          <div class="review-meta">Île-de-France • Électricité</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
     <section class="section" id="services">
       <div class="sectionTitle">
         <h2>Services</h2>
@@ -926,7 +921,7 @@
     <section class="section" id="realisations">
       <div class="sectionTitle">
         <h2>Réalisations</h2>
-        <p>On remplace ces photos par les vôtres.</p>
+        <p>On mettra vos photos de chantier.</p>
       </div>
 
       <div class="two">
@@ -934,11 +929,11 @@
           <b>Avant / Après</b>
           <span>Ajoute 6 à 12 photos : portes, fenêtres, garage, tableau électrique. (Je te guide pour les mettre.)</span>
           <div style="height:12px"></div>
-          <span class="hint">Astuce : les photos “chantier + finitions” font 10x plus pro que des photos de catalogue.</span>
+          <span class="hint">Les photos de finitions réelles font super pro (même au téléphone).</span>
         </div>
 
         <div class="card">
-          <b>Pourquoi nous choisir</b>
+          <b>Engagements</b>
           <span>• Travail soigné, finitions propres<br>• Réponse rapide, devis clair<br>• Intervention Île-de-France<br>• Déplacement sur demande</span>
         </div>
       </div>
@@ -962,20 +957,20 @@
         <p>Réponse rapide.</p>
       </div>
 
-      <div class="panel" style="padding:18px;">
+      <div class="card" style="padding:18px;">
         <div class="two">
-          <div class="card" id="contact">
+          <div class="card" id="contact" style="margin:0; box-shadow:none;">
             <b>Contact</b>
             <span>
-              <b>Téléphone :</b> <a href="tel:+336.95.40.68.64">+33 6 95 40 68 64</a><br>
-              <b>Email :</b> <a href="mailto:monelec3@gmail.com">monelec3@gmail.com</a><br>
+              <b>Téléphone :</b> <a href="tel:+33600000000">+33 6 00 00 00 00</a><br>
+              <b>Email :</b> <a href="mailto:contact@monelec.fr">contact@monelec.fr</a><br>
               <b>Horaires :</b> Lun–Sam • 8h–19h
             </span>
             <div style="height:12px"></div>
-            <a class="btn primary" href="tel:+33695406864">📞 Appeler maintenant</a>
+            <a class="btn primary" href="tel:+33600000000">📞 Appeler maintenant</a>
           </div>
 
-          <div class="card">
+          <div class="card" style="margin:0; box-shadow:none;">
             <b>Votre demande</b>
             <form id="quoteForm">
               <div>
@@ -992,7 +987,7 @@
               </div>
               <div>
                 <label for="msg">Détails</label>
-                <textarea id="msg" name="msg" placeholder="Décrivez votre besoin + délai souhaité. Ajoutez des photos par email ensuite."></textarea>
+                <textarea id="msg" name="msg" placeholder="Décrivez votre besoin + délai souhaité."></textarea>
               </div>
               <button class="btn primary" type="submit">Envoyer la demande</button>
               <div class="hint">Le bouton ouvre votre application mail avec le message pré-rempli.</div>
@@ -1056,6 +1051,13 @@
     next.addEventListener("click", () => go(i + 1, true));
     buildDots();
     restart();
+
+    // Option: ralentir le bandeau avis sur mobile
+    const mq = window.matchMedia("(max-width: 520px)");
+    if (mq.matches) {
+      const rt = document.getElementById("reviewsTrack");
+      if (rt) rt.style.animationDuration = "34s";
+    }
 
     // Devis form -> mailto
     const form = document.getElementById("quoteForm");
