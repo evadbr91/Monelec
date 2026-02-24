@@ -1,1 +1,418 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MONELEC — Fenêtres, Portes, Électricité & Rénovation</title>
+  <meta name="description" content="Pose de fenêtres, portes, portes de garage, électricité et rénovation tout corps d’état. Devis gratuit. Intervention rapide." />
+  <meta name="theme-color" content="#0b1220" />
 
+  <style>
+    :root{
+      --bg:#070a12;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
+      --line: rgba(255,255,255,.12);
+      --txt:#e9edf5;
+      --muted: rgba(233,237,245,.72);
+      --brand:#5eead4;
+      --brand2:#60a5fa;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 22px;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--txt);
+      background:
+        radial-gradient(1200px 800px at 10% 0%, rgba(96,165,250,.18), transparent 55%),
+        radial-gradient(1100px 700px at 90% 10%, rgba(94,234,212,.14), transparent 55%),
+        radial-gradient(900px 650px at 50% 110%, rgba(255,255,255,.06), transparent 60%),
+        var(--bg);
+      overflow-x:hidden;
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:min(1100px, 92vw); margin:0 auto; }
+
+    /* Header */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(7,10,18,.82), rgba(7,10,18,.55));
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      letter-spacing:.4px;
+    }
+    .logo{
+      width:38px; height:38px;
+      border-radius:14px;
+      background:
+        linear-gradient(135deg, rgba(94,234,212,.95), rgba(96,165,250,.92));
+      box-shadow: 0 12px 30px rgba(94,234,212,.12);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:before{
+      content:"";
+      position:absolute; inset:-20%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.7), transparent 40%);
+      transform: rotate(18deg);
+      opacity:.45;
+    }
+    .menu{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      color:var(--muted);
+      font-weight:600;
+      font-size:14px;
+    }
+    .menu a{ padding:8px 10px; border-radius:12px; }
+    .menu a:hover{ background: rgba(255,255,255,.06); color:var(--txt); }
+
+    .cta{
+      display:flex; gap:10px; align-items:center;
+    }
+    .btn{
+      padding:10px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color:var(--txt);
+      font-weight:700;
+      font-size:14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.2);
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); }
+    .btn.primary{
+      border-color: rgba(94,234,212,.25);
+      background: linear-gradient(135deg, rgba(94,234,212,.22), rgba(96,165,250,.16));
+    }
+
+    /* Hero */
+    .hero{ padding:58px 0 24px; }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    .panel{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.035));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:24px;
+      position:relative;
+      overflow:hidden;
+    }
+    .panel:after{
+      content:"";
+      position:absolute; inset:-60%;
+      background: radial-gradient(circle at 20% 20%, rgba(94,234,212,.12), transparent 40%),
+                  radial-gradient(circle at 80% 30%, rgba(96,165,250,.12), transparent 45%);
+      pointer-events:none;
+    }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius:999px;
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 0 18px rgba(94,234,212,.35);
+    }
+    h1{
+      margin:16px 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height:1.05;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.6;
+      max-width: 52ch;
+    }
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .badges{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:16px;
+      color:var(--muted);
+      font-weight:600;
+      font-size:13px;
+    }
+    .badge{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius:999px;
+      padding:8px 10px;
+    }
+
+    /* Services card */
+    .services h2{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+    .list{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .item{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius:16px;
+    }
+    .ico{
+      width:34px; height:34px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(135deg, rgba(94,234,212,.16), rgba(96,165,250,.12));
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      color: var(--txt);
+      flex: 0 0 auto;
+    }
+    .item b{ display:block; margin-bottom:3px; }
+    .item span{ color:var(--muted); font-size:13px; line-height:1.45; }
+
+    /* Sections */
+    section{ padding:22px 0; }
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .card{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    }
+    .card h3{ margin:0 0 6px; font-size:16px; }
+    .card p{ margin:0; color:var(--muted); line-height:1.6; font-size:14px; }
+
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+
+    /* Footer */
+    footer{
+      padding:34px 0 44px;
+      color:var(--muted);
+      border-top:1px solid var(--line);
+      margin-top:18px;
+    }
+    .foot{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .two{ grid-template-columns: 1fr; }
+      .menu{ display:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div style="font-size:15px; line-height:1;">MONELEC</div>
+          <div style="font-size:12px; color:var(--muted); font-weight:700;">Fenêtres • Portes • Électricité • Rénovation</div>
+        </div>
+      </div>
+
+      <nav class="menu" aria-label="Navigation">
+        <a href="#services">Services</a>
+        <a href="#zones">Zone</a>
+        <a href="#realisations">Réalisations</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="cta">
+        <a class="btn" href="#contact">Devis gratuit</a>
+        <a class="btn primary" href="tel:+33600000000">Appeler</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="top">
+      <div class="hero-grid">
+        <div class="panel">
+          <div class="kicker"><span class="dot"></span> Intervention rapide • Travail soigné • Devis gratuit</div>
+          <h1>Fenêtres, portes, portes de garage & électricité — et rénovation tout corps d’état.</h1>
+          <p class="sub">
+            Installation, dépannage et rénovation : menuiserie, électricité, petits travaux et remise en état.
+            Un seul contact, un chantier suivi du début à la fin.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#contact">Demander un devis</a>
+            <a class="btn" href="tel:+33600000000">📞 +33 6 00 00 00 00</a>
+          </div>
+
+          <div class="badges">
+            <div class="badge">✅ Garantie & finitions propres</div>
+            <div class="badge">✅ Conseils & choix des matériaux</div>
+            <div class="badge">✅ Dépannage possible</div>
+          </div>
+        </div>
+
+        <aside class="panel services" id="services">
+          <h2>Services principaux</h2>
+          <ul class="list">
+            <li class="item">
+              <div class="ico">🪟</div>
+              <div>
+                <b>Fenêtres & baies vitrées</b>
+                <span>Pose, remplacement, réglages, étanchéité, finitions.</span>
+              </div>
+            </li>
+            <li class="item">
+              <div class="ico">🚪</div>
+              <div>
+                <b>Portes & portes de garage</b>
+                <span>Installation, motorisation, dépannage, sécurisation.</span>
+              </div>
+            </li>
+            <li class="item">
+              <div class="ico">⚡</div>
+              <div>
+                <b>Électricité</b>
+                <span>Mise aux normes, prises, éclairage, tableau, diagnostics.</span>
+              </div>
+            </li>
+            <li class="item">
+              <div class="ico">🛠️</div>
+              <div>
+                <b>Rénovation (tout corps d’état)</b>
+                <span>Petits travaux, réparation, peinture, finitions, remise en état.</span>
+              </div>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid3">
+        <div class="card">
+          <h3>Devis clair & rapide</h3>
+          <p>On vous répond vite avec une estimation transparente et des options adaptées à votre budget.</p>
+        </div>
+        <div class="card">
+          <h3>Travail propre</h3>
+          <p>Protection des zones, finitions soignées, chantier rendu propre. Priorité à la qualité.</p>
+        </div>
+        <div class="card">
+          <h3>Un seul interlocuteur</h3>
+          <p>Du premier contact à la fin du chantier : suivi simple, efficace, sans stress.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="two" id="zones">
+      <div class="card">
+        <h3>Zone d’intervention</h3>
+        <p>
+          Indique ici ta ville / département (ex : Essonne 91, Paris, Île-de-France).
+          <br><br>
+          <b>Astuce :</b> plus c’est précis, plus ça inspire confiance.
+        </p>
+      </div>
+      <div class="card" id="realisations">
+        <h3>Réalisations</h3>
+        <p>
+          Ajoute 6 à 10 photos de chantiers (avant/après) : fenêtres, portes, garage, tableaux électriques, rénovation.
+          <br><br>
+          Je te montrerai juste après comment les ajouter facilement.
+        </p>
+      </div>
+    </section>
+
+    <section class="card" id="contact">
+      <h3>Contact</h3>
+      <p style="margin-top:6px;">
+        <b>Téléphone :</b> <a href="tel:+33600000000">+33 6 00 00 00 00</a><br>
+        <b>Email :</b> <a href="mailto:contact@monelec.fr">contact@monelec.fr</a><br>
+        <b>Disponibilités :</b> Lun–Sam • 8h–19h
+      </p>
+      <p style="margin-top:12px; color:var(--muted); font-size:13px;">
+        ⚠️ Remplace les infos par les vraies (téléphone / email / zone). Si tu veux, je te fais une version “WhatsApp” aussi.
+      </p>
+    </section>
+
+    <footer>
+      <div class="wrap foot">
+        <div>
+          <div style="font-weight:800; color:var(--txt);">MONELEC</div>
+          <div>Fenêtres • Portes • Portes de garage • Électricité • Rénovation</div>
+        </div>
+        <div style="text-align:right;">
+          <div>© <span id="y"></span> — Tous droits réservés</div>
+          <div style="margin-top:6px; font-size:13px;">Site créé avec GitHub Pages</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
