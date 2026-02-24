@@ -36,7 +36,6 @@
     a{ color:inherit; text-decoration:none; }
     .wrap{ width:min(1160px, 92vw); margin:0 auto; }
 
-    /* Top bar */
     .topbar{
       background: var(--black);
       color: rgba(255,255,255,.92);
@@ -66,7 +65,6 @@
     .chip b{ font-weight: 900; }
     .chip span{ opacity:.9; }
 
-    /* Header */
     header{
       position:sticky;
       top:0;
@@ -89,18 +87,34 @@
     .logo{
       width:44px; height:44px;
       border-radius: 16px;
-      background: linear-gradient(135deg, #0b0f14, #111827);
+      background: url("logo-monelec.png") center / cover no-repeat;
       box-shadow: 0 18px 40px rgba(11,15,20,.18);
       position:relative;
       overflow:hidden;
+      border: 1px solid rgba(11,15,20,.12);
+    }
+    .logo:before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(90% 90% at 20% 10%, rgba(255,255,255,.30), transparent 55%);
+      mix-blend-mode: soft-light;
+      opacity:.8;
     }
     .logo:after{
       content:"";
       position:absolute; inset:-40%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,.22), transparent);
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.28), transparent);
       transform: rotate(18deg);
-      opacity:.45;
+      opacity:.35;
+      animation: logoShine 5.5s ease-in-out infinite;
     }
+    @keyframes logoShine{
+      0%{ transform: translateX(-30%) rotate(18deg); opacity:.0; }
+      20%{ opacity:.35; }
+      50%{ transform: translateX(30%) rotate(18deg); opacity:.18; }
+      100%{ transform: translateX(70%) rotate(18deg); opacity:0; }
+    }
+
     .brand .name{
       display:flex; flex-direction:column;
       line-height:1.05;
@@ -148,8 +162,11 @@
       font-size: 13px;
       letter-spacing:.2px;
       cursor:pointer;
+      transition: transform .18s ease, background .18s ease, filter .18s ease, box-shadow .18s ease;
+      will-change: transform;
     }
-    .btn:hover{ background: var(--soft); }
+    .btn:hover{ background: var(--soft); transform: translateY(-1px); box-shadow: 0 10px 24px rgba(10,15,20,.08); }
+    .btn:active{ transform: translateY(0px) scale(.99); }
     .btn.primary{
       background: var(--cta);
       color: var(--ctaTxt);
@@ -161,7 +178,6 @@
       background: #fff;
     }
 
-    /* HERO (horizontal layout) */
     .hero{
       padding: 34px 0 14px;
     }
@@ -228,7 +244,9 @@
       background: var(--soft);
       border-radius: 16px;
       padding: 14px;
+      transition: transform .18s ease, box-shadow .18s ease;
     }
+    .proof:hover{ transform: translateY(-2px); box-shadow: 0 14px 28px rgba(10,15,20,.08); }
     .proof b{
       display:block;
       margin-bottom: 6px;
@@ -244,7 +262,6 @@
       font-weight: 650;
     }
 
-    /* FULL WIDTH CAROUSEL (horizontal) */
     .carouselFull{
       margin-top: 14px;
       border: 1px solid var(--line);
@@ -252,6 +269,7 @@
       overflow: hidden;
       background: #0b0f14;
       box-shadow: var(--shadow);
+      transform: translateZ(0);
     }
     .carTop{
       display:flex;
@@ -281,34 +299,45 @@
       position:relative;
       height: 520px;
       overflow:hidden;
+      perspective: 1000px;
     }
     .track{
       display:flex;
       height:100%;
-      transition: transform .55s cubic-bezier(.2,.8,.2,1);
+      transition: transform .65s cubic-bezier(.2,.85,.2,1);
+      will-change: transform;
     }
     .slide{
       min-width:100%;
       height:100%;
       position:relative;
       background: #0b0f14;
+      transform: translateZ(0);
     }
     .slide img{
       width:100%;
       height:100%;
       object-fit: cover;
       display:block;
-      opacity:.95;
+      opacity:.96;
       filter: contrast(1.03) saturate(1.02);
+      transform: scale(1.03);
+      transition: transform 1.2s cubic-bezier(.2,.8,.2,1), filter .8s ease, opacity .8s ease;
+      will-change: transform;
+    }
+    .slide.active img{
+      transform: scale(1.10);
+      filter: contrast(1.05) saturate(1.05);
     }
     .overlay{
       position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(11,15,20,.22), rgba(11,15,20,.70));
+      background: linear-gradient(180deg, rgba(11,15,20,.18), rgba(11,15,20,.72));
     }
+
     .cap{
       position:absolute;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) translateY(10px);
       width: min(980px, calc(100% - 28px));
       bottom: 16px;
       border: 1px solid rgba(255,255,255,.14);
@@ -321,9 +350,17 @@
       gap: 10px;
       align-items:flex-start;
       color:#fff;
+      opacity: 0;
+      transition: opacity .55s ease, transform .55s cubic-bezier(.2,.85,.2,1);
+      will-change: opacity, transform;
+    }
+    .slide.active .cap{
+      opacity: 1;
+      transform: translateX(-50%) translateY(0px);
     }
     .cap b{ display:block; margin-bottom:3px; font-size: 14px; }
     .cap span{ display:block; opacity:.82; font-weight: 700; font-size: 12.5px; line-height:1.35; }
+
     .badge{
       border: 1px solid rgba(255,255,255,.18);
       background: rgba(255,255,255,.08);
@@ -333,6 +370,7 @@
       font-size: 12px;
       white-space:nowrap;
     }
+
     .arrow{
       position:absolute;
       top:50%;
@@ -340,14 +378,21 @@
       width: 44px; height: 44px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.16);
-      background: rgba(11,15,20,.55);
+      background: rgba(11,15,20,.45);
       display:grid;
       place-items:center;
       cursor:pointer;
       user-select:none;
       color:#fff;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+      will-change: transform;
     }
-    .arrow:hover{ background: rgba(11,15,20,.72); }
+    .arrow:hover{
+      background: rgba(11,15,20,.72);
+      transform: translateY(-50%) scale(1.04);
+      box-shadow: 0 14px 30px rgba(0,0,0,.25);
+    }
+    .arrow:active{ transform: translateY(-50%) scale(.98); }
     .arrow.left{ left: 12px; }
     .arrow.right{ right: 12px; }
 
@@ -357,6 +402,7 @@
       display:flex;
       justify-content:center;
       gap: 8px;
+      pointer-events:auto;
     }
     .dotBtn{
       width: 8px; height: 8px;
@@ -365,6 +411,7 @@
       background: rgba(255,255,255,.18);
       cursor:pointer;
       opacity:.75;
+      transition: width .25s ease, opacity .25s ease, background .25s ease;
     }
     .dotBtn.active{
       width: 22px;
@@ -372,7 +419,24 @@
       opacity: 1;
     }
 
-    /* --- Reviews Marquee (placeholder) --- */
+    .shine{
+      position:absolute;
+      inset: -30%;
+      background: radial-gradient(closest-side, rgba(255,255,255,.12), transparent 60%);
+      transform: translateX(-25%) translateY(-10%);
+      opacity:.0;
+      pointer-events:none;
+    }
+    .slide.active .shine{
+      opacity:.7;
+      animation: floatShine 6s ease-in-out infinite;
+    }
+    @keyframes floatShine{
+      0%{ transform: translateX(-22%) translateY(-12%) scale(1); }
+      50%{ transform: translateX(18%) translateY(10%) scale(1.08); }
+      100%{ transform: translateX(-22%) translateY(-12%) scale(1); }
+    }
+
     .reviews-band{
       margin: 18px 0 10px;
       border: 1px solid var(--line);
@@ -381,7 +445,6 @@
       background: linear-gradient(180deg, #fff, var(--soft));
       box-shadow: 0 12px 30px rgba(10,15,20,.06);
     }
-
     .reviews-head{
       display:flex;
       align-items:center;
@@ -391,19 +454,16 @@
       border-bottom: 1px solid var(--line);
       background: #fff;
     }
-
     .reviews-head b{
       font-size: 13px;
       text-transform: uppercase;
       letter-spacing: .35px;
     }
-
     .reviews-head span{
       color: var(--muted);
       font-weight: 800;
       font-size: 12.5px;
     }
-
     .badge-note{
       border: 1px dashed var(--line2);
       background: var(--soft);
@@ -418,7 +478,6 @@
       position:relative;
       overflow:hidden;
     }
-
     .marquee::before,
     .marquee::after{
       content:"";
@@ -435,7 +494,6 @@
       right:0;
       background: linear-gradient(270deg, #ffffff 0%, rgba(255,255,255,0) 100%);
     }
-
     .marquee-track{
       display:flex;
       gap: 12px;
@@ -444,11 +502,9 @@
       animation: reviewsScroll 26s linear infinite;
       will-change: transform;
     }
-
     .reviews-band:hover .marquee-track{
       animation-play-state: paused;
     }
-
     @keyframes reviewsScroll{
       from{ transform: translateX(0); }
       to{ transform: translateX(-50%); }
@@ -465,7 +521,9 @@
       display:flex;
       gap: 10px;
       align-items:flex-start;
+      transition: transform .18s ease, box-shadow .18s ease;
     }
+    .review-pill:hover{ transform: translateY(-2px); box-shadow: 0 14px 28px rgba(10,15,20,.08); }
 
     .review-avatar{
       width: 40px; height: 40px;
@@ -484,7 +542,6 @@
       font-size: 13px;
       letter-spacing:.2px;
     }
-
     .review-body p{
       margin: 6px 0 8px;
       color: var(--muted);
@@ -519,7 +576,6 @@
       font-size: 12px;
     }
 
-    /* Sections */
     .section{
       padding: 18px 0;
     }
@@ -630,6 +686,14 @@
       .grid4{ grid-template-columns: 1fr; }
       .viewport{ height: 360px; }
     }
+
+    @media (prefers-reduced-motion: reduce){
+      .track, .slide img, .cap, .btn, .proof, .review-pill, .logo:after, .slide.active .shine{
+        transition: none !important;
+        animation: none !important;
+      }
+      .marquee-track{ animation: none !important; transform: none !important; }
+    }
   </style>
 </head>
 
@@ -637,8 +701,8 @@
   <div class="topbar">
     <div class="wrap row">
       <div class="left">
-        <a class="chip" href="tel:+33600000000"><b>📞</b><span>+33 6 00 00 00 00</span></a>
-        <a class="chip" href="mailto:contact@monelec.fr"><b>✉️</b><span>contact@monelec.fr</span></a>
+        <a class="chip" href="tel:+33695406864"><b>📞</b><span>06 95 40 68 64</span></a>
+        <a class="chip" href="mailto:monelec3@gmail.com"><b>✉️</b><span>monelec3@gmail.com</span></a>
       </div>
       <div class="right">
         <div class="chip"><b>🕘</b><span>Lun–Sam • 8h–19h</span></div>
@@ -673,7 +737,6 @@
   </header>
 
   <main class="wrap">
-    <!-- HERO TEXT -->
     <section class="hero">
       <div class="heroText">
         <div class="kickers">
@@ -690,7 +753,7 @@
 
         <div class="actions">
           <a class="btn primary" href="#devis">🧾 Demander un devis</a>
-          <a class="btn" href="tel:+33600000000">📞 Appeler</a>
+          <a class="btn" href="tel:+33695406864">📞 Appeler</a>
           <a class="btn" href="#realisations">📸 Réalisations</a>
         </div>
 
@@ -710,63 +773,66 @@
         </div>
       </div>
 
-      <!-- FULL WIDTH HORIZONTAL CAROUSEL -->
       <section class="carouselFull" aria-label="Carrousel photos">
         <div class="carTop">
           <div>
             <b>Nos réalisations</b>
-            <span>Portes • Fenêtres • Garage • Électricité</span>
+            <span>Portails • Fenêtres • Portes de garage • Électricité</span>
           </div>
           <a class="btn primary" href="#devis">Devis gratuit</a>
         </div>
 
         <div class="viewport">
           <div class="track" id="track">
-            <div class="slide">
-              <img alt="Porte d’entrée" src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1800&q=70" />
+            <div class="slide active">
+              <img alt="Portail" src="https://source.unsplash.com/SYMl7pZWOrU/1800x1200" />
               <div class="overlay"></div>
+              <div class="shine"></div>
               <div class="cap">
                 <div>
-                  <b>Porte d’entrée</b>
-                  <span>Pose • remplacement • réglages • finitions</span>
+                  <b>Portail</b>
+                  <span>Pose • motorisation • réglages • finitions</span>
                 </div>
-                <div class="badge">Devis gratuit</div>
+                <div class="badge">06 95 40 68 64</div>
               </div>
             </div>
 
             <div class="slide">
-              <img alt="Fenêtres et baies vitrées" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1800&q=70" />
+              <img alt="Fenêtres" src="https://source.unsplash.com/XWy2PQF5B10/1800x1200" />
               <div class="overlay"></div>
+              <div class="shine"></div>
               <div class="cap">
                 <div>
-                  <b>Fenêtres & baies</b>
-                  <span>Isolation • étanchéité • vitrage</span>
+                  <b>Fenêtres</b>
+                  <span>Isolation • étanchéité • réglages</span>
                 </div>
                 <div class="badge">Île-de-France</div>
               </div>
             </div>
 
             <div class="slide">
-              <img alt="Porte de garage" src="https://images.unsplash.com/photo-1590086782957-93c06ef21604?auto=format&fit=crop&w=1800&q=70" />
+              <img alt="Porte de garage" src="https://source.unsplash.com/V_DY7xsuIu4/1800x1200" />
               <div class="overlay"></div>
+              <div class="shine"></div>
               <div class="cap">
                 <div>
                   <b>Porte de garage</b>
-                  <span>Motorisation • dépannage • réglages</span>
+                  <span>Installation • dépannage • motorisation</span>
                 </div>
-                <div class="badge">Sur demande</div>
+                <div class="badge">Devis gratuit</div>
               </div>
             </div>
 
             <div class="slide">
-              <img alt="Électricité" src="https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&w=1800&q=70" />
+              <img alt="Chantier électricité" src="https://source.unsplash.com/PkHf7BUWbtk/1800x1200" />
               <div class="overlay"></div>
+              <div class="shine"></div>
               <div class="cap">
                 <div>
                   <b>Électricité</b>
-                  <span>Prises • éclairage • tableau • normes</span>
+                  <span>Tableau • prises • éclairage • normes</span>
                 </div>
-                <div class="badge">Soigné</div>
+                <div class="badge">monelec3@gmail.com</div>
               </div>
             </div>
           </div>
@@ -777,7 +843,6 @@
         </div>
       </section>
 
-      <!-- REVIEWS BAND -->
       <section class="reviews-band" aria-label="Bandeau avis">
         <div class="reviews-head">
           <b>Avis clients</b>
@@ -786,7 +851,6 @@
 
         <div class="marquee">
           <div class="marquee-track" id="reviewsTrack">
-            <!-- SET 1 -->
             <div class="review-pill">
               <div class="review-avatar">ML</div>
               <div class="review-body">
@@ -835,7 +899,6 @@
               </div>
             </div>
 
-            <!-- SET 2 (clone) -->
             <div class="review-pill">
               <div class="review-avatar">ML</div>
               <div class="review-body">
@@ -927,7 +990,7 @@
       <div class="two">
         <div class="card">
           <b>Avant / Après</b>
-          <span>Ajoute 6 à 12 photos : portes, fenêtres, garage, tableau électrique. (Je te guide pour les mettre.)</span>
+          <span>Ajoute 6 à 12 photos : portails, fenêtres, garage, tableau électrique. (Je te guide pour les mettre.)</span>
           <div style="height:12px"></div>
           <span class="hint">Les photos de finitions réelles font super pro (même au téléphone).</span>
         </div>
@@ -962,12 +1025,12 @@
           <div class="card" id="contact" style="margin:0; box-shadow:none;">
             <b>Contact</b>
             <span>
-              <b>Téléphone :</b> <a href="tel:+33600000000">+33 6 00 00 00 00</a><br>
-              <b>Email :</b> <a href="mailto:contact@monelec.fr">contact@monelec.fr</a><br>
+              <b>Téléphone :</b> <a href="tel:+33695406864">06 95 40 68 64</a><br>
+              <b>Email :</b> <a href="mailto:monelec3@gmail.com">monelec3@gmail.com</a><br>
               <b>Horaires :</b> Lun–Sam • 8h–19h
             </span>
             <div style="height:12px"></div>
-            <a class="btn primary" href="tel:+33600000000">📞 Appeler maintenant</a>
+            <a class="btn primary" href="tel:+33695406864">📞 Appeler maintenant</a>
           </div>
 
           <div class="card" style="margin:0; box-shadow:none;">
@@ -983,7 +1046,7 @@
               </div>
               <div>
                 <label for="type">Type de travaux</label>
-                <input id="type" name="type" placeholder="Porte / Fenêtre / Garage / Électricité" required />
+                <input id="type" name="type" placeholder="Portail / Fenêtre / Garage / Électricité" required />
               </div>
               <div>
                 <label for="msg">Détails</label>
@@ -1002,6 +1065,7 @@
         <div>
           <strong style="letter-spacing:.6px; text-transform:uppercase;">MONELEC</strong>
           <small>Portes • Fenêtres • Garage • Électricité — Île-de-France</small>
+          <small>📞 06 95 40 68 64 • ✉️ monelec3@gmail.com</small>
         </div>
         <div style="text-align:right;">
           <div>© <span id="y"></span> — Tous droits réservés</div>
@@ -1014,7 +1078,6 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Carousel
     const track = document.getElementById("track");
     const slides = Array.from(track.children);
     const dots = document.getElementById("dots");
@@ -1033,33 +1096,43 @@
         dots.appendChild(b);
       });
     }
-    function setActiveDot(){
+
+    function setActive(){
+      slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
       const all = dots.querySelectorAll(".dotBtn");
       all.forEach((d, idx) => d.classList.toggle("active", idx === i));
     }
+
     function go(idx, user){
       i = (idx + slides.length) % slides.length;
       track.style.transform = "translateX(" + (-i * 100) + "%)";
-      setActiveDot();
+      setActive();
       if(user) restart();
     }
+
     function restart(){
       if(timer) clearInterval(timer);
-      timer = setInterval(() => go(i + 1, false), 4500);
+      timer = setInterval(() => go(i + 1, false), 5200);
     }
+
     prev.addEventListener("click", () => go(i - 1, true));
     next.addEventListener("click", () => go(i + 1, true));
+
+    track.addEventListener("pointerdown", () => { if(timer) clearInterval(timer); }, { passive:true });
+    track.addEventListener("pointerup", () => restart(), { passive:true });
+    track.addEventListener("mouseenter", () => { if(timer) clearInterval(timer); });
+    track.addEventListener("mouseleave", () => restart());
+
     buildDots();
+    setActive();
     restart();
 
-    // Option: ralentir le bandeau avis sur mobile
     const mq = window.matchMedia("(max-width: 520px)");
     if (mq.matches) {
       const rt = document.getElementById("reviewsTrack");
       if (rt) rt.style.animationDuration = "34s";
     }
 
-    // Devis form -> mailto
     const form = document.getElementById("quoteForm");
     form.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -1068,7 +1141,7 @@
       const type = document.getElementById("type").value.trim();
       const msg  = document.getElementById("msg").value.trim();
 
-      const to = "contact@monelec.fr"; // <-- CHANGE ICI
+      const to = "monelec3@gmail.com";
       const subject = encodeURIComponent("Demande de devis — " + type + " — " + city);
       const body = encodeURIComponent(
         "Bonjour,\n\n" +
@@ -1077,6 +1150,8 @@
         "Ville / Département : " + city + "\n" +
         "Type de travaux : " + type + "\n\n" +
         "Détails :\n" + (msg || "(non précisé)") + "\n\n" +
+        "Téléphone : 06 95 40 68 64\n" +
+        "Email : monelec3@gmail.com\n\n" +
         "Merci,\n" + name
       );
 
