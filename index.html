@@ -6,7 +6,768 @@
   <title>MONELEC — Portails, Fenêtres, Garage & Électricité | Île-de-France</title>
   <meta name="description" content="Pose et remplacement de portails, fenêtres, portes de garage + électricité. Île-de-France. Devis gratuit, travail soigné." />
   <meta name="theme-color" content="#0b0f14" />
-  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --txt:#0b0f14;
+      --muted:#5b6674;
+      --line:#e7e9ee;
+      --line2:#d9dde6;
+      --soft:#f6f7fa;
+      --soft2:#f0f2f7;
+      --black:#0b0f14;
+      --shadow: 0 18px 50px rgba(10,15,20,.10);
+      --shadow2: 0 12px 30px rgba(10,15,20,.08);
+      --r: 20px;
+      --r2: 14px;
+      --cta:#0b0f14;
+      --ctaTxt:#ffffff;
+      --accent:#fbbf24;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--txt);
+      background: var(--bg);
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:min(1160px, 92vw); margin:0 auto; }
+
+    .topbar{
+      background: var(--black);
+      color: rgba(255,255,255,.92);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing:.2px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .topbar .row{
+      display:flex;
+      gap:16px;
+      justify-content:space-between;
+      align-items:center;
+      padding: 10px 0;
+      flex-wrap:wrap;
+    }
+    .topbar .row .left, .topbar .row .right{
+      display:flex; gap:14px; align-items:center; flex-wrap:wrap;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+    }
+    .chip b{ font-weight: 1000; }
+    .chip span{ opacity:.92; }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 240px;
+    }
+    .logo{
+      width:44px; height:44px;
+      border-radius: 16px;
+      background: url("logo-monelec.png") center / cover no-repeat;
+      box-shadow: 0 18px 40px rgba(11,15,20,.18);
+      position:relative;
+      overflow:hidden;
+      border: 1px solid rgba(11,15,20,.12);
+    }
+    .logo:before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(90% 90% at 20% 10%, rgba(255,255,255,.30), transparent 55%);
+      mix-blend-mode: soft-light;
+      opacity:.8;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.28), transparent);
+      transform: rotate(18deg);
+      opacity:.0;
+      animation: logoShine 6.2s ease-in-out infinite;
+    }
+    @keyframes logoShine{
+      0%{ transform: translateX(-30%) rotate(18deg); opacity:0; }
+      15%{ opacity:.35; }
+      45%{ transform: translateX(25%) rotate(18deg); opacity:.18; }
+      100%{ transform: translateX(70%) rotate(18deg); opacity:0; }
+    }
+
+    .brand .name{ display:flex; flex-direction:column; line-height:1.05; }
+    .brand .name strong{
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      font-weight: 1000;
+      font-size: 15px;
+    }
+    .brand .name small{
+      color: var(--muted);
+      font-weight: 850;
+      font-size: 12px;
+      margin-top:4px;
+    }
+
+    nav.menu{
+      display:flex;
+      gap: 18px;
+      align-items:center;
+      font-weight: 950;
+      font-size: 13px;
+      letter-spacing:.25px;
+      text-transform: uppercase;
+      color: #1f2937;
+    }
+    nav.menu a{ padding: 10px 10px; border-radius: 12px; }
+    nav.menu a:hover{ background: var(--soft); }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line2);
+      background: #fff;
+      font-weight: 1000;
+      font-size: 13px;
+      letter-spacing:.2px;
+      cursor:pointer;
+      transition: transform .18s ease, background .18s ease, filter .18s ease, box-shadow .18s ease;
+      will-change: transform;
+      user-select:none;
+    }
+    .btn:hover{ background: var(--soft); transform: translateY(-1px); box-shadow: 0 10px 24px rgba(10,15,20,.08); }
+    .btn:active{ transform: translateY(0px) scale(.99); }
+    .btn.primary{
+      background: var(--cta);
+      color: var(--ctaTxt);
+      border-color: var(--cta);
+    }
+    .btn.primary:hover{ filter: brightness(.95); }
+    .btn.ghost{ border-color: var(--line2); background:#fff; }
+
+    .hero{ padding: 34px 0 14px; }
+    .heroText{
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .heroText:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(800px 280px at 20% 0%, rgba(251,191,36,.18), transparent 55%),
+                  radial-gradient(700px 260px at 80% 10%, rgba(11,15,20,.08), transparent 55%);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .heroText > *{ position:relative; }
+
+    .kickers{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom: 12px; }
+    .k{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      color: #1f2937;
+      font-weight: 1000;
+      font-size: 12px;
+      letter-spacing:.2px;
+    }
+    .dot{ width:10px; height:10px; border-radius:999px; background: var(--black); }
+    h1{
+      margin: 10px 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      letter-spacing: -0.6px;
+      line-height: 1.03;
+    }
+    .sub{
+      margin:0;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height:1.7;
+      max-width: 72ch;
+      font-weight: 680;
+    }
+    .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 16px; }
+
+    .proofs{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .proof{
+      border: 1px solid var(--line);
+      background: var(--soft);
+      border-radius: 16px;
+      padding: 14px;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .proof:hover{ transform: translateY(-2px); box-shadow: 0 14px 28px rgba(10,15,20,.08); }
+    .proof b{
+      display:block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing:.3px;
+    }
+    .proof span{
+      display:block;
+      color: var(--muted);
+      line-height:1.55;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .carouselFull{
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      overflow: hidden;
+      background: #0b0f14;
+      box-shadow: var(--shadow);
+      transform: translateZ(0);
+    }
+    .carTop{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      padding: 14px 14px 12px;
+      background: rgba(11,15,20,.88);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      color:#fff;
+    }
+    .carTop b{ letter-spacing:.35px; text-transform: uppercase; font-size: 13px; }
+    .carTop span{
+      display:block;
+      margin-top:4px;
+      opacity:.82;
+      font-weight: 780;
+      font-size: 12px;
+      line-height:1.35;
+    }
+    .carTopRight{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .miniTag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.08);
+      color:#fff;
+      font-weight: 950;
+      font-size: 12px;
+      white-space:nowrap;
+    }
+
+    .viewport{
+      position:relative;
+      height: 520px;
+      overflow:hidden;
+      perspective: 1000px;
+    }
+    .track{
+      display:flex;
+      height:100%;
+      transition: transform .65s cubic-bezier(.2,.85,.2,1);
+      will-change: transform;
+    }
+    .slide{
+      min-width:100%;
+      height:100%;
+      position:relative;
+      background: #0b0f14;
+      transform: translateZ(0);
+    }
+    .slide img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      opacity:.96;
+      filter: contrast(1.03) saturate(1.02);
+      transform: scale(1.03);
+      transition: transform 1.2s cubic-bezier(.2,.8,.2,1), filter .8s ease, opacity .8s ease;
+      will-change: transform;
+    }
+    .slide.active img{ transform: scale(1.10); filter: contrast(1.06) saturate(1.06); }
+    .overlay{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(11,15,20,.18), rgba(11,15,20,.72)); }
+
+    .shine{
+      position:absolute;
+      inset: -30%;
+      background: radial-gradient(closest-side, rgba(255,255,255,.12), transparent 60%);
+      transform: translateX(-25%) translateY(-10%);
+      opacity:.0;
+      pointer-events:none;
+    }
+    .slide.active .shine{ opacity:.7; animation: floatShine 6s ease-in-out infinite; }
+    @keyframes floatShine{
+      0%{ transform: translateX(-22%) translateY(-12%) scale(1); }
+      50%{ transform: translateX(18%) translateY(10%) scale(1.08); }
+      100%{ transform: translateX(-22%) translateY(-12%) scale(1); }
+    }
+
+    .cap{
+      position:absolute;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      width: min(980px, calc(100% - 28px));
+      bottom: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(11,15,20,.62);
+      backdrop-filter: blur(10px);
+      border-radius: 18px;
+      padding: 12px 12px;
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+      align-items:flex-start;
+      color:#fff;
+      opacity: 0;
+      transition: opacity .55s ease, transform .55s cubic-bezier(.2,.85,.2,1);
+      will-change: opacity, transform;
+    }
+    .slide.active .cap{ opacity: 1; transform: translateX(-50%) translateY(0px); }
+    .cap b{ display:block; margin-bottom:3px; font-size: 14px; }
+    .cap span{ display:block; opacity:.82; font-weight: 740; font-size: 12.5px; line-height:1.35; }
+    .badge{
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-weight: 1000;
+      font-size: 12px;
+      white-space:nowrap;
+    }
+
+    .arrow{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width: 44px; height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(11,15,20,.45);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      user-select:none;
+      color:#fff;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+      will-change: transform;
+      z-index: 5;
+    }
+    .arrow:hover{
+      background: rgba(11,15,20,.72);
+      transform: translateY(-50%) scale(1.04);
+      box-shadow: 0 14px 30px rgba(0,0,0,.25);
+    }
+    .arrow:active{ transform: translateY(-50%) scale(.98); }
+    .arrow.left{ left: 12px; }
+    .arrow.right{ right: 12px; }
+
+    .dots{
+      position:absolute;
+      left:0; right:0; bottom: 10px;
+      display:flex;
+      justify-content:center;
+      gap: 8px;
+      z-index: 5;
+    }
+    .dotBtn{
+      width: 8px; height: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.35);
+      background: rgba(255,255,255,.18);
+      cursor:pointer;
+      opacity:.75;
+      transition: width .25s ease, opacity .25s ease, background .25s ease;
+    }
+    .dotBtn.active{
+      width: 22px;
+      background: rgba(255,255,255,.92);
+      opacity: 1;
+    }
+
+    .reviews-band{
+      margin: 18px 0 10px;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      overflow: hidden;
+      background: linear-gradient(180deg, #fff, var(--soft));
+      box-shadow: var(--shadow2);
+    }
+    .reviews-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+    .reviews-head b{ font-size: 13px; text-transform: uppercase; letter-spacing: .35px; }
+    .reviews-head span{ color: var(--muted); font-weight: 850; font-size: 12.5px; }
+    .badge-note{
+      border: 1px dashed var(--line2);
+      background: var(--soft);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-weight: 900;
+      font-size: 12px;
+      color: #111827;
+    }
+    .marquee{ position:relative; overflow:hidden; }
+    .marquee::before,
+    .marquee::after{
+      content:"";
+      position:absolute; top:0; bottom:0;
+      width: 80px;
+      pointer-events:none;
+      z-index: 2;
+    }
+    .marquee::before{ left:0; background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0) 100%); }
+    .marquee::after{ right:0; background: linear-gradient(270deg, #ffffff 0%, rgba(255,255,255,0) 100%); }
+    .marquee-track{
+      display:flex;
+      gap: 12px;
+      padding: 12px 14px;
+      width: max-content;
+      animation: reviewsScroll 26s linear infinite;
+      will-change: transform;
+    }
+    .reviews-band:hover .marquee-track{ animation-play-state: paused; }
+    @keyframes reviewsScroll{
+      from{ transform: translateX(0); }
+      to{ transform: translateX(-50%); }
+    }
+    .review-pill{
+      flex: 0 0 auto;
+      min-width: 320px;
+      max-width: 420px;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 16px;
+      padding: 12px 12px;
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .review-pill:hover{ transform: translateY(-2px); box-shadow: 0 14px 28px rgba(10,15,20,.08); }
+    .review-avatar{
+      width: 40px; height: 40px;
+      border-radius: 999px;
+      background: var(--black);
+      color: #fff;
+      display:grid;
+      place-items:center;
+      font-weight: 1000;
+      letter-spacing: .3px;
+      flex: 0 0 auto;
+    }
+    .review-body b{ display:block; font-size: 13px; letter-spacing:.2px; }
+    .review-body p{
+      margin: 6px 0 8px;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .stars{ display:flex; gap: 2px; align-items:center; margin-top: 6px; }
+    .star{
+      width: 14px; height: 14px;
+      display:inline-block;
+      background: currentColor;
+      color: #111827;
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>') center / contain no-repeat;
+              mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>') center / contain no-repeat;
+      opacity: .92;
+    }
+    .star.dim{ opacity: .25; }
+    .review-meta{ display:flex; gap: 8px; align-items:center; color: var(--muted); font-weight: 850; font-size: 12px; }
+
+    .section{ padding: 18px 0; }
+    .sectionTitle{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap: 12px;
+      margin: 8px 0 12px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing:.35px;
+    }
+    .sectionTitle p{ margin:0; color: var(--muted); font-weight: 780; font-size: 13px; }
+
+    .grid4{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .card{
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: var(--r);
+      padding: 16px;
+      box-shadow: var(--shadow2);
+    }
+    .icon{
+      width: 44px; height: 44px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      display:grid;
+      place-items:center;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .card b{ display:block; margin-bottom:6px; }
+    .card span{ display:block; color: var(--muted); font-size: 13px; line-height:1.55; font-weight:650; }
+
+    .two{ display:grid; grid-template-columns: 1.05fr .95fr; gap: 12px; align-items:stretch; }
+
+    form{ display:grid; gap: 10px; }
+    label{ font-weight: 950; font-size: 13px; letter-spacing:.2px; }
+    input, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line2);
+      background: #fff;
+      outline:none;
+      font: inherit;
+    }
+    input:focus, textarea:focus{
+      border-color: #0b0f14;
+      box-shadow: 0 0 0 4px rgba(11,15,20,.08);
+    }
+    textarea{ min-height: 110px; resize: vertical; }
+    .hint{ color: var(--muted); font-size: 12.5px; line-height:1.45; font-weight: 650; }
+
+    footer{
+      border-top: 1px solid var(--line);
+      margin-top: 12px;
+      padding: 26px 0 40px;
+      background: var(--soft);
+    }
+    .foot{
+      display:flex;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+      color: #1f2937;
+    }
+    .foot small{ color: var(--muted); font-weight: 780; display:block; margin-top:6px; }
+
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .gItem{
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow:hidden;
+      background: #fff;
+      box-shadow: var(--shadow2);
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease;
+      position:relative;
+    }
+    .gItem:after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent 55%, rgba(11,15,20,.35));
+      opacity:.0;
+      transition: opacity .18s ease;
+      pointer-events:none;
+    }
+    .gItem:hover:after{ opacity:1; }
+    .gItem:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(10,15,20,.12);
+    }
+    .gItem img{
+      width:100%;
+      height: 210px;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.02);
+      transition: transform .6s cubic-bezier(.2,.8,.2,1);
+    }
+    .gItem:hover img{ transform: scale(1.08); }
+    .gCap{
+      padding: 10px 12px;
+      font-weight: 950;
+      font-size: 13px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      color:#111827;
+      font-weight: 950;
+      font-size: 12px;
+      white-space:nowrap;
+    }
+
+    .lightbox{
+      position:fixed;
+      inset:0;
+      background: rgba(11,15,20,.78);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      z-index: 999;
+    }
+    .lightbox.open{ display:flex; }
+    .lbCard{
+      width: min(1100px, 96vw);
+      max-height: 88vh;
+      border-radius: 18px;
+      overflow:hidden;
+      background: #0b0f14;
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 22px 70px rgba(0,0,0,.35);
+      position:relative;
+      transform: translateY(6px);
+      opacity: 0;
+      animation: lbIn .18s ease forwards;
+    }
+    @keyframes lbIn{
+      to{ transform: translateY(0); opacity:1; }
+    }
+    .lbImg{
+      width:100%;
+      height: 88vh;
+      max-height: 88vh;
+      object-fit: contain;
+      display:block;
+      background:#0b0f14;
+    }
+    .lbClose{
+      position:absolute;
+      top: 10px; right: 10px;
+      width: 40px; height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.35);
+      color:#fff;
+      cursor:pointer;
+      font-weight: 1000;
+      font-size: 16px;
+    }
+    .lbClose:hover{ background: rgba(0,0,0,.55); }
+
+    .fab{
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      z-index: 80;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .fab a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,15,20,.12);
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 16px 40px rgba(10,15,20,.14);
+      font-weight: 1000;
+      font-size: 13px;
+      transition: transform .18s ease, filter .18s ease;
+      white-space:nowrap;
+    }
+    .fab a:hover{ transform: translateY(-2px); filter: brightness(.98); }
+    .fab .call{ border-color: rgba(11,15,20,.16); }
+    .fab .mail{ border-color: rgba(11,15,20,.10); }
+    .fab .quote{ background: var(--cta); color:#fff; border-color: var(--cta); }
+
+    .reveal{
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .reveal.on{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px){
+      nav.menu{ display:none; }
+      .proofs{ grid-template-columns: 1fr; }
+      .grid4{ grid-template-columns: repeat(2, 1fr); }
+      .two{ grid-template-columns: 1fr; }
+      .viewport{ height: 420px; }
+      .cap{ width: calc(100% - 28px); }
+      .gallery{ grid-template-columns: repeat(2, 1fr); }
+      .gItem img{ height: 190px; }
+      .fab a{ padding: 12px 12px; }
+    }
+    @media (max-width: 520px){
+      .grid4{ grid-template-columns: 1fr; }
+      .viewport{ height: 360px; }
+      .gallery{ grid-template-columns: 1fr; }
+      .gItem img{ height: 210px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .track, .slide img, .cap, .btn, .proof, .review-pill, .logo:after, .slide.active .shine, .lbCard{
+        transition: none !important;
+        animation: none !important;
+      }
+      .marquee-track{ animation: none !important; transform: none !important; }
+      .reveal{ opacity: 1 !important; transform: none !important; }
+    }
+  </style>
 </head>
 
 <body>
@@ -34,14 +795,16 @@
       </div>
 
       <nav class="menu" aria-label="Navigation">
-        <a href="index.html">Accueil</a>
-        <a href="realisations.html">Réalisations</a>
-        <a href="devis.html">Devis</a>
+        <a href="#services">Services</a>
+        <a href="#realisations">Réalisations</a>
+        <a href="#zone">Zone</a>
+        <a href="#devis">Devis</a>
+        <a href="#contact">Contact</a>
       </nav>
 
       <div style="display:flex; gap:10px; align-items:center;">
-        <a class="btn ghost" href="devis.html#contact">Nous contacter</a>
-        <a class="btn primary" href="devis.html#devis">Devis gratuit</a>
+        <a class="btn ghost" href="#contact">Nous contacter</a>
+        <a class="btn primary" href="#devis">Devis gratuit</a>
       </div>
     </div>
   </header>
@@ -63,10 +826,10 @@
         </p>
 
         <div class="actions">
-          <a class="btn primary" href="devis.html#devis">🧾 Demander un devis</a>
+          <a class="btn primary" href="#devis">🧾 Demander un devis</a>
           <a class="btn" href="tel:+33695406864">📞 Appeler</a>
           <a class="btn" href="mailto:monelec3@gmail.com">✉️ Email</a>
-          <a class="btn" href="realisations.html">📸 Photos</a>
+          <a class="btn" href="#realisations">📸 Photos</a>
         </div>
 
         <div class="proofs">
@@ -93,7 +856,7 @@
           </div>
           <div class="carTopRight">
             <div class="miniTag">📞 06 95 40 68 64</div>
-            <a class="btn primary" href="devis.html#devis">Devis gratuit</a>
+            <a class="btn primary" href="#devis">Devis gratuit</a>
           </div>
         </div>
 
@@ -336,6 +1099,121 @@
       </div>
     </section>
 
+    <section class="section reveal" id="realisations">
+      <div class="sectionTitle">
+        <h2>Réalisations</h2>
+        <p>Vos photos de chantiers, affichées en grand.</p>
+      </div>
+
+      <div class="two">
+        <div class="card">
+          <b>Photos de chantiers</b>
+          <span>Portails • Fenêtres • Électricité</span>
+
+          <div class="gallery" id="gallery">
+            <div class="gItem" data-full="portail-1.jpg">
+              <img src="portail-1.jpg" alt="Portail 1">
+              <div class="gCap"><span>Portail</span><span class="pill">Voir</span></div>
+            </div>
+            <div class="gItem" data-full="portail-2.jpg">
+              <img src="portail-2.jpg" alt="Portail 2">
+              <div class="gCap"><span>Portail</span><span class="pill">Voir</span></div>
+            </div>
+            <div class="gItem" data-full="portail-3.jpg">
+              <img src="portail-3.jpg" alt="Portail 3">
+              <div class="gCap"><span>Portail</span><span class="pill">Voir</span></div>
+            </div>
+            <div class="gItem" data-full="fenetre-1.jpg">
+              <img src="fenetre-1.jpg" alt="Fenêtre 1">
+              <div class="gCap"><span>Fenêtres</span><span class="pill">Voir</span></div>
+            </div>
+            <div class="gItem" data-full="fenetre-2.jpg">
+              <img src="fenetre-2.jpg" alt="Fenêtre 2">
+              <div class="gCap"><span>Fenêtres</span><span class="pill">Voir</span></div>
+            </div>
+            <div class="gItem" data-full="elec-1.jpg">
+              <img src="elec-1.jpg" alt="Électricité 1">
+              <div class="gCap"><span>Électricité</span><span class="pill">Voir</span></div>
+            </div>
+            <div class="gItem" data-full="elec-2.jpg">
+              <img src="elec-2.jpg" alt="Électricité 2">
+              <div class="gCap"><span>Électricité</span><span class="pill">Voir</span></div>
+            </div>
+          </div>
+
+          <div class="hint" style="margin-top:10px;">Clique sur une photo pour l’afficher en grand.</div>
+        </div>
+
+        <div class="card">
+          <b>Engagements</b>
+          <span>• Travail soigné, finitions propres<br>• Réponse rapide, devis clair<br>• Intervention Île-de-France<br>• Déplacement sur demande<br><br><b>Contact :</b><br>📞 06 95 40 68 64<br>✉️ monelec3@gmail.com</span>
+          <div style="height:12px"></div>
+          <a class="btn primary" href="#devis">Demander un devis</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="zone">
+      <div class="sectionTitle">
+        <h2>Zone d’intervention</h2>
+        <p>Île-de-France + sur demande.</p>
+      </div>
+
+      <div class="card">
+        <b>Île-de-France</b>
+        <span>Intervention en Île-de-France. Possibilité de se déplacer hors IDF selon le chantier (sur demande).</span>
+      </div>
+    </section>
+
+    <section class="section reveal" id="devis">
+      <div class="sectionTitle">
+        <h2>Devis gratuit</h2>
+        <p>Réponse rapide.</p>
+      </div>
+
+      <div class="card" style="padding:18px;">
+        <div class="two">
+          <div class="card" id="contact" style="margin:0; box-shadow:none;">
+            <b>Contact</b>
+            <span>
+              <b>Téléphone :</b> <a href="tel:+33695406864">06 95 40 68 64</a><br>
+              <b>Email :</b> <a href="mailto:monelec3@gmail.com">monelec3@gmail.com</a><br>
+              <b>Horaires :</b> Lun–Sam • 8h–19h
+            </span>
+            <div style="height:12px"></div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn primary" href="tel:+33695406864">📞 Appeler maintenant</a>
+              <a class="btn" href="mailto:monelec3@gmail.com">✉️ Envoyer un email</a>
+            </div>
+          </div>
+
+          <div class="card" style="margin:0; box-shadow:none;">
+            <b>Votre demande</b>
+            <form id="quoteForm">
+              <div>
+                <label for="name">Nom</label>
+                <input id="name" name="name" autocomplete="name" placeholder="Votre nom" required />
+              </div>
+              <div>
+                <label for="city">Ville / Département</label>
+                <input id="city" name="city" placeholder="Ex : Massy (91)" required />
+              </div>
+              <div>
+                <label for="type">Type de travaux</label>
+                <input id="type" name="type" placeholder="Portail / Fenêtre / Garage / Électricité" required />
+              </div>
+              <div>
+                <label for="msg">Détails</label>
+                <textarea id="msg" name="msg" placeholder="Décrivez votre besoin + délai souhaité."></textarea>
+              </div>
+              <button class="btn primary" type="submit">Envoyer la demande</button>
+              <div class="hint">Le bouton ouvre votre application mail avec le message pré-rempli.</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <footer>
       <div class="wrap foot">
         <div>
@@ -351,12 +1229,173 @@
     </footer>
   </main>
 
+  <div class="lightbox" id="lightbox" aria-label="Aperçu photo">
+    <div class="lbCard">
+      <button class="lbClose" id="lbClose" aria-label="Fermer">✕</button>
+      <img class="lbImg" id="lbImg" alt="Aperçu" src="" />
+    </div>
+  </div>
+
   <div class="fab" aria-label="Raccourcis">
-    <a class="quote" href="devis.html#devis">🧾 Devis</a>
+    <a class="quote" href="#devis">🧾 Devis</a>
     <a class="call" href="tel:+33695406864">📞 06 95 40 68 64</a>
     <a class="mail" href="mailto:monelec3@gmail.com">✉️ Email</a>
   </div>
 
-  <script src="assets/js/app.js" defer></script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    const track = document.getElementById("track");
+    const slides = track ? Array.from(track.children) : [];
+    const dots = document.getElementById("dots");
+    const prev = document.getElementById("prev");
+    const next = document.getElementById("next");
+
+    let i = 0;
+    let timer = null;
+    let paused = false;
+
+    function setActive(){
+      slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
+      const all = dots ? dots.querySelectorAll(".dotBtn") : [];
+      all.forEach((d, idx) => d.classList.toggle("active", idx === i));
+    }
+
+    function buildDots(){
+      if(!dots) return;
+      dots.innerHTML = "";
+      slides.forEach((_, idx) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "dotBtn" + (idx === 0 ? " active" : "");
+        b.addEventListener("click", () => go(idx, true));
+        dots.appendChild(b);
+      });
+    }
+
+    function go(idx, user){
+      if(!slides.length) return;
+      i = (idx + slides.length) % slides.length;
+      track.style.transform = "translateX(" + (-i * 100) + "%)";
+      setActive();
+      if(user) restart();
+    }
+
+    function start(){
+      if(!slides.length) return;
+      if(timer) clearInterval(timer);
+      timer = setInterval(() => {
+        if(!paused) go(i + 1, false);
+      }, 5200);
+    }
+
+    function restart(){
+      paused = false;
+      start();
+    }
+
+    function pause(){
+      paused = true;
+    }
+
+    if(slides.length){
+      buildDots();
+      setActive();
+      start();
+
+      if(prev) prev.addEventListener("click", () => go(i - 1, true));
+      if(next) next.addEventListener("click", () => go(i + 1, true));
+
+      const viewport = document.querySelector(".viewport");
+      if(viewport){
+        viewport.addEventListener("mouseenter", pause);
+        viewport.addEventListener("mouseleave", restart);
+        viewport.addEventListener("touchstart", pause, { passive:true });
+        viewport.addEventListener("touchend", restart, { passive:true });
+      }
+
+      document.addEventListener("visibilitychange", () => {
+        if(document.hidden) pause();
+        else restart();
+      });
+    }
+
+    const mq = window.matchMedia("(max-width: 520px)");
+    if (mq.matches) {
+      const rt = document.getElementById("reviewsTrack");
+      if (rt) rt.style.animationDuration = "34s";
+    }
+
+    const form = document.getElementById("quoteForm");
+    if(form){
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = (document.getElementById("name")?.value || "").trim();
+        const city = (document.getElementById("city")?.value || "").trim();
+        const type = (document.getElementById("type")?.value || "").trim();
+        const msg  = (document.getElementById("msg")?.value || "").trim();
+
+        const to = "monelec3@gmail.com";
+        const subject = encodeURIComponent("Demande de devis — " + type + " — " + city);
+        const body = encodeURIComponent(
+          "Bonjour,\n\n" +
+          "Je souhaite un devis.\n\n" +
+          "Nom : " + name + "\n" +
+          "Ville / Département : " + city + "\n" +
+          "Type de travaux : " + type + "\n\n" +
+          "Détails :\n" + (msg || "(non précisé)") + "\n\n" +
+          "Contact MONELEC : 06 95 40 68 64 — monelec3@gmail.com\n\n" +
+          "Merci,\n" + name
+        );
+
+        window.location.href = "mailto:" + to + "?subject=" + subject + "&body=" + body;
+      });
+    }
+
+    const lightbox = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lbImg");
+    const lbClose = document.getElementById("lbClose");
+
+    function openLb(src){
+      if(!lightbox || !lbImg) return;
+      lbImg.src = src;
+      lightbox.classList.add("open");
+      pause();
+    }
+    function closeLb(){
+      if(!lightbox || !lbImg) return;
+      lightbox.classList.remove("open");
+      lbImg.src = "";
+      restart();
+    }
+
+    document.querySelectorAll(".gItem").forEach(item => {
+      item.addEventListener("click", () => {
+        const src = item.getAttribute("data-full");
+        if(src) openLb(src);
+      });
+    });
+
+    if(lbClose) lbClose.addEventListener("click", closeLb);
+    if(lightbox){
+      lightbox.addEventListener("click", (e) => {
+        if(e.target === lightbox) closeLb();
+      });
+    }
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape") closeLb();
+    });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(ent => {
+        if(ent.isIntersecting){
+          ent.target.classList.add("on");
+          io.unobserve(ent.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
 </body>
 </html>
